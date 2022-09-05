@@ -2,6 +2,8 @@ package Leetcode;
 
 public class AddTwoNumbers {
     public static void main(String[] args) {
+        ex1();
+        ex2();
         ex3();
     }
 
