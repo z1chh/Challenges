@@ -55,6 +55,7 @@ public class E {
                         circle1.addAll(circle2);
                         friendCircles.put(friend2, circle1);
                     }
+                    // If it is the same circle, then they should already be both in it, nothing to change
                 } else if (f1InCircle) {
                     // One new person
                     friendCircles.get(friend1).add(friend2);
