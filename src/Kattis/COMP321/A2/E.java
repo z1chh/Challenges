@@ -1,7 +1,7 @@
 package Kattis.COMP321.A2;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 public class E {
@@ -18,7 +18,7 @@ public class E {
         // Test case
         int numFriendshipsFormed;
         ArrayList<String> friendshipsFormed = new ArrayList<>();
-        HashMap<String, ArrayList<String>> connections = new HashMap<>();
+        ArrayList<ArrayList<String>> friendCircles = new ArrayList<>();
         String friend1, friend2;
         for (int i = 0; i < testCases; i++) {
             // Get new friendships
@@ -33,31 +33,57 @@ public class E {
                 String[] friends = friendship.split("\\s");
                 friend1 = friends[0];
                 friend2 = friends[1];
-                // Check if tuple already existed, and ignore if yes
-                // Check if friends already exist in other groups, if not create new group, otherwise add to other group
-                // Output group size
-                updateFriends(friend1, friend2, connections);
-                updateFriends(friend2, friend1, connections);
-                System.out.println(connections.get(friend1).size());
+                boolean f1InCircle = inCircle(friend1, friendCircles);
+                boolean f2InCircle = inCircle(friend2, friendCircles);
+                if (!f1InCircle && !f2InCircle) {
+                    ArrayList<String> newCircle = new ArrayList<>(List.of(friend1, friend2));
+                    friendCircles.add(newCircle);
+                } else if (f1InCircle && f2InCircle) {
+                    // Merge the two ArrayLists
+                    ArrayList<String> circle1 = getCircle(friend1, friendCircles);
+                    ArrayList<String> circle2 = getCircle(friend2, friendCircles);
+                    assert circle1 != null && circle2 != null: "Error: both friends should have a circle";
+                    // Check if it is the same circle
+                    if (circle1 != circle2) {
+                        circle1.addAll(circle2);
+                        friendCircles.remove(circle2);
+                    }
+                } else if (f1InCircle) {
+                    updateCircles(friend1, friend2, friendCircles);
+                } else {
+                    updateCircles(friend2, friend1, friendCircles);
+                }
+                ArrayList<String> circle = getCircle(friend1, friendCircles);
+                assert circle != null: "Error: circle is null but shouldn't be";
+                System.out.println(circle.size());
             }
         }
     }
 
-    private static void updateFriends(String name, String friend, HashMap<String, ArrayList<String>> connections) {
-        ArrayList<String> friends;
-        if (connections.containsKey(name)) {
-            friends = connections.get(name);
-            if (!friends.contains(friend)) {
-                friends.add(friend);
-                for (String f: friends) {
-                    updateFriends(f, friend, connections);
-                }
+    private static boolean inCircle(String name, ArrayList<ArrayList<String>> friendCircles) {
+        for (ArrayList<String> circle: friendCircles) {
+            if (circle.contains(name)) {
+                return true;
             }
-        } else {
-            friends = new ArrayList<>();
-            friends.add(friend);
-            friends.add(name);
-            connections.put(name, friends);
         }
+        return false;
+    }
+
+    private static void updateCircles(String name, String friend, ArrayList<ArrayList<String>> friendCircles) {
+        for (ArrayList<String> circle: friendCircles) {
+            if (circle.contains(name)) {
+                circle.add(friend);
+                return;
+            }
+        }
+    }
+
+    private static ArrayList<String> getCircle(String name, ArrayList<ArrayList<String>> friendCircles) {
+        for (ArrayList<String> circle: friendCircles) {
+            if (circle.contains(name))
+                return circle;
+        }
+        assert false: String.format("%s has a circle but it couldn't be found", name);
+        return null;
     }
 }
