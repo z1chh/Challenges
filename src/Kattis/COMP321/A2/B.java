@@ -22,6 +22,7 @@ public class B {
             cur = input.charAt(i);
             if (cur == '<' && size > 0) {
                 outputList.removeLast();
+                size--;
             } else if (cur != '<') {
                 outputList.addLast(cur);
                 size++;
