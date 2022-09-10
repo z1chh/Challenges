@@ -3,6 +3,22 @@ package Kattis.COMP321.A2;
 import java.util.Scanner;
 
 public class A {
+    private enum Sex {
+        MALE, FEMALE, NONE;
+
+        public static Sex getSex(char c) {
+            switch (c) {
+                case ('M'):
+                    return MALE;
+                case ('W'):
+                    return FEMALE;
+                case ('N'):
+                    return NONE;
+                default:
+                    throw new IllegalArgumentException("Error: char must be 'M', 'W' or 'N'");
+            }
+        }
+    }
     public static void main(String[] args) {
         System.out.println(doorMan());
     }
@@ -24,66 +40,44 @@ public class A {
 
         // Get first person
         int difference = 1, peopleIn = 1;
-        char next = queue.charAt(0), onHold = 'N', dominantSex = next == 'M'? 'M': 'W';
+        char next = queue.charAt(0);
+        Sex onHold = Sex.NONE, dominantSex = Sex.getSex(next);
 
         // Letting people in
         for (int i = 1; i < queue.length(); i++) {
             next = queue.charAt(i);
-            if (dominantSex == 'M') {
-                if (difference >= maxDifference && next == 'M') {
-                    if (onHold == 'M') {
-                        return peopleIn;
-                    } else if (onHold == 'W') {
-                        onHold = 'N';
-                        peopleIn++;
-                        difference--;
-                        if (difference == 0) {
-                            dominantSex = 'N';
-                        }
-                    } else { // onHold == 'N'
-                        onHold = next;
-                    }
-                } else {
+
+            // Check if about to lose track of count
+            if (difference >= maxDifference && Sex.getSex(next) == dominantSex) {
+                // About to lose track of count
+                if (onHold == dominantSex)
+                    return peopleIn;
+                else if (onHold == Sex.NONE)
+                    onHold = dominantSex;
+                else { // Opposite sex
+                    onHold = Sex.NONE;
                     peopleIn++;
-                    if (next == 'M') {
-                        difference++;
-                    } else { // next == 'W'
-                        difference--;
-                        if (difference == 0) {
-                            dominantSex = 'N';
-                        }
+                    difference--;
+                    if (difference == 0) {
+                        dominantSex = Sex.NONE;
                     }
                 }
-            } else if (dominantSex == 'W') {
-                if (difference >= maxDifference && next == 'W') {
-                    if (onHold == 'W') {
-                        return peopleIn;
-                    } else if (onHold == 'M') {
-                        onHold = 'N';
-                        peopleIn++;
-                        difference--;
-                        if (difference == 0) {
-                            dominantSex = 'N';
-                        }
-                    } else { // onHold == 'N'
-                        onHold = next;
-                    }
-                } else {
-                    peopleIn++;
-                    if (next == 'W') {
-                        difference++;
-                    } else { // next == 'M'
-                        difference--;
-                        if (difference == 0) {
-                            dominantSex = 'N';
-                        }
-                    }
-                }
-            } else { // dominantSex == 'N'
-                assert difference == 0: "Error: difference should be 0";
+            } else {
                 peopleIn++;
-                difference++;
-                dominantSex = next;
+                if (Sex.getSex(next) == dominantSex) {
+                    difference++;
+                } else {
+                    if (dominantSex == Sex.NONE) {
+                        dominantSex = Sex.getSex(next);
+                        assert difference == 0: "Error: sex tied but difference is not 0";
+                        difference = 1;
+                    } else {
+                        difference--;
+                        if (difference == 0) {
+                            dominantSex = Sex.NONE;
+                        }
+                    }
+                }
             }
         }
         assert peopleIn == queue.length(): "Error: everyone got in but incorrect value";
