@@ -16,13 +16,12 @@ public class E {
         scanner.nextLine(); // Get rid of carriage return
 
         // Test case
-        int numFriendshipsFormed;
-        ArrayList<String> friendshipsFormed = new ArrayList<>();
-        ArrayList<ArrayList<String>> friendCircles = new ArrayList<>();
         String friend1, friend2;
         for (int i = 0; i < testCases; i++) {
             // Get new friendships
-            numFriendshipsFormed = scanner.nextInt();
+            int numFriendshipsFormed = scanner.nextInt();
+            ArrayList<String> friendshipsFormed = new ArrayList<>();
+            ArrayList<ArrayList<String>> friendCircles = new ArrayList<>();
             scanner.nextLine(); // Get rid of carriage return
             for (int j = 0; j < numFriendshipsFormed; j++) {
                 friendshipsFormed.add(scanner.nextLine());
