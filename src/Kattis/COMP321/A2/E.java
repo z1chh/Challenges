@@ -13,6 +13,7 @@ public class E {
         // Get number of test cases
         Scanner scanner = new Scanner(System.in);
         int testCases = scanner.nextInt();
+        scanner.nextLine(); // Get rid of carriage return
 
         // Test case
         int numFriendshipsFormed;
@@ -22,6 +23,7 @@ public class E {
         for (int i = 0; i < testCases; i++) {
             // Get new friendships
             numFriendshipsFormed = scanner.nextInt();
+            scanner.nextLine(); // Get rid of carriage return
             for (int j = 0; j < numFriendshipsFormed; j++) {
                 friendshipsFormed.add(scanner.nextLine());
             }
@@ -34,21 +36,28 @@ public class E {
                 // Check if tuple already existed, and ignore if yes
                 // Check if friends already exist in other groups, if not create new group, otherwise add to other group
                 // Output group size
-                if (connections.containsKey(friend1)) {
-                    if (!connections.get(friend1).contains(friend2))
-                        connections.get(friend1).add(friend2);
-                } else {
-                    connections.put(friend1, new ArrayList<>());
-                    connections.get(friend1).add(friend2);
-                }
-                if (connections.containsKey(friend2)) {
-                    if (!connections.get(friend2).contains(friend1))
-                        connections.get(friend2).add(friend1);
-                } else {
-                    connections.put(friend2, new ArrayList<>());
-                    connections.get(friend2).add(friend1);
+                updateFriends(friend1, friend2, connections);
+                updateFriends(friend2, friend1, connections);
+                System.out.println(connections.get(friend1).size());
+            }
+        }
+    }
+
+    private static void updateFriends(String name, String friend, HashMap<String, ArrayList<String>> connections) {
+        ArrayList<String> friends;
+        if (connections.containsKey(name)) {
+            friends = connections.get(name);
+            if (!friends.contains(friend)) {
+                friends.add(friend);
+                for (String f: friends) {
+                    updateFriends(f, friend, connections);
                 }
             }
+        } else {
+            friends = new ArrayList<>();
+            friends.add(friend);
+            friends.add(name);
+            connections.put(name, friends);
         }
     }
 }
