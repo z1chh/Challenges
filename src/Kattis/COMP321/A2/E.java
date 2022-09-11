@@ -23,9 +23,9 @@ public class E {
         for (int i = 0; i < testCases; i++) {
             // Get new friendships
             numFriendshipsFormed = scanner.nextInt();
+            scanner.nextLine(); // Get rid of carriage return
             friendshipsFormed = new ArrayList<>();
             HashMap<String, ArrayList<String>> friendCircles = new HashMap<>();
-            scanner.nextLine(); // Get rid of carriage return
             for (int j = 0; j < numFriendshipsFormed; j++) {
                 friendshipsFormed.add(scanner.nextLine());
             }
@@ -52,7 +52,10 @@ public class E {
                     // Check if it is the same circle
                     if (circle1 != circle2) {
                         // Merge the two ArrayLists
-                        circle1.addAll(circle2);
+                        for (String friend: circle2) {
+                            if (!circle1.contains(friend))
+                                circle1.add(friend);
+                        }
                         friendCircles.put(friend2, circle1);
                     }
                     // If it is the same circle, then they should already be both in it, nothing to change
