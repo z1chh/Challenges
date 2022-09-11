@@ -34,6 +34,7 @@ public class B {
             output.append(c);
         }
 
+        scanner.close();
         return output.toString();
     }
 }

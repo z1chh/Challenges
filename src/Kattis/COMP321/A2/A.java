@@ -81,6 +81,7 @@ public class A {
             }
         }
         assert peopleIn == queue.length(): "Error: everyone got in but incorrect value";
+        scanner.close();
         return peopleIn;
     }
 }

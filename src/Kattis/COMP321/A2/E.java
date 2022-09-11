@@ -73,5 +73,6 @@ public class E {
                 System.out.println(circle.size());
             }
         }
+        scanner.close();
     }
 }

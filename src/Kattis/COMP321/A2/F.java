@@ -43,5 +43,6 @@ public class F {
             }
             System.out.println(count);
         }
+        scanner.close();
     }
 }

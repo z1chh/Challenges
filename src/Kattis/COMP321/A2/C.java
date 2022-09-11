@@ -5,10 +5,10 @@ import java.util.Scanner;
 
 public class C {
     public static void main(String[] args) {
-        countingStars().forEach(System.out::println);
+        countingStars();
     }
 
-    private static ArrayList<String> countingStars() {
+    private static void countingStars() {
         // Create scanner object
         Scanner scanner = new Scanner(System.in);
 
@@ -16,15 +16,17 @@ public class C {
         ArrayList<String> input, output = new ArrayList<>();
         int lines, lineLength, stars, testCase = 1;
         char c;
+        String inputSize = scanner.nextLine();
+        String[] sizeValues;
 
-        while(scanner.hasNextInt()) {
-            System.out.println("testCase = " + testCase);
+        while(!inputSize.equals("")) {
+            sizeValues = inputSize.split("\\s");
+//            System.out.println("testCase = " + testCase);
             // Get input size
-            lines = scanner.nextInt();
-            lineLength = scanner.nextInt();
-            System.out.println("lines = " + lines);
-            System.out.println("lineLength = " + lineLength);
-            scanner.nextLine(); // Get rid of carriage return
+            lines = Integer.parseInt(sizeValues[0]);
+            lineLength = Integer.parseInt(sizeValues[1]);
+//            System.out.println("lines = " + lines);
+//            System.out.println("lineLength = " + lineLength);
 
             // Get input
             input = new ArrayList<>();
@@ -44,7 +46,14 @@ public class C {
                 }
             }
             output.add(String.format("Case %d: %d", testCase++, stars));
+            System.out.println("NEXT LINE?");
+            if (scanner.hasNextLine()) {
+                System.out.println("YES");
+                inputSize = scanner.nextLine();
+            } else
+                break;
         }
-        return output;
+        output.forEach(System.out::println);
+        scanner.close();
     }
 }
