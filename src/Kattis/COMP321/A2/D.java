@@ -57,22 +57,24 @@ public class D {
                         queue.addLast(amount);
                     if (isPriorityQueue) {
                         priorityQueue.add(amount);
-                        Collections.sort(priorityQueue);
                     }
 
                 } else { // operationType == 2
                     // Remove
 
                     // Check for stack
-                    if (stack.isEmpty() || amount != stack.removeLast())
+                    if (isStack)
+                        if (stack.isEmpty() || amount != stack.removeLast())
                             isStack = false;
 
                     // Check for queue
-                    if (queue.isEmpty() || amount != queue.removeFirst())
+                    if (isQueue)
+                        if (queue.isEmpty() || amount != queue.removeFirst())
                             isQueue = false;
 
                     // Check for priority queue
-                    if (priorityQueue.isEmpty() || amount != priorityQueue.remove(priorityQueue.size() - 1))
+                    if (isPriorityQueue)
+                        if (priorityQueue.isEmpty() || amount != removeMax(priorityQueue))
                             isPriorityQueue = false;
                 }
             }
@@ -92,5 +94,19 @@ public class D {
 
         // Close scanner
         scanner.close();
+    }
+
+    private static int removeMax(ArrayList<Integer> arr) {
+        int max = arr.get(0), size = arr.size(), cur, curIndex = 0;
+        if (size == 1)
+            return arr.remove(0);
+        for (int i = 1; i < size; i++) {
+            cur = arr.get(i);
+            if (cur > max) {
+                max = cur;
+                curIndex = i;
+            }
+        }
+        return arr.remove(curIndex);
     }
 }
