@@ -37,15 +37,28 @@ public class D {
             for (int i = 0; i < numOperations; i++) {
                 operation = scanner.nextLine().split("\\s");
 
+                // Skip and do nothing with input if already impossible
+                if (!isStack && !isQueue && !isPriorityQueue)
+                    if (i + 1 < numOperations)
+                        continue;
+                    else {
+                        System.out.println("impossible");
+                        continue;
+                    }
+
                 // Check operation type
                 operationType = Integer.parseInt(operation[0]);
                 amount = Integer.parseInt(operation[1]);
                 if (operationType == 1) {
                     // Add
-                    stack.addLast(amount);
-                    queue.addLast(amount);
-                    priorityQueue.add(amount);
-                    Collections.sort(priorityQueue);
+                    if (isStack)
+                        stack.addLast(amount);
+                    if (isQueue)
+                        queue.addLast(amount);
+                    if (isPriorityQueue) {
+                        priorityQueue.add(amount);
+                        Collections.sort(priorityQueue);
+                    }
 
                 } else { // operationType == 2
                     // Remove
