@@ -14,16 +14,25 @@ public class D {
         // Variables
         int numOperations, operationType, amount;
         String[] operation;
-        boolean isStack = true, isQueue = true, isPriorityQueue = true;
+        boolean isStack, isQueue, isPriorityQueue;
 
         // Data Structures
-        Stack<Integer> stack = new Stack<>();
-        LinkedList<Integer> queue = new LinkedList<>();
-        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(Collections.reverseOrder());
+        LinkedList<Integer> stack, queue;
+        ArrayList<Integer> priorityQueue;
 
         while (scanner.hasNext()) {
             numOperations = scanner.nextInt();
             scanner.nextLine(); // Get rid of carriage return
+
+            // Reset data structures
+            stack = new LinkedList<>();
+            queue = new LinkedList<>();
+            priorityQueue = new ArrayList<>();
+
+            // Reset booleans
+            isStack = true;
+            isQueue = true;
+            isPriorityQueue = true;
 
             for (int i = 0; i < numOperations; i++) {
                 operation = scanner.nextLine().split("\\s");
@@ -33,29 +42,24 @@ public class D {
                 amount = Integer.parseInt(operation[1]);
                 if (operationType == 1) {
                     // Add
-                    stack.add(amount);
+                    stack.addLast(amount);
                     queue.addLast(amount);
                     priorityQueue.add(amount);
+                    Collections.sort(priorityQueue);
 
                 } else { // operationType == 2
                     // Remove
 
                     // Check for stack
-                    if (stack.isEmpty())
-                        isStack = false;
-                    else  if (amount != stack.pop())
+                    if (stack.isEmpty() || amount != stack.removeLast())
                             isStack = false;
 
                     // Check for queue
-                    if (queue.isEmpty())
-                        isQueue = false;
-                    else  if (amount != queue.removeFirst())
+                    if (queue.isEmpty() || amount != queue.removeFirst())
                             isQueue = false;
 
                     // Check for priority queue
-                    if (priorityQueue.isEmpty())
-                        isPriorityQueue = false;
-                    else  if (amount != priorityQueue.poll())
+                    if (priorityQueue.isEmpty() || amount != priorityQueue.remove(priorityQueue.size() - 1))
                             isPriorityQueue = false;
                 }
             }
