@@ -18,19 +18,15 @@ public class C {
         char c;
         String inputSize;
         String[] sizeValues;
+        char[][] sky;
 
         while(scanner.hasNextLine()) {
             inputSize = scanner.nextLine();
             if (inputSize.equals(""))
                 break;
-            System.out.println("inputSize = " + inputSize);
             sizeValues = inputSize.split("\\s");
-//            System.out.println("testCase = " + testCase);
-            // Get input size
             lines = Integer.parseInt(sizeValues[0]);
             lineLength = Integer.parseInt(sizeValues[1]);
-//            System.out.println("lines = " + lines);
-//            System.out.println("lineLength = " + lineLength);
 
             // Get input
             input = new ArrayList<>();
@@ -38,28 +34,55 @@ public class C {
                 input.add(scanner.nextLine());
             }
 
-            // Look for stars
+            // Create sky matrix
+            sky = new char[lines][lineLength];
+            for (int i = 0; i < lines; i++) {
+                for (int j = 0; j < lineLength; j++) {
+                    sky[i][j] = input.get(i).charAt(j);
+                }
+            }
+
+            // Count stars
             stars = 0;
             for (int i = 0; i < lines; i++) {
-                String line = input.get(i);
                 for (int j = 0; j < lineLength; j++) {
-                    c = line.charAt(j);
+                    c = sky[i][j];
                     if (c == '-') {
-                        // Check if star was already counted
-                        if (j > 0 && line.charAt(j - 1) == '-')
-                            continue;
-                        if (i > 0 && input.get(i - 1).charAt(j) == '-')
-                            continue;
-                        if (i > 0 && j + 2 < lineLength && input.get(i - 1).charAt(j + 1) == '-')
-                            continue;
                         stars++;
+                        eraseStar(sky, i, j, lines, lineLength);
                     }
                 }
             }
+
+            // Add test case results
             output.add(String.format("Case %d: %d", testCase++, stars));
         }
         output.forEach(System.out::println);
-        scanner.close();
+    }
+
+    private static void eraseStar(char[][] sky, int x, int y, int lines, int lineLength) {
+        // Erase current star piece
+        sky[x][y] = '#';
+
+        // Check left piece
+        if (y > 0)
+            if (sky[x][y - 1] == '-')
+                eraseStar(sky, x, y - 1, lines, lineLength);
+
+        // Check right piece
+        if (y + 1 < lineLength)
+            if (sky[x][y + 1] == '-')
+                eraseStar(sky, x, y + 1, lines, lineLength);
+
+        // Check top piece
+        if (x > 0)
+            if (sky[x - 1][y] == '-')
+                eraseStar(sky, x - 1, y, lines, lineLength);
+
+        // Check bottom piece
+        if (x + 1 < lines)
+            if (sky[x + 1][y] == '-')
+                eraseStar(sky, x + 1, y, lines, lineLength);
     }
 }
 
