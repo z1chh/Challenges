@@ -1,87 +1,97 @@
 package Kattis.COMP321.A2;
 
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class A {
-    private enum Sex {
-        MALE, FEMALE, NONE;
-
-        public static Sex getSex(char c) {
-            switch (c) {
-                case ('M'):
-                    return MALE;
-                case ('W'):
-                    return FEMALE;
-                case ('N'):
-                    return NONE;
-                default:
-                    throw new IllegalArgumentException("Error: char must be 'M', 'W' or 'N'");
-            }
-        }
-    }
     public static void main(String[] args) {
-        System.out.println(doorMan());
+        doorMan();
     }
 
-    private static int doorMan() {
+    private static void doorMan() {
         // Read input
         Scanner scanner = new Scanner(System.in);
-        int maxDifference = scanner.nextInt();
+        int maxDifference = scanner.nextInt(), totalLength, length;
         scanner.nextLine(); // Get rid of carriage return
-        String queue = scanner.nextLine();
+        String input = scanner.nextLine();
+        totalLength = input.length();
+        length = totalLength;
 
         // In case he cannot do nothing
-        if (maxDifference == 0)
-            return 0;
+        if (maxDifference == 0) {
+            System.out.println(0);
+            return;
+        }
 
         // In case he can do everything
-        if (maxDifference >= queue.length())
-            return queue.length();
+        if (maxDifference >= totalLength) {
+            System.out.println(input.length());
+            return;
+        }
 
-        // Get first person
-        int difference = 1, peopleIn = 1;
-        char next = queue.charAt(0);
-        Sex onHold = Sex.NONE, dominantSex = Sex.getSex(next);
+        // Variables
+        int men = 0, women = 0;
+        char c, next;
+        LinkedList<Character> line = new LinkedList<>();
 
-        // Letting people in
-        for (int i = 1; i < queue.length(); i++) {
-            next = queue.charAt(i);
+        // Initialize line
+        for (int i = 0; i < totalLength; i++) {
+            line.add(input.charAt(i));
+        }
 
-            // Check if about to lose track of count
-            if (difference >= maxDifference && Sex.getSex(next) == dominantSex) {
-                // About to lose track of count
-                if (onHold == dominantSex)
-                    return peopleIn;
-                else if (onHold == Sex.NONE)
-                    onHold = dominantSex;
-                else { // Opposite sex
-                    onHold = Sex.NONE;
-                    peopleIn++;
-                    difference--;
-                    if (difference == 0) {
-                        dominantSex = Sex.NONE;
+        while (length > 0) {
+            c = line.getFirst();
+            if (c == 'M') {
+                // Check if threshold reached
+                if (men - women >= maxDifference) {
+                    if (line.size() < 2) {
+                        // No one in line to go in before
+                        System.out.println(men + women);
+                        return;
                     }
+                    next = line.get(1);
+                    if (next == 'W') {
+                        // Let the woman go in first
+                        line.remove(1);
+                        women++;
+                        length--;
+                    } else { // (next == 'M')
+                        // Screwed
+                        System.out.println(men + women);
+                        return;
+                    }
+                } else { // Not lost yet
+                    men++;
+                    line.removeFirst();
+                    length--;
                 }
             } else {
-                peopleIn++;
-                if (Sex.getSex(next) == dominantSex) {
-                    difference++;
-                } else {
-                    if (dominantSex == Sex.NONE) {
-                        dominantSex = Sex.getSex(next);
-                        assert difference == 0: "Error: sex tied but difference is not 0";
-                        difference = 1;
-                    } else {
-                        difference--;
-                        if (difference == 0) {
-                            dominantSex = Sex.NONE;
-                        }
+                // Check if threshold reached
+                if (women - men >= maxDifference) {
+                    if (line.size() < 2) {
+                        // No one in line to go in before
+                        System.out.println(men + women);
+                        return;
                     }
+                    next = line.get(1);
+                    if (next == 'M') {
+                        // Let the man go in first
+                        line.remove(1);
+                        men++;
+                        length--;
+                    } else { // (next == 'M')
+                        // Screwed
+                        System.out.println(men + women);
+                        return;
+                    }
+                } else { // Not lost yet
+                    women++;
+                    line.removeFirst();
+                    length--;
                 }
             }
         }
-        assert peopleIn == queue.length(): "Error: everyone got in but incorrect value";
-        scanner.close();
-        return peopleIn;
+        assert men + women == totalLength: "Error: everyone got in but wrong value";
+        System.out.println(men + women);
     }
 }
