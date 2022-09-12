@@ -17,8 +17,7 @@ public class D {
         boolean isStack, isQueue, isPriorityQueue;
 
         // Data Structures
-        LinkedList<Integer> stack, queue;
-        ArrayList<Integer> priorityQueue;
+        LinkedList<Integer> stack, queue, priorityQueue;
 
         while (scanner.hasNext()) {
             numOperations = scanner.nextInt();
@@ -27,7 +26,7 @@ public class D {
             // Reset data structures
             stack = new LinkedList<>();
             queue = new LinkedList<>();
-            priorityQueue = new ArrayList<>();
+            priorityQueue = new LinkedList<>();
 
             // Reset booleans
             isStack = true;
@@ -96,7 +95,7 @@ public class D {
         scanner.close();
     }
 
-    private static int removeMax(ArrayList<Integer> arr) {
+    private static int removeMax(List<Integer> arr) {
         int max = arr.get(0), size = arr.size(), cur, curIndex = 0;
         if (size == 1)
             return arr.remove(0);
