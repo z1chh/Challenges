@@ -16,10 +16,14 @@ public class C {
         ArrayList<String> input, output = new ArrayList<>();
         int lines, lineLength, stars, testCase = 1;
         char c;
-        String inputSize = scanner.nextLine();
+        String inputSize;
         String[] sizeValues;
 
-        while(!inputSize.equals("")) {
+        while(scanner.hasNextLine()) {
+            inputSize = scanner.nextLine();
+            if (inputSize.equals(""))
+                break;
+            System.out.println("inputSize = " + inputSize);
             sizeValues = inputSize.split("\\s");
 //            System.out.println("testCase = " + testCase);
             // Get input size
@@ -36,24 +40,45 @@ public class C {
 
             // Look for stars
             stars = 0;
-            for (String line: input) {
-                for (int i = 0; i < lineLength; i++) {
-                    c = line.charAt(i);
+            for (int i = 0; i < lines; i++) {
+                String line = input.get(i);
+                for (int j = 0; j < lineLength; j++) {
+                    c = line.charAt(j);
                     if (c == '-') {
                         // Check if star was already counted
-                        stars++; // TO CHANGE
+                        if (j > 0 && line.charAt(j - 1) == '-')
+                            continue;
+                        if (i > 0 && input.get(i - 1).charAt(j) == '-')
+                            continue;
+                        if (i > 0 && j + 2 < lineLength && input.get(i - 1).charAt(j + 1) == '-')
+                            continue;
+                        stars++;
                     }
                 }
             }
             output.add(String.format("Case %d: %d", testCase++, stars));
-            System.out.println("NEXT LINE?");
-            if (scanner.hasNextLine()) {
-                System.out.println("YES");
-                inputSize = scanner.nextLine();
-            } else
-                break;
         }
         output.forEach(System.out::println);
         scanner.close();
     }
 }
+
+/*
+INPUT
+10 20
+#################---
+##-###############--
+#---################
+##-#################
+########---#########
+#######-----########
+########---#########
+##################--
+#################---
+##################-#
+3 10
+#-########
+----------
+#-########
+
+ */
