@@ -27,7 +27,7 @@ public class A {
         // Get games and their score
         for (int i = 0; i < testCases; i++) {
             // Get input
-            input = scanner.nextLine().toLowerCase();
+            input = scanner.nextLine();
 
             // Convert into char array
             game = new char[12];
