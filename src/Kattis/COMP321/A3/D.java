@@ -6,8 +6,7 @@ import java.util.Scanner;
 public class D {
     public static void main(String[] args) {
         //fruitBaskets();
-        combinations(4);
-        combinations(9);
+        System.out.println(Arrays.deepToString(combinations(4)));
     }
 
     private static void fruitBaskets() {
@@ -61,7 +60,7 @@ public class D {
     private static int[][] combinations(int n) {
         // C(n, r) = n! / ((n-r)! r!)
         int total = 0, cur, combs, ct = 0;
-        int[] nCr = new int[n];
+        int[] nCr = new int[n], nCj;
         for (int i = 1; i <= n / 2; i++) {
             // Reset variables
             cur = n;
@@ -95,7 +94,14 @@ public class D {
         int[][] toReturn = new int[total][];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < nCr[i]; j++) {
-                toReturn[ct++] = new int[]{j};
+                // Get current combination size
+                nCj = new int[i + 1];
+
+                // Set current combination values
+                // TO-DO
+
+                // Add current combination
+                toReturn[ct++] = nCj;
             }
         }
 
