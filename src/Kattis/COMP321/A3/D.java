@@ -1,12 +1,13 @@
 package Kattis.COMP321.A3;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class D {
     public static void main(String[] args) {
         //fruitBaskets();
         combinations(4);
-        combinations(5);
+        combinations(9);
     }
 
     private static void fruitBaskets() {
@@ -59,8 +60,9 @@ public class D {
 
     private static int[][] combinations(int n) {
         // C(n, r) = n! / ((n-r)! r!)
-        int total = 0, cur, combs;
-        for (int i = 1; i <= n; i++) {
+        int total = 0, cur, combs, ct = 0;
+        int[] nCr = new int[n];
+        for (int i = 1; i <= n / 2; i++) {
             // Reset variables
             cur = n;
             combs = 1;
@@ -80,11 +82,22 @@ public class D {
             while (cur > 1)
                 combs /= cur--;
 
-            total += combs;
+            nCr[i - 1] = combs;
+            nCr[n - 1 - i] = combs;
+        }
+        nCr[n - 1] = 1;
+
+        for (int i = 0; i < n; i++) {
+            total += nCr[i];
         }
 
         // Get each combination
         int[][] toReturn = new int[total][];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < nCr[i]; j++) {
+                toReturn[ct++] = new int[]{j};
+            }
+        }
 
         return toReturn;
     }
