@@ -1,6 +1,6 @@
 package Kattis.COMP321.A3;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class C {
@@ -13,11 +13,11 @@ public class C {
         Scanner scanner = new Scanner(System.in);
 
         // Variables
-        int numCalls, numIntervals;
+        int numCalls, numIntervals, operators, curOperators;
         String[] input;
         int[][] phoneCalls, intervals;
         int[] call, interval;
-        ArrayList<Integer> operators = new ArrayList<>();
+        HashMap<Integer, Integer> dp;
 
         // Get test case
         input = scanner.nextLine().split("\\s");
@@ -30,9 +30,9 @@ public class C {
             phoneCalls = new int[numCalls][];
             for (int i = 0; i < numCalls; i++) {
                 input = scanner.nextLine().split("\\s");
-                call = new int[4];
-                for (int j = 0; j < 4; j++) {
-                    call[j] = Integer.parseInt(input[j]);
+                call = new int[2];
+                for (int j = 2; j < 4; j++) {
+                    call[j - 2] = Integer.parseInt(input[j]);
                 }
                 phoneCalls[i] = call;
             }
@@ -48,32 +48,33 @@ public class C {
                 intervals[i] = interval;
             }
 
-            // Get number of operators required
+            // Get operator per time unit
+            dp = new HashMap<>();
+            for (int[] curCall: phoneCalls) {
+                for (int i = curCall[0]; i < curCall[0] + curCall[1]; i++) {
+                    if (dp.containsKey(i))
+                        dp.put(i, dp.get(i) + 1);
+                    else
+                        dp.put(i, 1);
+                }
+            }
+
+            // Get interval values
+            int curTime;
             for (int[] curInterval: intervals) {
-                operators.add(getNumOperators(phoneCalls, curInterval));
+                curTime = curInterval[0];
+                operators = dp.getOrDefault(curTime, 0);
+
+                for (int i = curTime; i < curTime + curInterval[1]; i++) {
+                    curOperators = dp.getOrDefault(i, 0);
+                    if (curOperators > operators)
+                        operators = curOperators;
+                }
+                System.out.println(operators);
             }
 
             // Get next test case
             input = scanner.nextLine().split("\\s");
         }
-
-        // Output answers
-        operators.forEach(System.out::println);
-    }
-
-    private static int getNumOperators(int[][] phoneCalls, int[] interval) {
-        int operators = 0, curOperators, start, end;
-        for (int i = interval[0]; i < interval[0] + interval[1]; i++) {
-            curOperators = 0;
-            for (int[] call: phoneCalls) {
-                start = call[2];
-                end = start + call[3];
-                if (i >= start && i < end)
-                    curOperators++;
-            }
-            if (curOperators > operators)
-                operators = curOperators;
-        }
-        return operators;
     }
 }
