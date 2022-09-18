@@ -1,12 +1,10 @@
 package Kattis.COMP321.A3;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class D {
     public static void main(String[] args) {
-        //fruitBaskets();
-        System.out.println(Arrays.deepToString(combinations(4)));
+        fruitBaskets();
     }
 
     private static void fruitBaskets() {
@@ -14,7 +12,7 @@ public class D {
         Scanner scanner = new Scanner(System.in);
 
         // Variables
-        int fruitKinds, allBaskets;
+        int fruitKinds;
         String[] input;
         int[] fruitWeights;
 
@@ -29,82 +27,46 @@ public class D {
             fruitWeights[i] = Integer.parseInt(input[i]);
         }
 
-        // Get baskets
-        allBaskets = getAllBaskets(fruitWeights, fruitKinds);
-
         // Print total sum of all baskets
-        System.out.println(allBaskets);
+        System.out.println(getAllBaskets(fruitWeights, fruitKinds));
     }
 
     private static int getAllBaskets(int[] fruitWeights, int fruitKinds) {
         int allBaskets = 0, curWeight;
-        // To-Do
-        // C(n, r) = n! / ((n-r)! r!)
         // Get the C(n, r) possible combinations of fruits
-        int[][] combs = combinations(fruitKinds);
+        int[] arr = new int[fruitKinds];
+        int ct = fruitKinds - 1;
+        while (true) {
+            if (arr[ct] == 0) {
+                arr[ct] = 1;
+            } else {
+                int c = 1;
+                while (ct - c >= 0)
+                    if (arr[ct - c] == 0) {
+                        arr[ct - c] = 1;
+                        for (int i = ct - c + 1; i < fruitKinds; i++) {
+                            arr[i] = 0;
+                        }
+                        break;
+                    } else {
+                        c++;
+                    }
+                if (ct - c < 0)
+                    break;
+            }
 
-        // Check if each combination exceeds 200g
-        for (int[] comb : combs) {
+            // Compute weight for current combination
             curWeight = 0;
-            for (int index: comb) {
-                curWeight += fruitWeights[index];
-                if (curWeight >= 200) {
-                    allBaskets += curWeight;
+            for (int i = 0; i < fruitKinds; i++) {
+                if (arr[i] == 1) {
+                    curWeight += fruitWeights[i];
                 }
             }
-        }
 
+            // Check if current combination is at least 200g
+            if (curWeight >= 200)
+                allBaskets += curWeight;
+        }
         return allBaskets;
-    }
-
-    private static int[][] combinations(int n) {
-        // C(n, r) = n! / ((n-r)! r!)
-        int total = 0, cur, combs, ct = 0;
-        int[] nCr = new int[n], nCj;
-        for (int i = 1; i <= n / 2; i++) {
-            // Reset variables
-            cur = n;
-            combs = 1;
-
-            // Get total number of possible combinations
-            if (i > n - i) {
-                while (cur > i)
-                    combs *= cur--;
-                cur = n - i;
-            } else {
-                while (cur > n - i)
-                    combs *= cur--;
-                cur = i;
-            }
-
-            // Divide
-            while (cur > 1)
-                combs /= cur--;
-
-            nCr[i - 1] = combs;
-            nCr[n - 1 - i] = combs;
-        }
-        nCr[n - 1] = 1;
-
-        for (int i = 0; i < n; i++) {
-            total += nCr[i];
-        }
-
-        // Get each combination
-        int[][] toReturn = new int[total][];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < nCr[i]; j++) {
-                // Get current combination size
-                nCj = new int[i + 1];
-
-                // Set current combination values
-                // TO-DO
-
-                // Add current combination
-                toReturn[ct++] = nCj;
-            }
-        }
-
-        return toReturn;
     }
 }
