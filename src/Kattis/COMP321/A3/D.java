@@ -4,7 +4,9 @@ import java.util.Scanner;
 
 public class D {
     public static void main(String[] args) {
-        fruitBaskets();
+        //fruitBaskets();
+        combinations(4);
+        combinations(5);
     }
 
     private static void fruitBaskets() {
@@ -37,24 +39,53 @@ public class D {
     private static int getAllBaskets(int[] fruitWeights, int fruitKinds) {
         int allBaskets = 0, curWeight;
         // To-Do
-        // Get baskets
-        for (int i = 0; i < fruitKinds - 1; i++) {
-            curWeight = fruitWeights[i];
-            if (curWeight >= 200) {
-                allBaskets += curWeight;
-            }
-            for (int j = i + 1; j < fruitKinds; j++) {
-                curWeight += fruitWeights[j];
+        // C(n, r) = n! / ((n-r)! r!)
+        // Get the C(n, r) possible combinations of fruits
+        int[][] combs = combinations(fruitKinds);
+
+        // Check if each combination exceeds 200g
+        for (int[] comb : combs) {
+            curWeight = 0;
+            for (int index: comb) {
+                curWeight += fruitWeights[index];
                 if (curWeight >= 200) {
                     allBaskets += curWeight;
                 }
             }
         }
 
-        // Check for single fruit itself
-        if (fruitWeights[fruitKinds - 1] >= 200)
-            allBaskets += fruitWeights[fruitKinds - 1];
-
         return allBaskets;
+    }
+
+    private static int[][] combinations(int n) {
+        // C(n, r) = n! / ((n-r)! r!)
+        int total = 0, cur, combs;
+        for (int i = 1; i <= n; i++) {
+            // Reset variables
+            cur = n;
+            combs = 1;
+
+            // Get total number of possible combinations
+            if (i > n - i) {
+                while (cur > i)
+                    combs *= cur--;
+                cur = n - i;
+            } else {
+                while (cur > n - i)
+                    combs *= cur--;
+                cur = i;
+            }
+
+            // Divide
+            while (cur > 1)
+                combs /= cur--;
+
+            total += combs;
+        }
+
+        // Get each combination
+        int[][] toReturn = new int[total][];
+
+        return toReturn;
     }
 }
