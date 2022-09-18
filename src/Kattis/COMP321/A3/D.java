@@ -4,15 +4,15 @@ import java.util.Scanner;
 
 public class D {
     public static void main(String[] args) {
-        closestSums();
+        fruitBaskets();
     }
 
-    private static void closestSums() {
+    private static void fruitBaskets() {
         // Create scanner object
         Scanner scanner = new Scanner(System.in);
 
         // Variables
-        int fruitKinds, curWeight, allBaskets = 0;
+        int fruitKinds, allBaskets;
         String[] input;
         int[] fruitWeights;
 
@@ -27,6 +27,16 @@ public class D {
             fruitWeights[i] = Integer.parseInt(input[i]);
         }
 
+        // Get baskets
+        allBaskets = getAllBaskets(fruitWeights, fruitKinds);
+
+        // Print total sum of all baskets
+        System.out.println(allBaskets);
+    }
+
+    private static int getAllBaskets(int[] fruitWeights, int fruitKinds) {
+        int allBaskets = 0, curWeight;
+        // To-Do
         // Get baskets
         for (int i = 0; i < fruitKinds - 1; i++) {
             curWeight = fruitWeights[i];
@@ -45,7 +55,6 @@ public class D {
         if (fruitWeights[fruitKinds - 1] >= 200)
             allBaskets += fruitWeights[fruitKinds - 1];
 
-        // Print total sum of all baskets
-        System.out.println(allBaskets);
+        return allBaskets;
     }
 }
