@@ -1,6 +1,5 @@
 package Kattis.COMP321.A3;
 
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class C {
@@ -13,9 +12,9 @@ public class C {
         Scanner scanner = new Scanner(System.in);
 
         // Variables
-        int numCalls, numIntervals, operators, curOperator, start, duration, temp;
+        int numCalls, numIntervals, operators, start, duration, startOfCall, endOfCall;
         String[] input;
-        HashMap<Integer, Integer> dp;
+        int[][] calls;
 
         // Get test case
         input = scanner.nextLine().split("\\s");
@@ -26,19 +25,14 @@ public class C {
 
         while (numCalls != 0 && numIntervals != 0) {
             // Get phone calls
-            dp = new HashMap<>();
+            calls = new int[numCalls][];
             for (int i = 0; i < numCalls; i++) {
                 input = scanner.nextLine().split("\\s");
                 start = Integer.parseInt(input[2]);
                 duration = Integer.parseInt(input[3]);
 
                 // Increment number of active phone calls during [start, start + duration[
-                for (int j = start; j < start + duration; j++) {
-                    if (dp.containsKey(j))
-                        dp.put(j, dp.get(j) + 1);
-                    else
-                        dp.put(j, 1);
-                }
+                calls[i] = new int []{start, start + duration};
             }
 
             // Get interval values
@@ -46,14 +40,15 @@ public class C {
                 input = scanner.nextLine().split("\\s");
                 start = Integer.parseInt(input[0]);
                 duration = Integer.parseInt(input[1]);
-                temp = start;
-                operators = dp.getOrDefault(temp, 0);
+                operators = 0;
 
-                // Look for minute with most phone calls
-                for (int j = start; j < start + duration; j++) {
-                    curOperator = dp.getOrDefault(j, 0);
-                    if (curOperator > operators)
-                        operators = curOperator;
+                for (int[] call: calls) {
+                    startOfCall = call[0];
+                    endOfCall = call[1];
+                    if (startOfCall < start && start < endOfCall)
+                        operators++;
+                    else if (start <= startOfCall && startOfCall < start + duration)
+                        operators++;
                 }
 
                 // Output result
