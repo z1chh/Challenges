@@ -32,10 +32,9 @@ public class D {
     }
 
     private static int getAllBaskets(int[] fruitWeights, int fruitKinds) {
-        int allBaskets = 0, curWeight;
+        int allBaskets = 0, curWeight, ct = fruitKinds - 1;
         // Get the C(n, r) possible combinations of fruits
         int[] arr = new int[fruitKinds];
-        int ct = fruitKinds - 1;
         while (true) {
             if (arr[ct] == 0) {
                 arr[ct] = 1;
