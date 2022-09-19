@@ -13,7 +13,7 @@ public class C {
         Scanner scanner = new Scanner(System.in);
 
         // Variables
-        int numCalls, numIntervals, operators, curOperators, start, duration, curTime;
+        int numCalls, numIntervals, operators, curOperator, start, duration, temp;
         String[] input;
         HashMap<Integer, Integer> dp;
 
@@ -46,14 +46,14 @@ public class C {
                 input = scanner.nextLine().split("\\s");
                 start = Integer.parseInt(input[0]);
                 duration = Integer.parseInt(input[1]);
-                curTime = start;
-                operators = dp.getOrDefault(curTime, 0);
+                temp = start;
+                operators = dp.getOrDefault(temp, 0);
 
                 // Look for minute with most phone calls
                 for (int j = start; j < start + duration; j++) {
-                    curOperators = dp.getOrDefault(j, 0);
-                    if (curOperators > operators)
-                        operators = curOperators;
+                    curOperator = dp.getOrDefault(j, 0);
+                    if (curOperator > operators)
+                        operators = curOperator;
                 }
 
                 // Output result
