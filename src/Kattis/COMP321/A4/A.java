@@ -13,8 +13,9 @@ public class A {
 
         // Variables
         String[] input;
-        int numBreaks, breakPrice, startIndex, size, curProfit, bestProfit;
-        int[] studentsPerBreak, pricePerBreak;
+        int numBreaks, breakPrice, tmp, bestProfit;
+        int[] studentsPerBreak;
+        int[][] sequences;
 
         // Get input
         input = scanner.nextLine().split("\\s");
@@ -29,23 +30,22 @@ public class A {
 
         // Find best sequence
         bestProfit = -1;
+        sequences = new int[numBreaks][numBreaks];
 
         // Initialize pricePerBreak array
-        pricePerBreak = new int[numBreaks];
         for (int i = 0; i < numBreaks; i++) {
-            pricePerBreak[i] = studentsPerBreak[i] - breakPrice;
+            tmp = studentsPerBreak[i] - breakPrice;
+            sequences[0][i] = tmp;
+            if (tmp > bestProfit)
+                bestProfit = tmp;
         }
 
-        for (int i = 0; i < numBreaks; i++) {
+        for (int i = 1; i < numBreaks; i++) {
             for (int j = i; j < numBreaks; j++) {
-                startIndex = j;
-                size = i;
-                curProfit = 0;
-                while (size-- >= 0) {
-                    curProfit += pricePerBreak[startIndex--];
-                }
-                if (curProfit > bestProfit)
-                    bestProfit = curProfit;
+                tmp = sequences[i - 1][j - 1] + sequences[0][j];
+                sequences[i][j] = tmp;
+                if (tmp > bestProfit)
+                    bestProfit = tmp;
             }
         }
 
