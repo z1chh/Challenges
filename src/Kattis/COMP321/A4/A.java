@@ -13,8 +13,8 @@ public class A {
 
         // Variables
         String[] input;
-        int numBreaks, breakPrice;
-        int[] studentsPerBreak;
+        int numBreaks, breakPrice, startIndex, size, curProfit, bestProfit;
+        int[] studentsPerBreak, pricePerBreak;
 
         // Get input
         input = scanner.nextLine().split("\\s");
@@ -26,7 +26,30 @@ public class A {
             studentsPerBreak[i] = scanner.nextInt();
         }
 
+
         // Find best sequence
-        // UH DP?
+        bestProfit = -1;
+
+        // Initialize pricePerBreak array
+        pricePerBreak = new int[numBreaks];
+        for (int i = 0; i < numBreaks; i++) {
+            pricePerBreak[i] = studentsPerBreak[i] - breakPrice;
+        }
+
+        for (int i = 0; i < numBreaks; i++) {
+            for (int j = i; j < numBreaks; j++) {
+                startIndex = j;
+                size = i;
+                curProfit = 0;
+                while (size-- >= 0) {
+                    curProfit += pricePerBreak[startIndex--];
+                }
+                if (curProfit > bestProfit)
+                    bestProfit = curProfit;
+            }
+        }
+
+        // Output result
+        System.out.println(bestProfit);
     }
 }
