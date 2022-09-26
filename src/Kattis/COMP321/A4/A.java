@@ -12,20 +12,21 @@ public class A {
         Scanner scanner = new Scanner(System.in);
 
         // Variables
-        String input;
-        String[] numbersArray;
-        int totalStones, numbers;
-        int[] removedStones;
+        String[] input;
+        int numBreaks, breakPrice;
+        int[] studentsPerBreak;
 
-        while (!(input = scanner.nextLine()).equals("")) {
-            // Get input
-            numbersArray = input.split("\\s");
-            totalStones = Integer.parseInt(numbersArray[0]);
-            numbers = Integer.parseInt(numbersArray[1]);
-            removedStones = new int[numbers];
-            for (int i = 0; i < numbers; i++) {
-                removedStones[i] = Integer.parseInt(numbersArray[i + 2]);
-            }
+        // Get input
+        input = scanner.nextLine().split("\\s");
+        numBreaks = Integer.parseInt(input[0]);
+        breakPrice = Integer.parseInt(input[1]);
+        studentsPerBreak = new int[numBreaks];
+
+        for (int i = 0; i < numBreaks; i++) {
+            studentsPerBreak[i] = scanner.nextInt();
         }
+
+        // Find best sequence
+        // UH DP?
     }
 }
