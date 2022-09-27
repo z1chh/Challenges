@@ -4,12 +4,14 @@ using namespace std;
 
 int main()
 {
-    int numBreaks, breakPrice, bestProfit, tmp, startIndex, size, curProfit;
+    // Variables
+    int numBreaks, breakPrice, profit, bestProfit = -1, startIndex, size, curProfit;
 
     // Get input
     cin >> numBreaks;
     cin >> breakPrice;
 
+    // Get students per break
     int studentsPerBreak[numBreaks];
     for (int i = 0; i < numBreaks; i++)
     {
@@ -17,7 +19,6 @@ int main()
     }
 
     // Find best sequence
-    bestProfit = -1;
     int pricePerBreak[numBreaks];
     for (int i = 0; i < numBreaks; i++)
     {

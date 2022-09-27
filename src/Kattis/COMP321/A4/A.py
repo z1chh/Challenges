@@ -1,32 +1,35 @@
-import numpy as np
-
-
 # Main function
 def radio_commercials():
     # Get input
     num_breaks, break_price = list(map(int, input().split()))
-    students_per_break = list(map(int, input().split()))
+    price_per_break = list(map(int, input().split()))
     
-    # Create new DP array
-    sequences = np.zeros((num_breaks, num_breaks), int)
-    
-    # Find best sequences
     best_profit = -1
     
-    # Initialize first row
     for i in range(num_breaks):
-        tmp = students_per_break[i] - break_price
-        sequences[0][i] = tmp
-        if tmp > best_profit:
-            best_profit = tmp
+        profit = price_per_break[i] - break_price
+        price_per_break[i] = profit
+        if profit > best_profit:
+            best_profit = profit
+    
+    
+    # Create new DP array
+    dp = []
+    
+    # Initialize first row
+    for i in range(num_breaks - 1):
+        profit = price_per_break[i] + price_per_break[i + 1]
+        dp.append(profit)
+        if profit > best_profit:
+            best_profit = profit
             
     # Compute for sequences of breaks
-    for i in range(num_breaks):
-        for j in range(i, num_breaks):
-            tmp = sequences[i - 1][j - 1] + sequences[0][j]
-            sequences[i][j] = tmp
-            if tmp > best_profit:
-                best_profit = tmp
+    for i in range(3, num_breaks + 1):
+        for j in range(0, num_breaks - i + 1):
+            profit = dp[j] + price_per_break[i + j - 1]
+            dp[j] = profit
+            if profit > best_profit:
+                best_profit = profit
                 
     # Output profit
     print(best_profit)
@@ -34,7 +37,7 @@ def radio_commercials():
 
 # DELETE
 def test():
-    return np.zeros((3, 3), int)
+    return -1
 
 
 # Main
