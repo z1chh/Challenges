@@ -35,12 +35,6 @@ def radio_commercials():
     print(best_profit)
 
 
-# DELETE
-def test():
-    return -1
-
-
 # Main
 if __name__ == "__main__":
     radio_commercials()
-    # print(test())
