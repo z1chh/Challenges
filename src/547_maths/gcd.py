@@ -5,3 +5,4 @@ def GCD(a, N):
         return N
     else:
         return GCD(N, a % N)
+    
