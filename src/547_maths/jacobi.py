@@ -15,5 +15,3 @@ def jacobi(a, n):
             return t
         else:
             return 0
-        
-print(jacobi(572, 723))

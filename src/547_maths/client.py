@@ -2,6 +2,7 @@ from GCD import *
 from eGCD import *
 from inverse import *
 from exponent import *
+from jacobi import *
 
 
 def geteGCD(a, b):
@@ -21,6 +22,10 @@ def getExp(a, b, N):
         a=a, b=b, N=N, x=exponent(a, b, N)))
 
 
+def getJacobi(a, b):
+    print("Jacobi({a}, {b}) = {x}".format(a=a, b=b, x=jacobi(a, b)))
+
+
 if __name__ == "__main__":
     geteGCD(2, 1)
     geteGCD(7, 19)
@@ -35,3 +40,5 @@ if __name__ == "__main__":
     getInverse(7, 19)
 
     getExp(5, 13, 7)
+
+    getJacobi(572, 723)
