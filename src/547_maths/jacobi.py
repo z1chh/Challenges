@@ -1,4 +1,4 @@
-def jacobi(a, n):
+def Jacobi(a, n):
         assert(n > a > 0 and n%2 == 1)
         t = 1
         while a != 0:

@@ -23,7 +23,7 @@ def getExp(a, b, N):
 
 
 def getJacobi(a, b):
-    print("Jacobi({a}, {b}) = {x}".format(a=a, b=b, x=jacobi(a, b)))
+    print("Jacobi({a}, {b}) = {x}".format(a=a, b=b, x=Jacobi(a, b)))
 
 
 if __name__ == "__main__":
