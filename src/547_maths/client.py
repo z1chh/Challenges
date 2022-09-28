@@ -2,7 +2,7 @@ from GCD import *
 from eGCD import *
 from inverse import *
 from exponent import *
-from jacobi import *
+from Jacobi import *
 
 
 def geteGCD(a, b):
