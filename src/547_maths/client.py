@@ -3,6 +3,7 @@ from eGCD import *
 from inverse import *
 from exponent import *
 from Jacobi import *
+from sqrt import *
 
 
 def geteGCD(a, b):
