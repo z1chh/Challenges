@@ -3,7 +3,7 @@ from qr import *
 
 
 def sqrt(p, a):
-    qr, qnr = quadratic_residues(p)  # ADD PARAMS
+    _, qnr = quadratic_residues(p)  # ADD PARAMS
     b = qnr[0]
     r = (p - 1) / 2
     r2 = 0

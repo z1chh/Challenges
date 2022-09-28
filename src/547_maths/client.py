@@ -34,7 +34,7 @@ def getQuadraticResidues(p):
 
 
 def getSqrtModulo(p, a):
-    print("Sqrt of {a} modulo {p} = {x}".format(a=a, p=p, x=sqrt(p, a)))
+    print("Sqrt of {a} modulo {p} = {x}".format(a=a, p=p, x="+/-" + str(sqrt(p, a))))
 
 
 if __name__ == "__main__":
@@ -51,9 +51,11 @@ if __name__ == "__main__":
     getInverse(7, 19)
 
     getExp(5, 13, 7)
+    getExp(2, 18, 37)
 
     getJacobi(572, 723)
 
     getQuadraticResidues(7)
 
     getSqrtModulo(43, 16)
+    getSqrtModulo(37, 16)
