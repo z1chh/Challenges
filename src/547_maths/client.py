@@ -4,6 +4,7 @@ from inverse import *
 from exponent import *
 from Jacobi import *
 from sqrt import *
+from qr import *
 
 
 def geteGCD(a, b):
@@ -25,6 +26,10 @@ def getExp(a, b, N):
 
 def getJacobi(a, b):
     print("Jacobi({a}, {b}) = {x}".format(a=a, b=b, x=Jacobi(a, b)))
+    
+def getQuadraticResidues(p):
+    qr, qnr = quadratic_residues(p)
+    print("QR({p}) = {qr} & QnR({p}) = {qnr}".format(p=p, qr=qr, qnr=qnr))
 
 
 if __name__ == "__main__":
@@ -43,3 +48,5 @@ if __name__ == "__main__":
     getExp(5, 13, 7)
 
     getJacobi(572, 723)
+    
+    getQuadraticResidues(7)
