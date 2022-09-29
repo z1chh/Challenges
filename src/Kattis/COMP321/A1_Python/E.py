@@ -4,7 +4,4 @@ for _ in range(int(input())):
     for c in range(97, 123):
         if chr(c) not in s:
             l.append(c)
-    if not l:
-        print("pangram")
-    else:
-        print("missing {c}".format(c="".join(chr(c) for c in l)))
+    print("pangram" if not l else "missing {c}".format(c="".join(chr(c) for c in l)))
