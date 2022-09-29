@@ -6,6 +6,7 @@ from Jacobi import *
 from sqrt import *
 from qr import *
 from miller_rabin import *
+from primitive import *
 
 
 def geteGCD(a, b):
@@ -42,6 +43,14 @@ def getMillerRabin(n, k=4):
     print("Miller-Rabin primality test for {n} returns {s}".format(n=n, s="prime." if isPrime(n, k) == True else "composite."))
 
 
+def getPrimitive(q, pf):
+    p = primitive(q, pf)
+    if p == -1:
+        print("There is no primitive element in F_{q}".format(q=q))
+    else:
+        print("{p} is a primitive element of F_{q}".format(p=p, q=q))
+
+
 if __name__ == "__main__":
     geteGCD(2, 1)
     geteGCD(7, 19)
@@ -73,3 +82,8 @@ if __name__ == "__main__":
     getMillerRabin(5)
     getMillerRabin(1591)
     getMillerRabin(1597)
+    
+    getPrimitive(3, [2])
+    getPrimitive(5, [2])
+    getPrimitive(7, [2, 3])
+    getPrimitive(11, [2, 5])

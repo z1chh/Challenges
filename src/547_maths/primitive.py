@@ -3,7 +3,7 @@ from exponent import *
 def primitive(q, pf):
     for i in range(len(pf)):
         pf[i] = (q - 1) / pf[i]
-    for g in range(q):
+    for g in range(2, q):
         if exponent(g, q - 1, q) != 1:
             continue
         valid = True
