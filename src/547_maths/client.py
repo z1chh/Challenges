@@ -5,6 +5,7 @@ from exponent import *
 from Jacobi import *
 from sqrt import *
 from qr import *
+from miller_rabin import *
 
 
 def geteGCD(a, b):
@@ -34,7 +35,11 @@ def getQuadraticResidues(p):
 
 
 def getSqrtModulo(p, a):
-    print("Sqrt of {a} modulo {p} = {x}".format(a=a, p=p, x="+/-" + str(sqrt(p, a))))
+    print("Sqrt of {a} modulo {p} = {x}".format(
+        a=a, p=p, x="+/-" + str(sqrt(p, a))))
+    
+def getMillerRabin(n, k=4):
+    print("Miller-Rabin primality test for {n} returns {s}".format(n=n, s="prime." if isPrime(n, k) == True else "composite."))
 
 
 if __name__ == "__main__":
@@ -56,6 +61,15 @@ if __name__ == "__main__":
     getJacobi(572, 723)
 
     getQuadraticResidues(7)
+    getQuadraticResidues(43)
+    getQuadraticResidues(37)
+    getQuadraticResidues(41)
 
     getSqrtModulo(43, 16)
     getSqrtModulo(37, 16)
+    getSqrtModulo(41, 16)
+    getSqrtModulo(41, 8)
+    
+    getMillerRabin(5)
+    getMillerRabin(1591)
+    getMillerRabin(1597)
