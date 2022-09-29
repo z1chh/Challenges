@@ -1,3 +1,4 @@
+from webbrowser import get
 from GCD import *
 from eGCD import *
 from inverse import *
@@ -73,7 +74,6 @@ if __name__ == "__main__":
     getQuadraticResidues(43)
     getQuadraticResidues(37)
     getQuadraticResidues(41)
-    getQuadraticResidues(262915409)
 
     getSqrtModulo(43, 16)
     getSqrtModulo(37, 16)
@@ -88,3 +88,12 @@ if __name__ == "__main__":
     getPrimitive(5, [2])
     getPrimitive(7, [2, 3])
     getPrimitive(11, [2, 5])
+    
+    getExp(2, math.pow(5, 3), 7)
+    getExp(exponent(2, 5, 7), 3, 7)
+    getExp(2, exponent(5, 3, 7), 7)
+    print(math.pow(math.pow(2, 5), 3))
+    print(math.pow(2, math.pow(5, 3)))
+    print(math.pow(2, 12))
+    
+    getExp(123456789, 987654321 * 260931572, 262915409)
