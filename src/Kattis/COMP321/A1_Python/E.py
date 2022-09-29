@@ -1,5 +1,4 @@
-n = int(input())
-for _ in range(n):
+for _ in range(int(input())):
     s = input().lower()
     l = []
     for c in range(97, 123):
