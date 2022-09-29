@@ -73,6 +73,7 @@ if __name__ == "__main__":
     getQuadraticResidues(43)
     getQuadraticResidues(37)
     getQuadraticResidues(41)
+    getQuadraticResidues(262915409)
 
     getSqrtModulo(43, 16)
     getSqrtModulo(37, 16)
