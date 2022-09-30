@@ -18,30 +18,9 @@ def test():
         except:
             break
 
-test()
+print(15 * 15 + 9 + 49)
+print(13 * 13 + 49)
 
-ct = 1
-while True:
-    try:
-        l = list(map(int, input().split()))
-        l = l[1:]
-        max = max(l)
-        min = min(l)
-        print("Case {c}: {min} {max} {range}".format(
-            c=ct, min=min, max=max, range=max - min))
-        ct += 1
-    except:
-        break
-
-
-import sys
-
-ct = 1
-for i in sys.stdin:
-        l = list(map(int, i.split()))
-        l = l[1:]
-        max = max(l)
-        min = min(l)
-        print("Case {c}: {min} {max} {range}".format(
-            c=ct, min=min, max=max, range=max - min))
-        ct += 1
+l = [1, 2, 3, 4]
+l = l[0:len(l) - 1]
+print(l)
