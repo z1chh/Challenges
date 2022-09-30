@@ -1,15 +1,12 @@
 nc = int(input())
 while nc != 0:
-    # Reset vars
-    customers = []
+    # Reset ingredients dict
     ingredients = {}
 
-    # Get customers
+    # Get orders
     for i in range(nc):
-        customers.append(input())
-
-    for s in customers:
         # Get customer and the food they ordered
+        s = input()
         l = s.split()
         customer = l[0]
         l = l[1:]
