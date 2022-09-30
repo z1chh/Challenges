@@ -6,8 +6,7 @@ for i in range(size):
     if word == "mumble":
         continue
     else:
-        word = int(word)
-        if word != i + 1:
+        if int(word) != i + 1:
             fishy = True
             break
 
