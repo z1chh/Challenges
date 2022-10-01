@@ -16,7 +16,7 @@ num_batches = 0
 while num_socks > 0:
     # Start a batch
     num_batches += 1
-    
+
     # Reset vars
     current_socks = 0
     color_diff_reached = False
