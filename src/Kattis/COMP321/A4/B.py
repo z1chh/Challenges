@@ -12,5 +12,5 @@ while True:
             if i - move >= 0 and not l[i - move]:
                 l[i] = True
                 break
-            
+
     print("Stan wins" if l[rocks] else "Ollie wins")
