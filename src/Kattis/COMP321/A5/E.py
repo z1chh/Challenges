@@ -24,7 +24,7 @@ while not won(l):
     # Shoot
     s += 1
     #print("Shooting at height", m)
-    for i in range(nb):
+    for i in range(index, nb):
         if l[i] == m:
             l[i] = -1
             m -= 1
