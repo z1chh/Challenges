@@ -1,14 +1,8 @@
-def won(l):
-    for i in l:
-        if i != -1:
-            return False
-    return True
-
-
 nb = int(input())
 l = list(map(int, input().split()))
 s = 0
-while not won(l):
+popped = 0
+while popped < nb:
     # Get highest balloon
     m = l[0]
     index = 0
@@ -28,6 +22,7 @@ while not won(l):
         if l[i] == m:
             l[i] = -1
             m -= 1
+            popped += 1
         if m <= 0:
             break
 
