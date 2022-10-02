@@ -1,8 +1,7 @@
 nb = int(input())
 l = list(map(int, input().split()))
 s = 0
-popped = 0
-while popped < nb:
+while l:
     # Get highest balloon
     m = l[0]
     index = 0
@@ -18,11 +17,10 @@ while popped < nb:
     # Shoot
     s += 1
     #print("Shooting at height", m)
-    for i in range(index, nb):
-        if l[i] == m:
-            l[i] = -1
+    for b in l:
+        if b == m:
+            l.remove(b)
             m -= 1
-            popped += 1
         if m <= 0:
             break
 
