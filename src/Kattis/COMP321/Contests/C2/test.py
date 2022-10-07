@@ -4,3 +4,5 @@ if a is not None:
 if not a:
     print("AAA")
 print(a)
+
+# TESTING GITHUB EXTENSION VCS FROM LAPTOP
