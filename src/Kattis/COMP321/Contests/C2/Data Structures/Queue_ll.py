@@ -11,7 +11,6 @@ Provides the following functions:
 
 Notes:
 - Initializes as empty queue
-- Sorts its elements only when removing, peeking or casting to str
 """
 
 
@@ -24,6 +23,9 @@ class queue:
     def __init__(self):
         self.head = None
         self.tail = None
+    
+    def is_empty(self):
+        return self.head is None
 
     def enqueue(self, value):
         newnode = queue.node(value)
