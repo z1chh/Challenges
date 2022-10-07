@@ -11,7 +11,6 @@ Provides the following functions:
 
 Notes:
 - Initializes as empty stack
-- Sorts its elements only when removing, peeking or casting to str
 """
 
 
