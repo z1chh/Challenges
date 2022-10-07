@@ -10,7 +10,7 @@ Provides the following functions:
 - str()      -> conversion to string
 
 Notes:
-- Initializes with a maximum size (list)
+- Initializes as empty stack
 - Sorts its elements only when removing, peeking or casting to str
 """
 

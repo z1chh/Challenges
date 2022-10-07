@@ -1,3 +1,20 @@
+"""
+STACK (FILO) - LINKEDLIST IMPLEMENTATION
+
+Provides the following functions:
+- is_empty() -> if the stack is empty
+- pop()      -> Last in (throws ValueError if underflow)
+- top()      -> Peek at the last in (throws ValueError if underflow)
+- push()     -> Adds as first out
+- len()      -> length
+- str()      -> conversion to string
+
+Notes:
+- Initializes with a maximum size (list)
+- Sorts its elements only when removing, peeking or casting to str
+"""
+
+
 class queue:
     class node:
         def __init__(self, value, link = None):
