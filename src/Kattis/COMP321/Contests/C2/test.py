@@ -14,6 +14,3 @@ sys.stderr.write("Example 3\n")
 sys.stdout.write(sys.stdin.readline(2) + "\n")
 sys.stdout.write(sys.stdin.readline(2) + "\n")
 sys.stdout.write(sys.stdin.readline() + "\n")
-
-
-
