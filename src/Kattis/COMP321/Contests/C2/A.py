@@ -1,6 +1,7 @@
 class UF:
     def __init__(self) -> None:
         self.p = dict()
+        self.p[1] = 1
 
     def find(self, val):
         def _find(d, val):
