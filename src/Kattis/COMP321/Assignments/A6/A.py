@@ -15,7 +15,10 @@ class UF:
 
     def union(self, v1, v2):
         if self.find(v1) != self.find(v2):
-            self.p[self.find(v2)] = self.find(v1)
+            if (self.find(v1) == 1):
+                self.p[self.find(v2)] = self.find(v1)
+            else:
+                self.p[self.find(v1)] = self.find(v2)
 
     def add(self, v1, v2):
         if v1 in self.p:
@@ -30,6 +33,7 @@ class UF:
             else:
                 self.p[v1] = v1
                 self.p[v2] = v1
+
 
 uf = UF()
 nh, c = map(int, input().split())
