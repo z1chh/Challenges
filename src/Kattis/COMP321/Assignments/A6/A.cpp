@@ -1,4 +1,5 @@
 #include <iostream>
+#include <map>
 
 using namespace std;
 
@@ -13,7 +14,10 @@ int main()
     cin >> total_houses;
     cin >> connections;
 
+    // Initialize vars
     int input_houses[total_houses];
+    map<int, int> uf;
+    uf[1] = 1;
 
     // For each connected houses pair
     for (int i = 0; i < connections; i++)
