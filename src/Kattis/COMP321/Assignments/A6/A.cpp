@@ -4,6 +4,7 @@
 using namespace std;
 
 // Function Declarations
+int find(int *uf, int value);
 bool add_input_house(int *input_houses, int cur_size, int house);
 
 int main()
@@ -17,6 +18,7 @@ int main()
     // Initialize vars
     int input_houses[total_houses];
     map<int, int> uf;
+    int uf_size = 0;
     uf[1] = 1;
 
     // For each connected houses pair
@@ -43,6 +45,11 @@ int main()
         // Add to Union-Find
     }
     return 0;
+}
+
+int find(int *uf, int value)
+{
+    bool exists = 0;
 }
 
 bool add_input_house(int *input_houses, int cur_size, int house)
