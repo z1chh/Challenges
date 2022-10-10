@@ -110,6 +110,14 @@ int main()
         }
 
         // Add to Union-Find
+        if (second_house == 1)
+        {
+            uf.add(second_house, first_house);
+        }
+        else
+        {
+            uf.add(first_house, second_house);
+        }
     }
     return 0;
 }
