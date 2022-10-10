@@ -17,13 +17,57 @@ public:
 
     int find(int value)
     {
-        bool exists = 0;
-        for (int i = 0; i < size; i++)
+        if (repr[value] == value)
         {
-            if (repr[i] == value)
+            return value;
+        }
+        else
+        {
+            return find(repr[value]);
+        }
+    }
+
+    void v_union(int v1, int v2)
+    {
+        if (find(v1) != find(v2))
+        {
+            if (find(v1) == 1)
             {
-                exists = 1;
-                break;
+                repr[find(v2)] = find(v1);
+            }
+            else
+            {
+                repr[find(v1)] = find(v2);
+            }
+        }
+    }
+
+    void add(int v1, int v2)
+    {
+        if (repr[v1] != 0)
+        {
+            if (repr[v2] != 0)
+            {
+                if (find(v1) != find(v2))
+                {
+                    v_union(v1, v2);
+                }
+                else
+                {
+                    repr[v2] = v1;
+                }
+            }
+            else
+            {
+                if (repr[v2] != 0)
+                {
+                    repr[v1] = v2;
+                }
+                else
+                {
+                    repr[v1] = v1;
+                    repr[v2] = v1;
+                }
             }
         }
     }
