@@ -3,8 +3,33 @@
 
 using namespace std;
 
+// Union-Find class
+class UnionFind
+{
+public:
+    map<int, int> repr;
+    int size;
+
+    UnionFind()
+    {
+        repr[1] = 1;
+    }
+
+    int find(int value)
+    {
+        bool exists = 0;
+        for (int i = 0; i < size; i++)
+        {
+            if (repr[i] == value)
+            {
+                exists = 1;
+                break;
+            }
+        }
+    }
+};
+
 // Function Declarations
-int find(int *uf, int value);
 bool add_input_house(int *input_houses, int cur_size, int house);
 
 int main()
@@ -17,9 +42,7 @@ int main()
 
     // Initialize vars
     int input_houses[total_houses];
-    map<int, int> uf;
-    int uf_size = 0;
-    uf[1] = 1;
+    UnionFind uf;
 
     // For each connected houses pair
     for (int i = 0; i < connections; i++)
@@ -45,11 +68,6 @@ int main()
         // Add to Union-Find
     }
     return 0;
-}
-
-int find(int *uf, int value)
-{
-    bool exists = 0;
 }
 
 bool add_input_house(int *input_houses, int cur_size, int house)
