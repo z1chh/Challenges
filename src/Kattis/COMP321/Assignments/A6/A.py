@@ -10,13 +10,21 @@ class UF:
         else:
             return self.find(v)
 
+    def update(self, val, repr):
+        v_repr = self.p[val]
+        if val == v_repr:
+            self.p[val] = repr
+        elif v_repr != repr:
+            self.p[val] = repr
+            self.update(v_repr, repr)
+        else:
+            self.p[val] = repr
+
     def union(self, v1, v2, f1, f2):
         if (f1 == 1):
-            self.p[v2] = f1
-            self.p[f2] = f1
+            self.update(v1, f2)
         else:
-            self.p[v1] = f2
-            self.p[f1] = f2
+            self.update(v2, f1)
 
     def add(self, v1, v2):
         if v1 in self.p:
