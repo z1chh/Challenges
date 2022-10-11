@@ -33,15 +33,16 @@ public:
 
     void v_union(int v1, int v2)
     {
-        if (find(v1) != find(v2))
+        int f1 = find(v1), f2 = find(v2);
+        if (f1 != f2)
         {
-            if (find(v1) == 1)
+            if (f1 == 1)
             {
-                repr[find(v2)] = find(v1);
+                repr[f2] = f1;
             }
             else
             {
-                repr[find(v1)] = find(v2);
+                repr[f1] = f2;
             }
         }
     }
@@ -56,99 +57,102 @@ public:
                 {
                     v_union(v1, v2);
                 }
-                else
-                {
-                    repr[v2] = v1;
-                }
             }
             else
             {
-                if (repr[v2] != 0)
-                {
-                    repr[v1] = v2;
-                }
-                else
-                {
-                    repr[v1] = v1;
-                    repr[v2] = v1;
-                }
+                repr[v2] = v1;
+                size++;
             }
-        }
-    }
-};
-
-int main()
-{
-    // Get input
-    int total_houses, connections, first_house, second_house, num_houses = 0;
-    bool added;
-    cin >> total_houses;
-    cin >> connections;
-
-    // Initialize vars
-    int input_houses[total_houses];
-    UnionFind uf;
-
-    // For each connected houses pair
-    for (int i = 0; i < connections; i++)
-    {
-        // Get input
-        cin >> first_house;
-        cin >> second_house;
-
-        // Update input houses (first house)
-        added = add_input_house(input_houses, num_houses, first_house);
-        if (added)
-        {
-            num_houses += 1;
-        }
-
-        // Update input houses (second house)
-        added = add_input_house(input_houses, num_houses, second_house);
-        if (added)
-        {
-            num_houses += 1;
-        }
-
-        // Add to Union-Find
-        if (second_house == 1)
-        {
-            uf.add(second_house, first_house);
         }
         else
         {
-            uf.add(first_house, second_house);
+            if (repr[v2] != 0)
+            {
+                repr[v1] = v2;
+                size++;
+            }
+            else
+            {
+                repr[v1] = v1;
+                repr[v2] = v1;
+                size += 2;
+            }
         }
-    }
+    };
 
-    // Add houses that weren't used as input
-    return 0;
-}
-
-bool add_input_house(int *input_houses, int cur_size, int house)
-{
-    // Check if house already added
-    bool exists = false;
-    for (int i = 0; i < cur_size; i++)
+    int main()
     {
-        if (input_houses[i] == house)
+        // Get input
+        int total_houses, connections, first_house, second_house, num_houses = 0;
+        bool added;
+        cin >> total_houses;
+        cin >> connections;
+
+        // Initialize vars
+        int input_houses[total_houses];
+        UnionFind uf;
+
+        // For each connected houses pair
+        for (int i = 0; i < connections; i++)
         {
-            exists = true;
-            break;
+            // Get input
+            cin >> first_house;
+            cin >> second_house;
+
+            // Update input houses (first house)
+            added = add_input_house(input_houses, num_houses, first_house);
+            if (added)
+            {
+                num_houses += 1;
+            }
+
+            // Update input houses (second house)
+            added = add_input_house(input_houses, num_houses, second_house);
+            if (added)
+            {
+                num_houses += 1;
+            }
+
+            // Add to Union-Find
+            if (second_house == 1)
+            {
+                uf.add(second_house, first_house);
+            }
+            else
+            {
+                uf.add(first_house, second_house);
+            }
         }
+
+        // Add houses that weren't used as input
+        return 0;
     }
 
-    // Add if not added
-    if (!exists)
+    bool add_input_house(int *input_houses, int cur_size, int house)
     {
-        input_houses[cur_size + 1] = house;
+        // Check if house already added
+        bool exists = false;
+        for (int i = 0; i < cur_size; i++)
+        {
+            if (input_houses[i] == house)
+            {
+                exists = true;
+                break;
+            }
+        }
+
+        // Add if not added
+        if (!exists)
+        {
+            input_houses[cur_size + 1] = house;
+        }
+
+        // Return whether the house was added or not
+        return !exists;
     }
 
-    // Return whether the house was added or not
-    return !exists;
-}
-
-bool was_added(int *input_houses, int house) {
-    // TO-DO
-    // MY BRAIN DEAD I CANT EVEN THINK
-}
+    bool was_added(int *input_houses, int house)
+    {
+        // TO-DO
+        // MY BRAIN DEAD I CANT EVEN THINK
+    }

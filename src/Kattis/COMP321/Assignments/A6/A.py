@@ -4,35 +4,38 @@ class UF:
         self.p[1] = 1
 
     def find(self, val):
-        def _find(d, val):
-            if val not in d:
-                raise ValueError("DNE")
-            if d[val] == val:
-                return val
-            else:
-                return _find(d, d[val])
-        return _find(self.p, val)
+        v = self.p[val]
+        if v == val:
+            return val
+        else:
+            return self.find(v)
 
     def union(self, v1, v2):
-        if self.find(v1) != self.find(v2):
-            if (self.find(v1) == 1):
-                self.p[self.find(v2)] = self.find(v1)
-            else:
-                self.p[self.find(v1)] = self.find(v2)
+        if (v1 == 1):
+            self.p[v2] = v1
+        else:
+            self.p[v1] = v2
 
     def add(self, v1, v2):
         if v1 in self.p:
+            f1 = self.find(v1)
             if v2 in self.p:
-                if self.find(v1) != self.find(v2):
-                    self.union(v1, v2)
+                f2 = self.find(v2)
+                if f1 != f2:
+                    self.union(f1, f2)
             else:
-                self.p[v2] = v1
+                self.p[v2] = f1
         else:
             if v2 in self.p:
-                self.p[v1] = v2
+                f2 = self.find(v2)
+                self.p[v1] = f2
             else:
-                self.p[v1] = v1
-                self.p[v2] = v1
+                if v1 == 1:
+                    self.p[v1] = v1
+                    self.p[v2] = v1
+                else:
+                    self.p[v1] = v2
+                    self.p[v2] = v2
 
 
 uf = UF()
