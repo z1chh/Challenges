@@ -10,11 +10,13 @@ class UF:
         else:
             return self.find(v)
 
-    def union(self, v1, v2):
-        if (v1 == 1):
-            self.p[v2] = v1
+    def union(self, v1, v2, f1, f2):
+        if (f1 == 1):
+            self.p[v2] = f1
+            self.p[f2] = f1
         else:
-            self.p[v1] = v2
+            self.p[v1] = f2
+            self.p[f1] = f2
 
     def add(self, v1, v2):
         if v1 in self.p:
@@ -22,7 +24,7 @@ class UF:
             if v2 in self.p:
                 f2 = self.find(v2)
                 if f1 != f2:
-                    self.union(f1, f2)
+                    self.union(v1, v2, f1, f2)
             else:
                 self.p[v2] = f1
         else:
