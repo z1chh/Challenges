@@ -21,6 +21,7 @@ class UF:
             self.p[val] = repr
 
     def union(self, v1, v2, f1, f2):
+        # Fix union cuz incorrect
         if (f1 == 1):
             self.update(v1, f2)
         else:
