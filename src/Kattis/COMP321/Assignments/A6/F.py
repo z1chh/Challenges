@@ -30,6 +30,3 @@ def nikola(state, squares):
 
 squares = [int(input()) for _ in range(int(input()))]
 print(nikola(State(0, 1), squares))
-# Do something idk what
-# Starts at square 1
-# Must move to square 2 as first move
