@@ -1,7 +1,3 @@
-from curses import newpad
-from gettext import npgettext
-
-
 class State:
     def __init__(self, last_pos, cur_pos) -> None:
         self._last_pos = last_pos
