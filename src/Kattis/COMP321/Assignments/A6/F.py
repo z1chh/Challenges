@@ -25,6 +25,7 @@ def nikola(state, squares, dest):
     if state[1] == dest:
         return 0
 
+
 dest = int(input())
 squares = [int(input()) for _ in range(dest)]
 print(nikola(State(0, 1), squares, dest))
