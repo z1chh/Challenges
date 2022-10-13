@@ -24,9 +24,11 @@ class State:
             raise ValueError("Error: invalid move")
 
 
-def nikola(state, squares):
-    pass
+def nikola(state, squares, dest):
+    # Check if destination is reached
+    if state[1] == dest:
+        return 0
 
-
-squares = [int(input()) for _ in range(int(input()))]
-print(nikola(State(0, 1), squares))
+dest = int(input())
+squares = [int(input()) for _ in range(dest)]
+print(nikola(State(0, 1), squares, dest))
