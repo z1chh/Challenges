@@ -1,30 +1,34 @@
 #include <iostream>
-#include <sstream>
 #include <string>
 
 using namespace std;
+
+void displayArr(string arr)
+{
+    cout << "Displaying array..." << endl;
+    for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++)
+    {
+        cout << arr[i];
+    }
+    cout << endl
+         << "Array displayed..." << endl;
+}
 
 int main()
 {
     int tc;
     cin >> tc;
 
-    char *str;
-
     for (int i = 0; i < tc; i++)
     {
         cout << "Case " << i + 1 << endl;
+
+        string str;
         cin >> str;
-        cout << "Displaying array..." << endl;
-        for (int i = 0; i < sizeof(str) / sizeof(str[0]); i++)
-        {
-            cout << str[i] << " ";
-        }
-        cout << endl
-             << "Array displayed..." << endl;
+        displayArr(str);
         char alphabet[26] =
             {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-        for (int j = 0; j < sizeof(str) / sizeof(str[0]); j++)
+        for (int j = 0; j < str.size(); j++)
         {
             char c = str[j];
             if (c >= 'A' && c <= 'Z')
@@ -33,7 +37,7 @@ int main()
             }
             if (c >= 'a' && c <= 'z')
             {
-                alphabet[c - 97] = ' ';
+                alphabet[c - 97] = 48;
             }
         }
         int missing = 0;
@@ -51,10 +55,10 @@ int main()
         }
         else
         {
-            cout << "missing";
+            cout << "missing ";
             for (int j = 0; j < missing; j++)
             {
-                cout << missing_letters[j] << " ";
+                cout << missing_letters[j];
             }
             cout << endl;
         }
