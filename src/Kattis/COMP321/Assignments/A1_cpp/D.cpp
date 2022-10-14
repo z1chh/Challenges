@@ -3,12 +3,12 @@
 
 using namespace std;
 
-void displayArr(string arr)
+void displayArr(string str)
 {
     cout << "Displaying array..." << endl;
-    for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++)
+    for (int i = 0; i < str.size(); i++)
     {
-        cout << arr[i];
+        cout << str[i];
     }
     cout << endl
          << "Array displayed..." << endl;
@@ -18,14 +18,12 @@ int main()
 {
     int tc;
     cin >> tc;
+    cin.ignore();
 
     for (int i = 0; i < tc; i++)
     {
-        cout << "Case " << i + 1 << endl;
-
         string str;
-        cin >> str;
-        displayArr(str);
+        getline(cin, str);
         char alphabet[26] =
             {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
         for (int j = 0; j < str.size(); j++)
