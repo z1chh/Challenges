@@ -25,6 +25,7 @@ def nikola(state, squares, dest):
     if state[1] == dest:
         return 0
     # BRO IDK WHAT TO DO AFTER THIS
+    # I NEED SOME MEMORY TYPA SHII TO KEEP TRACK OF WHAT I ALREADY CHECKED
 
 
 dest = int(input())
