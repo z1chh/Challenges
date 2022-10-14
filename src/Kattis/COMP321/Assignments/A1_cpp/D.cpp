@@ -4,17 +4,6 @@
 
 using namespace std;
 
-void displayArr(char *arr)
-{
-    cout << "Displaying array..." << endl;
-    for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++)
-    {
-        cout << arr[i] << " ";
-    }
-    cout << endl
-         << "Array displayed..." << endl;
-}
-
 int main()
 {
     int tc;
@@ -26,9 +15,15 @@ int main()
     {
         cout << "Case " << i + 1 << endl;
         cin >> str;
-        displayArr(str);
-        cout << "DONE" << endl;
-        char alphabet[26] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+        cout << "Displaying array..." << endl;
+        for (int i = 0; i < sizeof(str) / sizeof(str[0]); i++)
+        {
+            cout << str[i] << " ";
+        }
+        cout << endl
+             << "Array displayed..." << endl;
+        char alphabet[26] =
+            {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
         for (int j = 0; j < sizeof(str) / sizeof(str[0]); j++)
         {
             char c = str[j];
