@@ -24,6 +24,7 @@ def nikola(state, squares, dest):
     # Check if destination is reached
     if state[1] == dest:
         return 0
+    # BRO IDK WHAT TO DO AFTER THIS
 
 
 dest = int(input())
