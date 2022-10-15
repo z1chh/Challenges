@@ -1,8 +1,6 @@
-import sys
-
 # Get input
-dest = int(sys.stdin.readline().strip())
-prices = [int(line.strip()) for line in sys.stdin]
+dest = int(input())
+prices = [int(input()) for _ in range(dest)]
 dp = [[-1] * (dest + 1) for _ in range(dest + 1)] # Dynamic programming matrix
 
 # Start from the end
