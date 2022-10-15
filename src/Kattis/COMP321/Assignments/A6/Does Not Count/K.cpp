@@ -4,7 +4,8 @@
 
 using namespace std;
 
-int main() {
+int main()
+{
     // Declare vars
     int num_words, num_jobs, price, salary;
     string word;
@@ -12,17 +13,21 @@ int main() {
     map<string, int> hay_points;
 
     // Get words that give hay points
-    for (int i = 0; i < num_words; i++) {
+    for (int i = 0; i < num_words; i++)
+    {
         cin >> word >> price;
         hay_points[word] = price;
     }
 
     // Compute salary for each job
-    for (int i = 0; i < num_jobs; i++) {
+    for (int i = 0; i < num_jobs; i++)
+    {
         salary = 0;
         cin >> word;
-        while (word != ".") {
-            if (hay_points.count(word) == 1) {
+        while (word != ".")
+        {
+            if (hay_points.count(word) == 1)
+            {
                 salary += hay_points[word];
             }
             cin >> word;
