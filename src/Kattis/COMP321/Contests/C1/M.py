@@ -1,8 +1,8 @@
-c, s = list(map(int, input().split()))
+c, s = map(int, input().split())
 cp = 0
 possible = True
 for _ in range(s):
-    l, e, n = list(map(int, input().split()))
+    l, e, n = map(int, input().split())
     cp -= l
     if not possible:
         continue
