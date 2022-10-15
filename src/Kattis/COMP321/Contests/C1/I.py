@@ -1,4 +1,4 @@
-a, b, c = list(map(int, input().split()))
+a, b, c = map(int, input().split())
 tot = a + b
 tr = 0
 while tot >= c:
