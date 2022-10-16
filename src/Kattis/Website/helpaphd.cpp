@@ -37,4 +37,5 @@ int main()
             cout << "skipped" << endl;
         }
     }
+    return 0;
 }
