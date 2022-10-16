@@ -30,4 +30,5 @@ int main()
             cout << "Dr. Chaz needs 1 more piece of chicken!" << endl;
         }
     }
+    return 0;
 }
