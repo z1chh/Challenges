@@ -29,4 +29,5 @@ int main()
             cout << "Left beehind." << endl;
         }
     }
+    return 0;
 }
