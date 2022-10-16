@@ -32,7 +32,7 @@ int main()
 
 void t1helper(int *a)
 {
-    ++a;
+    ++*a;
 }
 
 void t1()
