@@ -13,4 +13,5 @@ int main()
         tr -= p;
     }
     cout << tr << endl;
+    return 0;
 }
