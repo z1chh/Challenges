@@ -14,4 +14,5 @@ int main()
         qaly += q * y;
     }
     cout << qaly << endl;
+    return 0;
 }
