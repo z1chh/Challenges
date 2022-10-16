@@ -16,66 +16,75 @@ public:
 
     UnionFind()
     {
-        repr[1] = 1;
+        this->repr[1] = 1;
+        this->size = 1;
     }
 
     int find(int value)
     {
-        if (repr[value] == value)
+        if (this->repr[value] == value)
         {
             return value;
         }
         else
         {
-            return find(repr[value]);
+            return this->find(this->repr[value]);
         }
     }
 
     void v_union(int v1, int v2)
     {
-        int f1 = find(v1), f2 = find(v2);
+        int f1 = this->find(v1), f2 = this->find(v2);
         if (f1 != f2)
         {
             if (f1 == 1)
             {
-                repr[f2] = f1;
+                this->repr[f2] = f1;
             }
             else
             {
-                repr[f1] = f2;
+                this->repr[f1] = f2;
             }
         }
     }
 
     void add(int v1, int v2)
     {
-        if (repr[v1] != 0)
+        if (this->repr[v1] != 0)
         {
-            if (repr[v2] != 0)
+            if (this->repr[v2] != 0)
             {
-                if (find(v1) != find(v2))
+                if (this->find(v1) != this->find(v2))
                 {
-                    v_union(v1, v2);
+                    this->v_union(v1, v2);
                 }
             }
             else
             {
-                repr[v2] = v1;
-                size++;
+                this->repr[v2] = v1;
+                this->size++;
             }
         }
         else
         {
-            if (repr[v2] != 0)
+            if (this->repr[v2] != 0)
             {
-                repr[v1] = v2;
-                size++;
+                this->repr[v1] = v2;
+                this->size++;
             }
             else
             {
-                repr[v1] = v1;
-                repr[v2] = v1;
-                size += 2;
+                if (v2 == 1)
+                {
+                    this->repr[v1] = v2;
+                    this->repr[v2] = v2;
+                }
+                else
+                {
+                    this->repr[v1] = v1;
+                    this->repr[v2] = v1;
+                }
+                this->size += 2;
             }
         }
     }
