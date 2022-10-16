@@ -5,6 +5,7 @@ using namespace std;
 
 // Function Declarations
 bool add_input_house(int *input_houses, int cur_size, int house);
+bool was_added(int *input_houses, int house);
 
 // Union-Find class
 class UnionFind
@@ -143,4 +144,11 @@ bool add_input_house(int *input_houses, int *cur_size, int house)
 
     // Return whether the house was added or not
     return !exists;
+}
+
+bool was_added(int *input_houses, int house)
+{
+    // TO-DO
+    // MY BRAIN DEAD I CANT EVEN THINK
+    return false;
 }
