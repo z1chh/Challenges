@@ -1,1 +1,5 @@
-print("Thank you, {s}, and farewell!", s=input())
+try:
+    a, b = map(int, input().split())
+    print(abs(a - b))
+except:
+    pass
