@@ -6,6 +6,7 @@ using namespace std;
 // Function Declarations
 bool add_input_house(int *input_houses, int cur_size, int house);
 bool was_added(int *input_houses, int house);
+int get_unused_houses(int *input_houses, int *unused_houses, int num_houses);
 
 // Union-Find class
 class UnionFind
@@ -85,13 +86,17 @@ public:
 int main()
 {
     // Get input
-    int total_houses, connections, first_house, second_house, num_houses = 1;
+    int total_houses, connections, first_house, second_house, num_houses = 1, num_unused;
     bool added;
     cin >> total_houses;
     cin >> connections;
 
     // Initialize vars
     int input_houses[total_houses];
+    for (int i = 0; i < total_houses; i++)
+    {
+        input_houses[i] = 0;
+    }
     input_houses[0] = 1;
     UnionFind uf;
 
@@ -120,6 +125,16 @@ int main()
     }
 
     // Add houses that weren't used as input
+    int unused_houses[total_houses];
+    for (int i = 0; i < total_houses; i++)
+    {
+        unused_houses[i] = 0;
+    }
+    num_unused = get_unused_houses(input_houses, unused_houses, total_houses);
+
+    // Output results
+
+    // Successful exit
     return 0;
 }
 
@@ -146,9 +161,20 @@ bool add_input_house(int *input_houses, int *cur_size, int house)
     return !exists;
 }
 
+int get_unused_houses(int *input_houses, int *unused_houses, int num_houses)
+{
+    int counter = 0;
+    for (int i = 1; i <= num_houses; i++)
+    {
+        if (!was_added(input_houses, i))
+        {
+            unused_houses[counter++] = i;
+        }
+    }
+    return counter;
+}
+
 bool was_added(int *input_houses, int house)
 {
-    // TO-DO
-    // MY BRAIN DEAD I CANT EVEN THINK
     return false;
 }
