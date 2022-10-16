@@ -93,13 +93,14 @@ public:
 int main()
 {
     // Get input
-    int total_houses, connections, first_house, second_house, num_houses = 0;
+    int total_houses, connections, first_house, second_house, num_houses = 1;
     bool added;
     cin >> total_houses;
     cin >> connections;
 
     // Initialize vars
     int input_houses[total_houses];
+    input_houses[0] = 1;
     UnionFind uf;
 
     // For each connected houses pair
@@ -110,14 +111,14 @@ int main()
         cin >> second_house;
 
         // Update input houses (first house)
-        added = add_input_house(input_houses, num_houses, first_house);
+        added = add_input_house(input_houses, &num_houses, first_house);
         if (added)
         {
             num_houses += 1;
         }
 
         // Update input houses (second house)
-        added = add_input_house(input_houses, num_houses, second_house);
+        added = add_input_house(input_houses, &num_houses, second_house);
         if (added)
         {
             num_houses += 1;
@@ -138,11 +139,11 @@ int main()
     return 0;
 }
 
-bool add_input_house(int *input_houses, int cur_size, int house)
+bool add_input_house(int *input_houses, int *cur_size, int house)
 {
     // Check if house already added
     bool exists = false;
-    for (int i = 0; i < cur_size; i++)
+    for (int i = 0; i < *cur_size; i++)
     {
         if (input_houses[i] == house)
         {
@@ -154,7 +155,7 @@ bool add_input_house(int *input_houses, int cur_size, int house)
     // Add if not added
     if (!exists)
     {
-        input_houses[cur_size + 1] = house;
+        input_houses[++cur_size] = house;
     }
 
     // Return whether the house was added or not
