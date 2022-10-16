@@ -5,7 +5,7 @@ using namespace std;
 
 // Function Declarations
 bool add_input_house(int *input_houses, int cur_size, int house);
-bool was_added(int *input_houses, int house);
+bool was_added(int *input_houses, int house, int num_houses);
 int get_unused_houses(int *input_houses, int *unused_houses, int num_houses);
 
 // Union-Find class
@@ -174,7 +174,14 @@ int get_unused_houses(int *input_houses, int *unused_houses, int num_houses)
     return counter;
 }
 
-bool was_added(int *input_houses, int house)
+bool was_added(int *input_houses, int house, int num_houses)
 {
+    for (int i = 0; i < num_houses; i++)
+    {
+        if (input_houses[i] == house)
+        {
+            return true;
+        }
+    }
     return false;
 }
