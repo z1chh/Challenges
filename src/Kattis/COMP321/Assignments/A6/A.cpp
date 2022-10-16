@@ -132,6 +132,9 @@ int main()
     }
     num_unused = get_unused_houses(input_houses, unused_houses, total_houses);
 
+    // Check houses that are not connected
+    // TODO
+
     // Output results
 
     // Successful exit
