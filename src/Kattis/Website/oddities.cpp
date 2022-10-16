@@ -15,4 +15,5 @@ int main()
             cout << b << " is even" << endl;
         }
     }
+    return 0;
 }
