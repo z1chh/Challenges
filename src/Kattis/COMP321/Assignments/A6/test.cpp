@@ -20,14 +20,30 @@ public:
 };
 // Functions
 void hello();
-void t1helper();
 void t1();
 void test();
+void t2();
 
 int main()
 {
-    t1();
+    t2();
     return 0;
+}
+
+void t2h(int *arr)
+{
+    arr[0] = 5;
+    arr[1] = 6;
+}
+
+void t2()
+{
+    int arr[2] = {1, 2};
+    cout << arr[0] << endl;
+    cout << arr[1] << endl;
+    t2h(arr);
+    cout << arr[0] << endl;
+    cout << arr[1] << endl;
 }
 
 void t1helper(int *a)
