@@ -25,4 +25,5 @@ int main()
             cout << "Odd " << r * 2 << endl;
         }
     }
+    return 0;
 }
