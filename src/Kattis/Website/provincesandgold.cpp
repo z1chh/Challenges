@@ -34,4 +34,5 @@ int main()
     {
         cout << "Copper" << endl;
     }
+    return 0;
 }
