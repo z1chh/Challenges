@@ -112,17 +112,9 @@ int main()
 
         // Update input houses (first house)
         added = add_input_house(input_houses, &num_houses, first_house);
-        if (added)
-        {
-            num_houses += 1;
-        }
 
         // Update input houses (second house)
         added = add_input_house(input_houses, &num_houses, second_house);
-        if (added)
-        {
-            num_houses += 1;
-        }
 
         // Add to Union-Find
         if (second_house == 1)
