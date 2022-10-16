@@ -161,19 +161,6 @@ bool add_input_house(int *input_houses, int *cur_size, int house)
     return !exists;
 }
 
-int get_unused_houses(int *input_houses, int *unused_houses, int num_houses)
-{
-    int counter = 0;
-    for (int i = 1; i <= num_houses; i++)
-    {
-        if (!was_added(input_houses, i))
-        {
-            unused_houses[counter++] = i;
-        }
-    }
-    return counter;
-}
-
 bool was_added(int *input_houses, int house, int num_houses)
 {
     for (int i = 0; i < num_houses; i++)
@@ -184,4 +171,17 @@ bool was_added(int *input_houses, int house, int num_houses)
         }
     }
     return false;
+}
+
+int get_unused_houses(int *input_houses, int *unused_houses, int num_houses)
+{
+    int counter = 0;
+    for (int i = 1; i <= num_houses; i++)
+    {
+        if (!was_added(input_houses, i, num_houses))
+        {
+            unused_houses[counter++] = i;
+        }
+    }
+    return counter;
 }
