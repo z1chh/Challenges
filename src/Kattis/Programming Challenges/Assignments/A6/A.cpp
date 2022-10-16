@@ -129,14 +129,8 @@ int main()
     num_unused = get_unused_houses(input_houses, unconnected_houses, total_houses);
 
     // Check houses that are not connected
-    for (int i = 0; i <= total_houses; i++)
+    for (int i = 0; i < num_houses; i++)
     {
-        // Skip if value is 0 -> Not a house
-        if (input_houses[i] == 0)
-        {
-            continue;
-        }
-
         // Check if the house is connected to House 1
         if (uf.find(input_houses[i]) != 1)
         {
