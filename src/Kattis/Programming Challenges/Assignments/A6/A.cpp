@@ -7,19 +7,17 @@ using namespace std;
 // Function Declarations
 bool add_input_house(int *input_houses, int *cur_size, int house);
 bool contains(int *input_houses, int num_houses, int house);
-int get_unused_houses(int *input_houses, int *unused_houses, int num_houses);
+int get_unused_houses(int *input_houses, int *unused_houses, int total_houses);
 
 // Union-Find class
 class UnionFind
 {
 public:
     map<int, int> repr;
-    int size;
 
     UnionFind()
     {
         this->repr[1] = 1;
-        this->size = 1;
     }
 
     int find(int value)
@@ -64,7 +62,6 @@ public:
             else
             {
                 this->repr[v2] = v1;
-                this->size++;
             }
         }
         else
@@ -72,13 +69,11 @@ public:
             if (this->repr[v2] != 0)
             {
                 this->repr[v1] = v2;
-                this->size++;
             }
             else
             {
                 this->repr[v1] = v1;
                 this->repr[v2] = v1;
-                this->size += 2;
             }
         }
     }
@@ -134,8 +129,15 @@ int main()
     num_unused = get_unused_houses(input_houses, unconnected_houses, total_houses);
 
     // Check houses that are not connected
-    for (int i = 2; i < num_houses; i++)
+    for (int i = 0; i <= total_houses; i++)
     {
+        // Skip if value is 0 -> Not a house
+        if (input_houses[i] == 0)
+        {
+            continue;
+        }
+
+        // Check if the house is connected to House 1
         if (uf.find(input_houses[i]) != 1)
         {
             if (!contains(unconnected_houses, num_unused, input_houses[i]))
@@ -146,37 +148,21 @@ int main()
     }
 
     // Output results
-    sort(unconnected_houses, unconnected_houses + num_unused);
-    for (int i = 0; i < num_unused; i++)
+    if (num_unused == 0)
     {
-        cout << unconnected_houses[i] << endl;
+        cout << "Connected" << endl;
+    }
+    else
+    {
+        sort(unconnected_houses, unconnected_houses + num_unused);
+        for (int i = 0; i < num_unused; i++)
+        {
+            cout << unconnected_houses[i] << endl;
+        }
     }
 
     // Successful exit
     return 0;
-}
-
-bool add_input_house(int *input_houses, int *cur_size, int house)
-{
-    // Check if house already added
-    bool exists = false;
-    for (int i = 0; i < *cur_size; i++)
-    {
-        if (input_houses[i] == house)
-        {
-            exists = true;
-            break;
-        }
-    }
-
-    // Add if not added
-    if (!exists)
-    {
-        input_houses[++*cur_size] = house;
-    }
-
-    // Return whether the house was added or not
-    return !exists;
 }
 
 bool contains(int *input_houses, int num_houses, int house)
@@ -191,12 +177,27 @@ bool contains(int *input_houses, int num_houses, int house)
     return false;
 }
 
-int get_unused_houses(int *input_houses, int *unused_houses, int num_houses)
+bool add_input_house(int *input_houses, int *cur_size, int house)
+{
+    // Check if house already added
+    bool already_added = contains(input_houses, *cur_size, house);
+
+    // Add if not added
+    if (!already_added)
+    {
+        input_houses[(*cur_size)++] = house;
+    }
+
+    // Return whether the house was added or not
+    return !already_added;
+}
+
+int get_unused_houses(int *input_houses, int *unused_houses, int total_houses)
 {
     int counter = 0;
-    for (int i = 1; i <= num_houses; i++)
+    for (int i = 2; i <= total_houses; i++)
     {
-        if (!contains(input_houses, num_houses, i))
+        if (!contains(input_houses, total_houses, i))
         {
             unused_houses[counter++] = i;
         }
