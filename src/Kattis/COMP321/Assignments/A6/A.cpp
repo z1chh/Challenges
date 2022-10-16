@@ -74,16 +74,8 @@ public:
             }
             else
             {
-                if (v2 == 1)
-                {
-                    this->repr[v1] = v2;
-                    this->repr[v2] = v2;
-                }
-                else
-                {
-                    this->repr[v1] = v1;
-                    this->repr[v2] = v1;
-                }
+                this->repr[v1] = v1;
+                this->repr[v2] = v1;
                 this->size += 2;
             }
         }
