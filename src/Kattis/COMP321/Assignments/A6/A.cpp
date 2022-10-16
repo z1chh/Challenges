@@ -1,11 +1,12 @@
 #include <iostream>
 #include <map>
+#include <algorithm>
 
 using namespace std;
 
 // Function Declarations
-bool add_input_house(int *input_houses, int cur_size, int house);
-bool was_added(int *input_houses, int house, int num_houses);
+bool add_input_house(int *input_houses, int *cur_size, int house);
+bool contains(int *input_houses, int num_houses, int house);
 int get_unused_houses(int *input_houses, int *unused_houses, int num_houses);
 
 // Union-Find class
@@ -125,17 +126,31 @@ int main()
     }
 
     // Add houses that weren't used as input
-    int unused_houses[total_houses];
+    int unconnected_houses[total_houses];
     for (int i = 0; i < total_houses; i++)
     {
-        unused_houses[i] = 0;
+        unconnected_houses[i] = 0;
     }
-    num_unused = get_unused_houses(input_houses, unused_houses, total_houses);
+    num_unused = get_unused_houses(input_houses, unconnected_houses, total_houses);
 
     // Check houses that are not connected
-    // TODO
+    for (int i = 2; i < num_houses; i++)
+    {
+        if (uf.find(input_houses[i]) != 1)
+        {
+            if (!contains(unconnected_houses, num_unused, input_houses[i]))
+            {
+                unconnected_houses[num_unused++] = input_houses[i];
+            }
+        }
+    }
 
     // Output results
+    sort(unconnected_houses, unconnected_houses + num_unused);
+    for (int i = 0; i < num_unused; i++)
+    {
+        cout << unconnected_houses[i] << endl;
+    }
 
     // Successful exit
     return 0;
@@ -164,7 +179,7 @@ bool add_input_house(int *input_houses, int *cur_size, int house)
     return !exists;
 }
 
-bool was_added(int *input_houses, int house, int num_houses)
+bool contains(int *input_houses, int num_houses, int house)
 {
     for (int i = 0; i < num_houses; i++)
     {
@@ -181,7 +196,7 @@ int get_unused_houses(int *input_houses, int *unused_houses, int num_houses)
     int counter = 0;
     for (int i = 1; i <= num_houses; i++)
     {
-        if (!was_added(input_houses, i, num_houses))
+        if (!contains(input_houses, num_houses, i))
         {
             unused_houses[counter++] = i;
         }
