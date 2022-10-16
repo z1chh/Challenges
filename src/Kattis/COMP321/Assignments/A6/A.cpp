@@ -155,7 +155,7 @@ bool add_input_house(int *input_houses, int *cur_size, int house)
     // Add if not added
     if (!exists)
     {
-        input_houses[++cur_size] = house;
+        input_houses[++*cur_size] = house;
     }
 
     // Return whether the house was added or not
