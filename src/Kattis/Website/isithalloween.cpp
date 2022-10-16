@@ -16,4 +16,5 @@ int main()
     {
         cout << "nope" << endl;
     }
+    return 0;
 }
