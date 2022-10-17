@@ -26,7 +26,7 @@ def nombreDizaineFrancais6(n):
     if n == 1:
         return "dix"
     elif n == 2:
-        return "vingts"
+        return "vingt"
     elif n == 3:
         return "trente"
     elif n == 4:
@@ -114,7 +114,7 @@ def nombreFrancais999(n):
             return "cent-" + nombreFrancais99(n - 100)
     elif n >= 200 and n <= 999:
         if n % 100 == 0:
-            return nombreFrancais9(n // 100) + "-cent"
+            return nombreFrancais9(n // 100) + "-cents"
         else:
             return nombreFrancais9(n // 100) + "-cent-" + nombreFrancais99(n - n // 100 * 100)
     else:
