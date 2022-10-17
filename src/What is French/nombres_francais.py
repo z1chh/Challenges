@@ -1,3 +1,4 @@
+# Dumbest shit ever
 def nombreFrancais9(n):
     if n == 1:
         return "un"
@@ -20,6 +21,7 @@ def nombreFrancais9(n):
     else:
         raise ValueError("input must be between 1 and 9")
 
+
 def nombreDizaineFrancais6(n):
     if n == 1:
         return "dix"
@@ -35,6 +37,7 @@ def nombreDizaineFrancais6(n):
         return "soixante"
     else:
         raise ValueError("input must be between 1 and 6")
+
 
 def nombreFrancais19(n):
     if n <= 0:
