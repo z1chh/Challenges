@@ -104,8 +104,25 @@ def nombreFrancais99(n):
         raise ValueError("input must be between 1 and 99")
 
 
+def nombreFrancais999(n):
+    if n < 100:
+        return nombreFrancais99(n)
+    elif n // 100 == 1:
+        if n % 100 == 0:
+            return "cent"
+        else:
+            return "cent-" + nombreFrancais99(n - 100)
+    elif n >= 200 and n <= 999:
+        if n % 100 == 0:
+            return nombreFrancais9(n // 100) + "-cent"
+        else:
+            return nombreFrancais9(n // 100) + "-cent-" + nombreFrancais99(n - n // 100 * 100)
+    else:
+        raise ValueError("input must be between 1 and 999")
+
+
 if __name__ == "__main__":
     l = [1, 8, 12, 16, 19, 20, 21, 30, 37, 41, 56, 60, 61, 69,
-         70, 71, 75, 79, 80, 81, 88, 90, 91, 95, 99]
+         70, 71, 75, 79, 80, 81, 88, 90, 91, 95, 99, 100, 101, 111, 121, 179, 180, 190, 199, 200, 250, 301, 369, 460, 555, 666, 777, 888, 999]
     for i in l:
-        print(nombreFrancais99(i))
+        print(nombreFrancais999(i))
