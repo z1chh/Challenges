@@ -55,12 +55,9 @@ def helper(height, left_creature, right_creature, num_knocks):
             tmp_h1 = height.copy()
             tmp_l1 = left_creature.copy()
             tmp_r1 = right_creature.copy()
-            tmp_h2 = height.copy()
-            tmp_l2 = left_creature.copy()
-            tmp_r2 = right_creature.copy()
             update(tmp_h1, tmp_l1, tmp_r1, left_knock_len, True)
-            update(tmp_h2, tmp_l2, tmp_r2, left_knock_len, True)
-            return num_knocks + min(helper(tmp_h1, tmp_l1, tmp_r1, 0), helper(tmp_h2, tmp_l2, tmp_r2, 0))
+            update(height, left_creature, right_creature, left_knock_len, True)
+            return num_knocks + min(helper(tmp_h1, tmp_l1, tmp_r1, 0), helper(height, left_creature, right_creature, 0))
     return num_knocks
 
 
