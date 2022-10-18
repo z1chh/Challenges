@@ -10,19 +10,27 @@ import os
 #
 
 def getOneBits(n):
-    binary = list()
+    binary = []
     count = 0
-    
+
+    # Divide the number by two and store the remainder in binary
     while n > 0:
-        binary.append(o := n & 1)        # add right most bit
+        binary.append(o := n & 1)
         count += o
-        n = n >> 1                       # div by 2 (shift right)
-    binary.reverse()
-    one_bits = [count]
+        n = n >> 1
     
+    # Reverse binary to get the binary representation of the number
+    binary.reverse()
+    
+    # Add the number of one bits to the array, and their positions in the number
+    one_bits = [count]
     for index, bit in enumerate(binary):
         if bit:
             one_bits.append(index + 1)
+    
+    # Return the number of one bits and their positions in the binary representation
     return one_bits
+
+
 if __name__ == '__main__':
     print(getOneBits(10))
