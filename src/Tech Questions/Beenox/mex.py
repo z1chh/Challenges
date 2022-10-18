@@ -16,13 +16,12 @@ import sys
 #
 
 def getMaximumMEX(arr):
-    reduced = list()
     arr.sort()
-    i = 0
+    n = 0
     for idx, v in enumerate(arr):
-        if i <= v:
-            arr[idx] = i
-            i += 1
+        if n <= v:
+            arr[idx] = n
+            n += 1
     return arr[-1] + 1
 
 if __name__ == '__main__':
