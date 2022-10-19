@@ -11,10 +11,6 @@ Description   : DLL Structure using Node  object
 
 using namespace std;
 
-// The provided main() tests functions using printDLL(), but the Question 3 states that the signature should be PrintDLL().
-// Thus some errors may be raised if the tester calls printDLL() instead of PrintDLL(), which is what I used for this assignment.
-// The same applies for the GetHead, GetTail, GetSize, GetMax and GetMin methods.
-
 /**
  * Class DLLStructure
  *
