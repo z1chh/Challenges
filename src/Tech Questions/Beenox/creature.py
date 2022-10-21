@@ -1,15 +1,5 @@
 # Functions
-def getBuildingsDestroyed(height, is_left):
-    size = len(height)
-    buildings_destroyed = 1
-    idx = 0 if is_left else size - 1
-    cur_building = height[idx]
-    while idx < size - 1 if is_left else idx > 0:
-        if is_left and height[idx + 1] > cur_building:
-            pass
-
-
-def getMinBlows(height, min_blows):
+def getBuildingsDestroyed(height):
     while (size := len(height)) > 0:
         left = 1
         left_el = height[0]
@@ -29,13 +19,11 @@ def getMinBlows(height, min_blows):
             else:
                 break
 
-        if left > right:
-            pass
-        elif left < right:
-            pass
-        else:
-            # left == right
-            pass
+    return left, right
+
+
+def getMinBlows(height, min_blows):
+    left, right = getBuildingsDestroyed(height)
 
     return min_blows
 
