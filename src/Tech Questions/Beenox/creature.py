@@ -23,7 +23,12 @@ def getBuildingsDestroyed(height):
 
 
 def destroyBuildings(height, num_buildings, side):
-    pass
+    if side == 0:
+        for _ in range(num_buildings):
+            height.pop(0)
+    else:
+        for _ in range(num_buildings):
+            height.pop()
 
 
 def getMinBlows(height, min_blows):
