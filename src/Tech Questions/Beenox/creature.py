@@ -3,18 +3,18 @@ def getBuildingsDestroyedPerSide(height):
     size = len(height)
     left = 1
     left_el = height[0]
-    while left < size:
-        if height[left] > left_el:
-            left_el = height[left]
+    for i in range(1, size):
+        if height[i] > left_el:
+            left_el = height[i]
             left += 1
         else:
             break
 
     right = 1
     right_el = height[-1]
-    while size - 1 - right >= 0:
-        if height[right] > right_el:
-            right_el = height[right]
+    for i in range(size - 2, -1, -1):
+        if height[i] > right_el:
+            right_el = height[i]
             right += 1
         else:
             break
@@ -54,5 +54,11 @@ def getMinBlows(height, min_blows):
 
 
 if __name__ == '__main__':
-    height = list(map(int, input().split()))
-    print(getMinBlows(height, 0))
+    """ height = list(map(int, input().split()))
+    print(getMinBlows(height, 0)) """
+    print(getMinBlows([1, 2, 3, 4, 3, 2, 3, 2, 1], 0))
+    print(getMinBlows([1, 2, 3, 4, 8, 7, 6, 5], 0))
+    print(getMinBlows([2, 1, 2], 0))
+    print(getMinBlows([1, 2, 1, 2, 10, 9], 0))
+    print(getMinBlows([22, 75, 26, 45, 72, 81, 47, 29, 97, 2, 75, 25, 82, 84, 17, 56, 32, 2, 28, 37, 57, 39, 18,
+          11, 79, 6, 40, 68, 68, 16, 40, 63, 93, 49, 91, 10, 55, 68, 31, 80, 57, 18, 34, 28, 76, 55, 21, 80, 22, 45], 0))
