@@ -22,6 +22,10 @@ def getBuildingsDestroyed(height):
     return left, right
 
 
+def destroyBuildings(height, num_buildings, side):
+    pass
+
+
 def getMinBlows(height, min_blows):
     left, right = getBuildingsDestroyed(height)
 
