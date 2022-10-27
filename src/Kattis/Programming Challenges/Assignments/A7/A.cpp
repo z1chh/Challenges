@@ -42,7 +42,7 @@ int main()
         num_nodes = num_nodes >> 1;
         if (c == 'L')
         {
-            index += num_nodes;
+            index += num_nodes; // Increment to point to the left subtree instead
         }
     }
     cout << level.second + index << endl;
