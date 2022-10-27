@@ -8,9 +8,9 @@ using namespace std;
 int main()
 {
     int height, max_idx = 0, row_nodes, idx = 0, tmp;
-    pair<int, pair<int, int>> nodes_per_level[height + 1];
     string path;
     cin >> height >> path;
+    pair<int, pair<int, int>> nodes_per_level[height + 1];
     row_nodes = pow(2, height);
 
     for (int i = height; i >= 0; i--)
@@ -25,6 +25,8 @@ int main()
     {
         cout << i << ": " << nodes_per_level[i].first << " " << nodes_per_level[i].second.first << " " << nodes_per_level[i].second.second << endl;
     }
+
+    return 0;
 }
 
 // int max_node=2ala height + 1
