@@ -8,7 +8,7 @@ using namespace std;
 int main()
 {
     int height, max_idx = 0, row_nodes, idx = 0;
-    pair<int, pair<int, int>> nodes_per_level[height + 1];
+    pair<int, int> nodes_per_level[height + 1];
     string path;
     cin >> height >> path;
 
