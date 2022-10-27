@@ -37,7 +37,7 @@ int main()
         }
         else
         {
-            rating1 = -2;
+            rating2 = -1;
         }
         update_ratings(&movie_ratings, ID1, ID2, rating1, rating2);
     }
