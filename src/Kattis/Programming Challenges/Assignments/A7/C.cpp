@@ -60,3 +60,8 @@ int main()
     // Successful return
     return 0;
 }
+
+void update_ratings(map<int, int> *movie_ratings, int ID1, int ID2, int rating1, int rating2)
+{
+    // TODO
+}
