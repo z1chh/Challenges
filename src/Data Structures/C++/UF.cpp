@@ -22,8 +22,8 @@ public:
     void add(int val1, int val2); // Adds the pair of values to the UnionFind
 
     // Attributes
-    map<int, int> representatives;
 private:
+    map<int, int> representatives;
     map<int, vector<int>> sets;
 
     // Helper Methods
@@ -34,9 +34,6 @@ int main()
 {
     cout << "Starting tests..." << endl;
     UnionFind uf = UnionFind();
-    uf.representatives[1] = 1;
-    uf.representatives[2] = 1;
-    uf.representatives[3] = 2;
     cout << uf.find(3) << endl;
     cout << "Passed tests successfully." << endl;
     return 0;
@@ -59,10 +56,10 @@ int UnionFind::find_helper(int value)
 
 void UnionFind::combine(int val1, int val2)
 {
-    // TODO
+    cout << val1 + val2 << endl;
 }
 
 void UnionFind::add(int val1, int val2)
 {
-    // TODO
+    cout << val1 + val2 << endl;
 }
