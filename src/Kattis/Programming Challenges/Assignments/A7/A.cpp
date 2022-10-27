@@ -15,10 +15,10 @@ int main()
 
     for (int i = height; i >= 0; i--)
     {
-        tmp = max_idx;
+        tmp = max_idx + 1;
         max_idx += row_nodes;
         nodes_per_level[i] = make_pair(row_nodes, make_pair(tmp, max_idx));
-        row_nodes >> 1; // not SRL but okay since we're working with positive ints (also powers of 2)
+        row_nodes = row_nodes >> 1; // not SRL but okay since we're working with positive ints (also powers of 2)
     }
 
     for (int i = 0; i <= height; i++)
