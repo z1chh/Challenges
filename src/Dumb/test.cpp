@@ -6,12 +6,13 @@ using namespace std;
 
 int main()
 {
-    int x, y;
-    double z;
-    string s;
-    cin >> x >> s >> y >> z;
-    pair<pair<int, int>, double> a = make_pair(make_pair(x, y), z);
-    cout << a.first.first << " " << a.first.second << " " << a.second << endl;
+    int x;
+    string s = "HI";
+    cin >> x;
+    while (cin >> s)
+    {
+        cout << "had input" << endl;
+    }
     cout << s << endl;
     return 0;
 }
