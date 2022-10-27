@@ -32,12 +32,6 @@ int main()
         row_nodes = row_nodes >> 1; // not SRL but okay since we're working with positive ints (also powers of 2)
     }
 
-    // Array
-    /* for (int i = 0; i <= height; i++)
-    {
-        cout << i << ": " << nodes_per_level[i].first << " " << nodes_per_level[i].second << endl;
-    } */
-
     // Get correct node
     int size = path.size();
     pair<int, int> level = nodes_per_level[size];
