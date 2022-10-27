@@ -18,7 +18,7 @@ int main()
     if (path == "NULL")
     {
         // Simply output the max value of the tree
-        cout << row_nodes << endl;
+        cout << row_nodes * 2 - 1 << endl;
 
         // Successful return
         return 0;
@@ -55,5 +55,3 @@ int main()
 
     return 0;
 }
-
-// int max_node=2ala height + 1
