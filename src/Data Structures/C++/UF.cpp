@@ -35,8 +35,11 @@ int main()
     cout << "Starting tests..." << endl;
     UnionFind uf = UnionFind();
     uf.add(1, 2);
+    uf.add(2, 3);
     uf.add(3, 4);
+    cout << "Added values..." << endl;
     uf.add(4, 1);
+    cout << "Added all values..." << endl;
     cout << uf.find(3) << endl;
     cout << "Passed tests successfully." << endl;
     return 0;
@@ -47,6 +50,10 @@ int UnionFind::find(int value)
     if (this->representatives.count(value) != 1)
     {
         throw invalid_argument("Error: value not in Union-Find");
+    }
+    for (auto &uf : this->representatives)
+    {
+        cout << uf.first << " " << uf.second << endl;
     }
     return this->find_helper(value);
 }
@@ -71,13 +78,18 @@ void UnionFind::add(int val1, int val2)
 {
     if (this->representatives.count(val1) == 1)
     {
+        int repr1 = this->representatives[val1];
         if (this->representatives.count(val2) == 1)
         {
-            this->combine(val1, val2);
+            int repr2 = this->representatives[val2];
+            if (repr1 != repr2)
+            {
+                this->combine(repr1, repr2);
+            }
         }
         else
         {
-            this->representatives[val2] = val1;
+            this->representatives[val2] = repr1;
             this->sets[val2].push_back(val1);
         }
     }
@@ -85,7 +97,8 @@ void UnionFind::add(int val1, int val2)
     {
         if (this->representatives.count(val2) == 1)
         {
-            this->representatives[val1] = val2;
+            int repr2 = this->representatives[val2];
+            this->representatives[val1] = repr2;
             this->sets[val1].push_back(val2);
         }
         else
