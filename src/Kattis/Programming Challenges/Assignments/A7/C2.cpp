@@ -17,6 +17,11 @@ public:
         // cout << "Node Destructor called" << endl;
     }
 
+    int get_ID()
+    {
+        return this->movie_ID;
+    }
+
     void add(Node &to_connect)
     {
         this->neighbors.push_back(to_connect);
@@ -42,7 +47,17 @@ public:
     {
         // cout << "Edge Destructor called" << endl;
     }
-    
+
+    Node getFirst()
+    {
+        return this->node1;
+    }
+
+    Node getSecond()
+    {
+        return this->node2;
+    }
+
 private:
     Node node1;
     Node node2;
