@@ -1,5 +1,5 @@
 #include <iostream>
-#include <vector>
+#include <set>
 
 using namespace std;
 
@@ -24,13 +24,13 @@ public:
 
     void add(Node &to_connect)
     {
-        this->neighbors.push_back(to_connect);
-        to_connect.neighbors.push_back(*this);
+        this->neighbors.insert(to_connect);
+        to_connect.neighbors.insert(*this);
     }
 
 private:
     int movie_ID;
-    vector<Node> neighbors;
+    set<Node> neighbors;
 };
 
 class Edge
@@ -75,7 +75,23 @@ public:
     {
         // cout << "Graph Destructor called" << endl;
     }
+
+    void add_node(Node node)
+    {
+        this->nodes.insert(node);
+    }
+
+    bool add_edge(Node n1, Node n2)
+    {
+        if (this->nodes.find(n1) != this->nodes.end() && this->nodes.find(n2) == this->nodes.end())
+        {
+            this->edges.insert(Edge(n1, n2));
+            return true;
+        }
+        return false;
+    }
+
 private:
-    vector<Node> nodes;
-    vector<Edge> edges;
+    set<Node> nodes;
+    set<Edge> edges;
 };
