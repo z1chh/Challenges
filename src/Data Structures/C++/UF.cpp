@@ -70,6 +70,7 @@ void UnionFind::add(int val1, int val2)
         else
         {
             this->representatives[val2] = val1;
+            this->sets[val2].push_back(val1);
         }
     }
     else
@@ -77,11 +78,14 @@ void UnionFind::add(int val1, int val2)
         if (this->representatives.count(val2) == 1)
         {
             this->representatives[val1] = val2;
+            this->sets[val1].push_back(val2);
         }
         else
         {
             this->representatives[val1] = val1;
             this->representatives[val2] = val1;
+            this->sets[val1].push_back(val1);
+            this->sets[val1].push_back(val2);
         }
     }
 }
