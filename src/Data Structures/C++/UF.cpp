@@ -17,9 +17,9 @@ public:
         cout << "Union-Find Destructor called" << endl;
     }
 
-    int find(int value); // Returns the representative of the set of value
+    int find(int value);              // Returns the representative of the set of value
     void combine(int val1, int val2); // Unions the sets of val1 and val2
-    void add(int val1, int val2); // Adds the pair of values to the UnionFind
+    void add(int val1, int val2);     // Adds the pair of values to the UnionFind
 
     // Attributes
 private:
@@ -51,7 +51,7 @@ int UnionFind::find(int value)
 int UnionFind::find_helper(int value)
 {
     int repr = this->representatives[value];
-    return repr == value ? repr: this->find_helper(repr);
+    return repr == value ? repr : this->find_helper(repr);
 }
 
 void UnionFind::combine(int val1, int val2)
@@ -61,5 +61,27 @@ void UnionFind::combine(int val1, int val2)
 
 void UnionFind::add(int val1, int val2)
 {
-    cout << val1 + val2 << endl;
+    if (this->representatives.count(val1) == 1)
+    {
+        if (this->representatives.count(val2) == 1)
+        {
+            this->combine(val1, val2);
+        }
+        else
+        {
+            this->representatives[val2] = val1;
+        }
+    }
+    else
+    {
+        if (this->representatives.count(val2) == 1)
+        {
+            this->representatives[val1] = val2;
+        }
+        else
+        {
+            this->representatives[val1] = val1;
+            this->representatives[val2] = val1;
+        }
+    }
 }
