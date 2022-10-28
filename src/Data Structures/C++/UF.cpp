@@ -9,12 +9,12 @@ class UnionFind
 public:
     UnionFind()
     {
-        cout << "Union-Find Constructor called" << endl;
+        // cout << "Union-Find Constructor called" << endl;
     }
 
     ~UnionFind()
     {
-        cout << "Union-Find Destructor called" << endl;
+        // cout << "Union-Find Destructor called" << endl;
     }
 
     int find(int value);              // Returns the representative of the set of value
@@ -34,6 +34,9 @@ int main()
 {
     cout << "Starting tests..." << endl;
     UnionFind uf = UnionFind();
+    uf.add(1, 2);
+    uf.add(3, 4);
+    uf.add(4, 1);
     cout << uf.find(3) << endl;
     cout << "Passed tests successfully." << endl;
     return 0;
@@ -56,7 +59,12 @@ int UnionFind::find_helper(int value)
 
 void UnionFind::combine(int val1, int val2)
 {
-    cout << val1 + val2 << endl;
+    this->representatives[val2] = this->representatives[val1];
+    for (int i = 0; i < this->sets[val2].size(); i++)
+    {
+        this->sets[val1].push_back(this->sets[val2].back());
+        this->sets[val2].pop_back();
+    }
 }
 
 void UnionFind::add(int val1, int val2)
