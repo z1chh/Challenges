@@ -19,7 +19,6 @@ for _ in range(l):
             movie_ratings[id1] = movie_ratings[id2] + 1
         else:
             to_do.append((id1, id2))
-inc = 0
 while to_do:
     id1, id2 = to_do.pop(0)
     if id1 in movie_ratings:
@@ -34,9 +33,6 @@ while to_do:
         if id2 in movie_ratings:
             movie_ratings[id1] = movie_ratings[id2] + 1
         else:
-            if len(to_do) == 0:
-                inc += 1
-                break
             to_do.append((id1, id2))
 id = n
 lowest = 0
@@ -47,4 +43,4 @@ for k, v in movie_ratings.items():
     elif v == lowest:
         if k < id:
             id = k
-print(id if inc == 0 else id + 1)
+print(id)
