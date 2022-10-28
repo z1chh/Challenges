@@ -34,7 +34,7 @@ while to_do:
         if id2 in movie_ratings:
             movie_ratings[id1] = movie_ratings[id2] + 1
         else:
-            if len(to_do == 0):
+            if len(to_do) == 0:
                 inc += 1
                 break
             to_do.append((id1, id2))
