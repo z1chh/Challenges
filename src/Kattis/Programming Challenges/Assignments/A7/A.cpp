@@ -37,7 +37,7 @@ int main()
     pair<int, int> level = nodes_per_level[size];
     int num_nodes = level.first;
     int index = 0;
-    for (char c: path)
+    for (char c : path)
     {
         num_nodes = num_nodes >> 1;
         if (c == 'L')
