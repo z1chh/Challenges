@@ -11,4 +11,7 @@ int main()
 
     // Logic
     // TODO
+
+    // Successful return
+    return 0;
 }
