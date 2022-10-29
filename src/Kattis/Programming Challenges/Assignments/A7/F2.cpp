@@ -36,7 +36,7 @@ int main()
 
     for (string s : v)
     {
-        DFS(s, &possible);
+        DFS(s, &possible, walter, jesse, ingredients);
     }
 
     if (possible)
