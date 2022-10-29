@@ -62,19 +62,19 @@ int main()
         } */
     }
 
-    for (auto const &x : movie_ratings)
+    for (int i = 0; i < n; i++)
     {
-        if (x.second > best_rating)
+        int cur_rating = movie_ratings[i];
+        if (cur_rating > best_rating)
         {
-            best_rating = x.second;
-            best_ID = x.first;
+            best_rating = cur_rating;
+            best_ID = i;
         }
-        else if (x.second == best_rating)
+        else if (cur_rating == best_rating)
         {
-            best_rating = x.second;
-            if (x.first < best_ID)
+            if (i < best_ID)
             {
-                best_ID = x.first;
+                best_ID = i;
             }
         }
     }
@@ -91,20 +91,48 @@ void update_ratings(map<int, int> *movie_ratings, int ID1, int ID2, int rating1,
     if (rating1 == 0 && rating2 != 0)
     {
         (*movie_ratings)[ID2] = 1;
+        for (int i = 0; i < (*similarities)[ID2].size(); i++)
+        {
+            if ((*similarities)[ID2][i] > 2)
+            {
+                update_ratings(movie_ratings, ID2, (*similarities)[ID2][i], (*movie_ratings)[ID2], (*movie_ratings)[(*similarities)[ID2][i]], similarities);
+            }
+        }
     }
     else if (rating2 == 0 && rating1 != 0)
     {
         (*movie_ratings)[ID1] = 1;
+        for (int i = 0; i < (*similarities)[ID1].size(); i++)
+        {
+            if ((*similarities)[ID1][i] > 2)
+            {
+                update_ratings(movie_ratings, ID1, (*similarities)[ID1][i], (*movie_ratings)[ID1], (*movie_ratings)[(*similarities)[ID1][i]], similarities);
+            }
+        }
     }
     else if (rating2 != 0 && rating1 != 0)
     {
         if (rating1 < rating2)
         {
             (*movie_ratings)[ID2] = (*movie_ratings)[ID1] + 1;
+            for (int i = 0; i < (*similarities)[ID2].size(); i++)
+            {
+                if ((*similarities)[ID2][i] > 2)
+                {
+                    update_ratings(movie_ratings, ID2, (*similarities)[ID2][i], (*movie_ratings)[ID2], (*movie_ratings)[(*similarities)[ID2][i]], similarities);
+                }
+            }
         }
         else if (rating1 > rating2)
         {
             (*movie_ratings)[ID1] = (*movie_ratings)[ID2] + 1;
+            for (int i = 0; i < (*similarities)[ID2].size(); i++)
+            {
+                if ((*similarities)[ID2][i] > 2)
+                {
+                    update_ratings(movie_ratings, ID2, (*similarities)[ID2][i], (*movie_ratings)[ID2], (*movie_ratings)[(*similarities)[ID2][i]], similarities);
+                }
+            }
         }
     }
 }
