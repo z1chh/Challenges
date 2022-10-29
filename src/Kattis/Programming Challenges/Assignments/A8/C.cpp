@@ -5,6 +5,10 @@ using namespace std;
 
 int main()
 {
+    // Get input
     string input;
     cin >> input;
+
+    // Logic
+    // TODO
 }
