@@ -7,9 +7,9 @@ int main()
 {
     string pattern, text;
     int pattern_size, text_size;
-    while (getline(std::cin, pattern))
+    while (getline(cin, pattern))
     {
-        getline(std::cin, text);
+        getline(cin, text);
         pattern_size = pattern.size();
         text_size = text.size();
         /* cout << pattern_size << " " << text_size << endl;
