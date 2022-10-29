@@ -20,7 +20,6 @@ int main()
             if (index_str != string::npos)
             {
                 cout << index_str << " ";
-                position = index_str;
             }
             if (++position == text_size)
             {
