@@ -6,21 +6,58 @@
 
 using namespace std;
 
+void DFS(string s, bool *possible, set<string> walter, set<string> jesse, map<string, set<string>> ingredients);
+
 int main()
 {
     int items, pairs;
-    string s;
+    string item, item1, item2;
     cin >> items;
     map<string, set<string>> ingredients;
-    set<string> a;
-    set<string> b;
+    set<string> walter;
+    set<string> jesse;
     bool possible = true;
     vector<string> v;
 
     for (int i = 0; i < items; i++)
     {
-        cin >> s;
-        ingredients[s] = set<string>();
-        v.push_back(s);
+        cin >> item;
+        ingredients[item] = set<string>();
+        v.push_back(item);
     }
+
+    cin >> pairs;
+    for (int i = 0; i < pairs; i++)
+    {
+        cin >> item1 >> item2;
+        ingredients[item1].insert(item2);
+        ingredients[item2].insert(item1);
+    }
+
+    for (string s : v)
+    {
+        DFS(s, &possible);
+    }
+
+    if (possible)
+    {
+        for (string s : walter)
+        {
+            cout << s << " ";
+        }
+        for (string s : jesse)
+        {
+            cout << s << " ";
+        }
+    }
+    else
+    {
+        cout << "impossible" << endl;
+    }
+
+    return 0;
+}
+
+void DFS(string s, bool *possible, set<string> walter, set<string> jesse, map<string, set<string>> ingredients)
+{
 }
