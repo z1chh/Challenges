@@ -5,22 +5,19 @@ using namespace std;
 
 int main()
 {
+    // Get input
     string pattern, text;
-    int pattern_size, text_size;
-    while (getline(std::cin, pattern))
+    int position;
+    while (getline(cin, pattern))
     {
-        getline(std::cin, text);
-        pattern_size = pattern.size();
-        text_size = text.size();
-        /* cout << pattern_size << " " << text_size << endl;
-        cout << "Iterating from i = 0 to " << text_size - pattern_size << endl; */
-        for (int i = 0; i < text_size - pattern_size + 1; i++)
+        getline(cin, text);
+
+        // Find occurences of pattern
+        position = text.find(pattern);
+        while (position != string::npos)
         {
-            /* cout << "Index " << i << ": " << pattern << " " << text.substr(i, pattern_size) << endl; */
-            if (pattern == text.substr(i, pattern_size))
-            {
-                cout << i << " ";
-            }
+            cout << position << " ";
+            position = text.find(pattern, position + 1);
         }
         cout << endl;
     }
