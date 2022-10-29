@@ -1,95 +1,138 @@
 #include <iostream>
-#include <set>
+#include <map>
+#include <vector>
 
 using namespace std;
 
-class Node
+void update_ratings(map<int, int> *movie_ratings, int ID1, int ID2, int rating1, int rating2, map<int, vector<int>> *similarities);
+
+int main()
 {
-public:
-    Node(int ID) : movie_ID(ID)
+    // Get input
+    int n, h, l, best_rating = -1, best_ID = 1001;
+    cin >> n >> h >> l;
+    map<int, vector<int>> similarities;
+
+    // Initialize movie_ratings
+    map<int, int> movie_ratings;
+    for (int i = 0; i < n; i++)
     {
-        // cout << "Node Constructor called" << endl;
+        movie_ratings[i] = INT_MAX;
     }
 
-    ~Node()
+    // Get horror list
+    int horror_movie_ID;
+    for (int i = 0; i < h; i++)
     {
-        // cout << "Node Destructor called" << endl;
+        cin >> horror_movie_ID;
+        movie_ratings[horror_movie_ID] = 0;
     }
 
-    int get_ID()
+    int ID1, ID2, rating1, rating2;
+    for (int i = 0; i < l; i++)
     {
-        return this->movie_ID;
-    }
+        cin >> ID1 >> ID2;
 
-    void add(Node &to_connect)
-    {
-        this->neighbors.insert(to_connect);
-        to_connect.neighbors.insert(*this);
-    }
+        // Update similar movies
+        similarities[ID1].push_back(ID2);
+        similarities[ID2].push_back(ID1);
 
-private:
-    int movie_ID;
-    set<Node> neighbors;
-};
-
-class Edge
-{
-public:
-    Edge(Node n1, Node n2) : node1(n1),
-                             node2(n2)
-    {
-        // cout << "Edge Constructor called" << endl;
-    }
-
-    ~Edge()
-    {
-        // cout << "Edge Destructor called" << endl;
-    }
-
-    Node getFirst()
-    {
-        return this->node1;
-    }
-
-    Node getSecond()
-    {
-        return this->node2;
-    }
-
-private:
-    Node node1;
-    Node node2;
-};
-
-class Graph
-{
-public:
-    Graph()
-    {
-        // cout << "Graph Constructor called" << endl;
-    }
-
-    ~Graph()
-    {
-        // cout << "Graph Destructor called" << endl;
-    }
-
-    void add_node(Node node)
-    {
-        this->nodes.insert(node);
-    }
-
-    bool add_edge(Node n1, Node n2)
-    {
-        if (this->nodes.find(n1) != this->nodes.end() && this->nodes.find(n2) == this->nodes.end())
+        // Get ratings
+        if (movie_ratings.count(ID1) == 1)
         {
-            this->edges.insert(Edge(n1, n2));
-            return true;
+            rating1 = movie_ratings[ID1];
         }
-        return false;
+        else
+        {
+            rating1 = -1;
+        }
+        if (movie_ratings.count(ID2) == 1)
+        {
+            rating2 = movie_ratings[ID2];
+        }
+        else
+        {
+            rating2 = -1;
+        }
+        update_ratings(&movie_ratings, ID1, ID2, rating1, rating2, &similarities);
+        /* cout << "IDS " << ID1 << " " << ID2 << endl;
+        for (auto r : movie_ratings)
+        {
+            cout << r.first << " has value " << r.second << endl;
+        } */
     }
 
-private:
-    set<Node> nodes;
-    set<Edge> edges;
-};
+    for (int i = 0; i < n; i++)
+    {
+        int cur_rating = movie_ratings[i];
+        if (cur_rating > best_rating)
+        {
+            best_rating = cur_rating;
+            best_ID = i;
+        }
+        else if (cur_rating == best_rating)
+        {
+            if (i < best_ID)
+            {
+                best_ID = i;
+            }
+        }
+    }
+
+    // Output movie with highest Horror Index
+    cout << best_ID << endl;
+
+    // Successful return
+    return 0;
+}
+
+void update_ratings(map<int, int> *movie_ratings, int ID1, int ID2, int rating1, int rating2, map<int, vector<int>> *similarities)
+{
+    if (rating1 == 0 && rating2 != 0)
+    {
+        (*movie_ratings)[ID2] = 1;
+        for (int i = 0; i < (*similarities)[ID2].size(); i++)
+        {
+            if ((*similarities)[ID2][i] > 2)
+            {
+                update_ratings(movie_ratings, ID2, (*similarities)[ID2][i], (*movie_ratings)[ID2], (*movie_ratings)[(*similarities)[ID2][i]], similarities);
+            }
+        }
+    }
+    else if (rating2 == 0 && rating1 != 0)
+    {
+        (*movie_ratings)[ID1] = 1;
+        for (int i = 0; i < (*similarities)[ID1].size(); i++)
+        {
+            if ((*similarities)[ID1][i] > 2)
+            {
+                update_ratings(movie_ratings, ID1, (*similarities)[ID1][i], (*movie_ratings)[ID1], (*movie_ratings)[(*similarities)[ID1][i]], similarities);
+            }
+        }
+    }
+    else if (rating2 != 0 && rating1 != 0)
+    {
+        if (rating1 < rating2)
+        {
+            (*movie_ratings)[ID2] = (*movie_ratings)[ID1] + 1;
+            for (int i = 0; i < (*similarities)[ID2].size(); i++)
+            {
+                if ((*similarities)[ID2][i] > 2)
+                {
+                    update_ratings(movie_ratings, ID2, (*similarities)[ID2][i], (*movie_ratings)[ID2], (*movie_ratings)[(*similarities)[ID2][i]], similarities);
+                }
+            }
+        }
+        else if (rating1 > rating2)
+        {
+            (*movie_ratings)[ID1] = (*movie_ratings)[ID2] + 1;
+            for (int i = 0; i < (*similarities)[ID2].size(); i++)
+            {
+                if ((*similarities)[ID2][i] > 2)
+                {
+                    update_ratings(movie_ratings, ID2, (*similarities)[ID2][i], (*movie_ratings)[ID2], (*movie_ratings)[(*similarities)[ID2][i]], similarities);
+                }
+            }
+        }
+    }
+}
