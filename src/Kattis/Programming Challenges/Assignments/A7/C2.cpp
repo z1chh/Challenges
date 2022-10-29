@@ -6,13 +6,12 @@ using namespace std;
 class Node
 {
 public:
-    Node(int ID):
-    movie_ID(ID)
+    Node(int ID) : movie_ID(ID)
     {
         // cout << "Node Constructor called" << endl;
     }
-    
-   ~Node()
+
+    ~Node()
     {
         // cout << "Node Destructor called" << endl;
     }
@@ -36,14 +35,13 @@ private:
 class Edge
 {
 public:
-    Edge(Node n1, Node n2):
-    node1(n1),
-    node2(n2)
+    Edge(Node n1, Node n2) : node1(n1),
+                             node2(n2)
     {
         // cout << "Edge Constructor called" << endl;
     }
-    
-   ~Edge()
+
+    ~Edge()
     {
         // cout << "Edge Destructor called" << endl;
     }
@@ -70,8 +68,8 @@ public:
     {
         // cout << "Graph Constructor called" << endl;
     }
-    
-   ~Graph()
+
+    ~Graph()
     {
         // cout << "Graph Destructor called" << endl;
     }
