@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void DFS(string s, bool *possible, set<string> walter, set<string> jesse, map<string, set<string>> ingredients);
+bool DFS(string s, bool *possible, set<string> walter, set<string> jesse, map<string, set<string>> ingredients);
 
 int main()
 {
