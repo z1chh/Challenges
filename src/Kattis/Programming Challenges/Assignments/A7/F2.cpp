@@ -58,7 +58,28 @@ int main()
     return 0;
 }
 
-void DFS(string s, bool *possible, set<string> walter, set<string> jesse, map<string, set<string>> ingredients)
+bool DFS(string s, bool *possible, set<string> walter, set<string> jesse, map<string, set<string>> ingredients)
 {
-    // TODO
+    if (walter.find(s) == walter.end() && jesse.find(s) == jesse.end())
+    {
+        walter.insert(s);
+    }
+    for (string str : ingredients[s])
+    {
+        if (walter.find(s) != walter.end() && walter.find(str) == walter.end() && jesse.find(str) == jesse.end())
+        {
+            jesse.insert(str);
+            DFS(str, possible, walter, jesse, ingredients);
+        }
+        else if (jesse.find(s) != jesse.end() && walter.find(str) == walter.end() && jesse.find(str) == jesse.end())
+        {
+            walter.insert(str);
+            DFS(str, possible, walter, jesse, ingredients);
+        }
+        else if ((walter.find(s) != walter.end() && walter.find(str) != walter.end()) || (jesse.find(s) != jesse.end() && jesse.find(str) != jesse.end()))
+        {
+            *possible = false;
+        }
+    }
+    return true;
 }
