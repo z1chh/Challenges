@@ -1,22 +1,6 @@
 from collections import deque
 
 
-def BFS(adjacent_nodes, unvisited_nodes, queue):
-    c, i = -1, -1
-    while queue:
-        cost, v = queue.popleft()
-        if cost > c or (cost == c and v < i):
-            c, i = cost, v
-        for u in adjacent_nodes[v]:
-            if u in unvisited_nodes:
-                unvisited_nodes.remove(u)
-                queue.append((cost + 1, u))
-    if not unvisited_nodes:
-        return i
-    else:
-        return min(unvisited_nodes)
-
-
 # Get input
 n, h, l = map(int, input().split())
 
@@ -41,4 +25,16 @@ for _ in range(l):
     adjacent_nodes[u].append(v)
 
 # Compute BFS and output result
-print(BFS(adjacent_nodes, unvisited_nodes, queue))
+c, i = -1, -1
+while queue:
+    cost, v = queue.popleft()
+    if cost > c or (cost == c and v < i):
+        c, i = cost, v
+    for u in adjacent_nodes[v]:
+        if u in unvisited_nodes:
+            unvisited_nodes.remove(u)
+            queue.append((cost + 1, u))
+if not unvisited_nodes:
+    print(i)
+else:
+    print(min(unvisited_nodes))
