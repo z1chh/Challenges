@@ -1,9 +1,19 @@
 def solution(numbers):
     ct = 0
-    for i in range(len(numbers)):
-        for j in range(i + 1, len(numbers)):
-            n1 = str(numbers[i])
-            n2 = str(numbers[j])
+    d = {}
+    s = set()
+    for num in numbers:
+        s.add(num)
+        if num in d:
+            d[num] += 1
+        else:
+            d[num] = 1
+
+    s = list(s)
+    for i in range(len(s)):
+        for j in range(i + 1, len(s)):
+            n1 = str(s[i])
+            n2 = str(s[j])
             if len(n1) != len(n2):
                 continue
             else:
@@ -14,5 +24,5 @@ def solution(numbers):
                         if diff > 1:
                             break
                 if diff == 1:
-                    ct += 1
+                    ct += d[s[i]] * d[s[j]]
     return ct
