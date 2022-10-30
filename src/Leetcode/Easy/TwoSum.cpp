@@ -8,6 +8,7 @@ class Solution
 public:
     vector<int> twoSum(vector<int> &nums, int target)
     {
+        // Exhaustive search (O(n^2))
         vector<int> to_return;
         int size = nums.size(), i, j;
         for (i = 0; i < size - 1; i++)
