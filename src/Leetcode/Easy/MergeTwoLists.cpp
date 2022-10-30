@@ -2,6 +2,7 @@
 
 using namespace std;
 
+// Remove struct before submitting
 struct ListNode
 {
     int val;
@@ -11,6 +12,7 @@ struct ListNode
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
+// Started LeetCode Problem Merge Two Sorted Lists
 class Solution
 {
 public:
