@@ -25,10 +25,10 @@ public:
         else if (num_diags > 0)
         {
             int counter = 0;
-            for (int x = 0; x < counter; x++)
+            for (int x = 0; x <= num_diags; x++)
             {
                 val = matrix[0][0 + x];
-                for (int i = 0; i < rows; i++)
+                for (int i = 1; i < cols; i++)
                 {
                     if (matrix[i][i + x] != val)
                     {
@@ -41,10 +41,10 @@ public:
         else
         {
             int counter = 0;
-            for (int x = 0; x < counter; x++)
+            for (int x = 0; x <= -num_diags; x++)
             {
                 val = matrix[0 + x][0];
-                for (int i = 0; i < rows; i++)
+                for (int i = 1; i < rows; i++)
                 {
                     if (matrix[i + x][i] != val)
                     {
