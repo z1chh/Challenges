@@ -9,69 +9,11 @@ class Solution
 public:
     bool isToeplitzMatrix(vector<vector<int>> &matrix)
     {
-        int rows = matrix.size(), cols = matrix[0].size(), num_diags = rows - cols, val;
-        if (num_diags == 0)
-        {
-            val = matrix[0][0];
-            for (int i = 1; i < rows; i++)
-            {
-                if (matrix[i][i] != val)
-                {
+        for (int i = 0; i < matrix.size() - 1; i++)
+            for (int j = 0; j < matrix[i].size() - 1; j++)
+                if (matrix[i][j] != matrix[i + 1][j + 1])
                     return false;
-                }
-            }
-            return true;
-        }
-        else if (num_diags > 0)
-        {
-            int counter = 0;
-            for (int x = 0; x <= num_diags; x++)
-            {
-                val = matrix[0][0 + x];
-                for (int i = 1; i < cols; i++)
-                {
-                    if (matrix[i][i + x] != val)
-                    {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-        else
-        {
-            int counter = 0;
-            for (int x = 0; x <= -num_diags; x++)
-            {
-                val = matrix[0 + x][0];
-                for (int i = 1; i < rows; i++)
-                {
-                    if (matrix[i + x][i] != val)
-                    {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
+
+        return true;
     }
 };
-
-int main()
-{
-    Solution s = Solution();
-    vector<vector<int>> v;
-    vector<int> a;
-    a.push_back(1);
-    a.push_back(2);
-    a.push_back(3);
-    a.push_back(4);
-    v.push_back(a);
-    vector<int> b;
-    b.push_back(5);
-    b.push_back(2);
-    b.push_back(1);
-    b.push_back(3);
-    v.push_back(b);
-    cout << s.isToeplitzMatrix(v) << endl;
-}
