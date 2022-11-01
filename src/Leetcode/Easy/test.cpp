@@ -74,31 +74,13 @@ void t3()
 {
     vector<vector<int>> v;
     vector<int> a;
-    a.push_back(36);
-    a.push_back(59);
-    a.push_back(71);
-    a.push_back(15);
-    a.push_back(26);
-    a.push_back(82);
-    a.push_back(87);
+    a = {36, 59, 71, 15, 26, 82, 87};
     v.push_back(a);
     a.clear();
-    a.push_back(56);
-    a.push_back(36);
-    a.push_back(59);
-    a.push_back(71);
-    a.push_back(15);
-    a.push_back(26);
-    a.push_back(82);
+    a = {56, 36, 59, 71, 15, 26, 82};
     v.push_back(a);
     a.clear();
-    a.push_back(15);
-    a.push_back(0);
-    a.push_back(36);
-    a.push_back(59);
-    a.push_back(71);
-    a.push_back(15);
-    a.push_back(26);
+    a = {15, 0, 36, 59, 71, 15, 26};
     v.push_back(a);
 
     for (int i = 0; i < v.size(); i++)
