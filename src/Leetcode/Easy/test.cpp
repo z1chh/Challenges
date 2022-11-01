@@ -6,10 +6,11 @@ using namespace std;
 void t1();
 void t2();
 void t3();
+void t4();
 
 int main()
 {
-    t3();
+    t4();
     return 0;
 }
 
@@ -108,4 +109,15 @@ void t3()
         }
         cout << endl;
     }
+}
+
+void t4()
+{
+    vector<int> a;
+    a = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+    for (int j = 0; j < a.size(); j++)
+    {
+        cout << a[j] << " ";
+    }
+    cout << endl;
 }
