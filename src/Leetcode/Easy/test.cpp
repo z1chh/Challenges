@@ -17,17 +17,10 @@ int main()
 void t1()
 {
     vector<vector<int>> v;
-    vector<int> a;
-    a.push_back(1);
-    a.push_back(2);
-    a.push_back(3);
-    a.push_back(4);
+    vector<int> a = {1, 2, 3, 4};
     v.push_back(a);
     a.clear();
-    a.push_back(5);
-    a.push_back(1);
-    a.push_back(2);
-    a.push_back(3);
+    a = {5, 1, 2, 3};
     v.push_back(a);
 
     for (int i = 0; i < v.size(); i++)
