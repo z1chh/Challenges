@@ -10,7 +10,7 @@ void t4();
 
 int main()
 {
-    t4();
+    t1();
     return 0;
 }
 
