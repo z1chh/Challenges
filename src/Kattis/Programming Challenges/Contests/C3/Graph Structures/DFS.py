@@ -9,6 +9,7 @@ class Graph:
 
         # default dictionary to store graph
         self.graph = defaultdict(list)
+        self.order = []
 
     # function to add an edge to graph
     def addEdge(self, u, v):
@@ -18,9 +19,9 @@ class Graph:
     def DFSUtil(self, v, visited):
 
         # Mark the current node as visited
-        # and print it
         visited.add(v)
-        print(v, end=' ')
+        self.order.append(v)
+        # print(v, end=' ')
 
         # Recur for all the vertices
         # adjacent to this vertex
@@ -31,6 +32,7 @@ class Graph:
     # The function to do DFS traversal. It uses
     # recursive DFSUtil()
     def DFS(self, v):
+        self.order.clear()
 
         # Create a set to store visited vertices
         visited = set()
@@ -50,8 +52,12 @@ def main():
     g.addEdge(2, 3)
     g.addEdge(3, 3)
 
-    print("Following is DFS from (starting from vertex 2)")
-    g.DFS(2)
+    start = 2
+    print(f"Following is DFS from (starting from vertex {start})")
+    g.DFS(start)
+    print(g.order)
+    g.DFS(start)
+    print(g.order)
 
 
 if __name__ == "__main__":
