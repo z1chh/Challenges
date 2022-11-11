@@ -6,6 +6,7 @@ class Graph():
         self.V = vertices
         self.graph = [[0 for column in range(vertices)]
                       for row in range(vertices)]
+        self.start = -1
         self.dij = {}
 
     def printSolution(self, dist):
@@ -34,6 +35,7 @@ class Graph():
     # shortest path algorithm for a graph represented
     # using adjacency matrix representation
     def dijkstra(self, src):
+        self.start = src
 
         dist = [sys.maxsize] * self.V
         dist[src] = 0
@@ -81,6 +83,7 @@ def main():
                ]
 
     g.dijkstra(0)
+    print(g.start)
     print(g.dij)
 
 
