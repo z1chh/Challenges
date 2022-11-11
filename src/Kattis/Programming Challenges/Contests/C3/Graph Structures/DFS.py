@@ -40,6 +40,13 @@ class Graph:
         # Call the recursive helper function
         # to print DFS traversal
         self.DFSUtil(v, visited)
+    
+    def __repr__(self):
+        tr = ""
+        for v in self.order:
+            tr += f"{v} -> "
+        tr = tr[0:-4]
+        return tr
 
 
 # Driver's code
@@ -55,9 +62,7 @@ def main():
     start = 2
     print(f"Following is DFS from (starting from vertex {start})")
     g.DFS(start)
-    print(g.order)
-    g.DFS(start)
-    print(g.order)
+    print(g)
 
 
 if __name__ == "__main__":
