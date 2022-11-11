@@ -45,8 +45,7 @@ class Graph:
         tr = ""
         for v in self.order:
             tr += f"{v} -> "
-        tr = tr[0:-4]
-        return tr
+        return tr[:-4]
 
 
 # Driver's code
