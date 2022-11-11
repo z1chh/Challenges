@@ -6,6 +6,7 @@ class Graph():
         self.V = vertices
         self.graph = [[0 for column in range(vertices)]
                       for row in range(vertices)]
+        self.dij = {}
 
     def printSolution(self, dist):
         print("Vertex \tDistance from Source")
@@ -57,8 +58,12 @@ class Graph():
                 if self.graph[x][y] > 0 and sptSet[y] == False and \
                         dist[y] > dist[x] + self.graph[x][y]:
                     dist[y] = dist[x] + self.graph[x][y]
-
-        self.printSolution(dist)
+        
+        d = {}
+        for node in range(self.V):
+            d[node] = dist[node]
+        self.dij = d
+        # self.printSolution(dist)
 
 
 # Driver's code
@@ -76,6 +81,7 @@ def main():
                ]
 
     g.dijkstra(0)
+    print(g.dij)
 
 
 if __name__ == "__main__":
