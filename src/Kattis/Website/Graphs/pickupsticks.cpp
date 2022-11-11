@@ -34,7 +34,7 @@ int main()
     // DFS
     vector<int> stack;
     set<int> marked;
-    vector<int> order;
+    vector<int> order; // This is bs gotta change the logic behind it
     int popped;
     bool isMarked, hasNeighbors;
     stack.push_back(0);
@@ -71,7 +71,7 @@ int main()
         // Add if no unmarked neighbors
         if (!hasNeighbors)
         {
-            order.push_back(popped);
+            order.push_back(popped); // Works if I pop from graph and DFS again
         }
     }
 
