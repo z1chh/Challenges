@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <iomanip>
 
 using namespace std;
 
@@ -8,7 +9,6 @@ int main()
     // Get number of test cases
     int num_cases, num_segments;
     float angle, degrees, distance, x, y, PI = 2 * acos(0.);
-    cout << cos(PI) << endl;
     cin >> num_cases;
     
     for (int i = 0; i < num_cases; i++)
@@ -31,12 +31,13 @@ int main()
         for (const auto& [deg, dist]: segments)
         {
             angle += deg;
-            x += cos(angle * (PI / 180)) * dist;
-            y += sin(angle * (PI / 180)) * dist;
+            x += sin(-angle * (PI / 180)) * dist;
+            y += cos(-angle * (PI / 180)) * dist;
         }
         
         // Output final coords
-        printf("%.6f %.6f\n", x, y);
+        cout << setprecision(7) << x << " " << y << endl;
+        // printf("%.6f %.6f\n", x, y);
     }
     
     // Successful return
