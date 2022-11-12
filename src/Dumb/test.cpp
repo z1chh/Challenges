@@ -1,11 +1,14 @@
 #include <iostream>
 #include <string>
 #include <utility>
+#include <cmath>
+#include <iomanip>
 
 using namespace std;
 
 int main()
 {
+    cout << setprecision(20) << 2 * acos(0) << endl;
     float f1 = 1., f2 = 2., f3 = 3., f4;
     f4 = max(f1, f2);
     f4 = max(f4, f3);
