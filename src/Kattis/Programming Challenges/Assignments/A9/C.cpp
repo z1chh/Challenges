@@ -24,15 +24,15 @@ int main()
     pair<float, float> lastCorner;
     if (hypothenuse == d1)
     {
-        lastCorner = getLastCorner(getMiddle(x1, y1, x2, y2), x3, x3);
+        lastCorner = getLastCorner(getMiddle(x1, y1, x2, y2), x3, y3);
     }
     else if (hypothenuse == d2)
     {
-        lastCorner = getLastCorner(getMiddle(x1, y1, x3, y3), x2, x2);
+        lastCorner = getLastCorner(getMiddle(x1, y1, x3, y3), x2, y2);
     }
     else
     {
-        lastCorner = getLastCorner(getMiddle(x2, y2, x3, y3), x1, x1);
+        lastCorner = getLastCorner(getMiddle(x2, y2, x3, y3), x1, y1);
     }
 
     // Output result
@@ -49,7 +49,7 @@ float segmentLength(int x1, int y1, int x2, int y2)
 
 pair<float, float> getMiddle(int x1, int y1, int x2, int y2)
 {
-    return make_pair((x1 + x2) / 2, (y1 + y2) / 2);
+    return make_pair((x1 + x2) / 2., (y1 + y2) / 2.);
 }
 
 pair<float, float> getLastCorner(pair<float, float> middle, int x, int y)
