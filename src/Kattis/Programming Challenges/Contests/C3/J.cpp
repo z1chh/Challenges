@@ -12,11 +12,14 @@ bool power(int n, string& s) {
 }
 
 int main() {
-
     string s;
+    int len;
+    
+    // Get input if available
     while(cin >> s && s != ".")
     {
-        int len = s.size();
+        // Check if power
+        len = s.size();
         for(int i = 1; i <= len; i++)
         {
             if (len % i == 0 && power(i, s))
@@ -26,5 +29,7 @@ int main() {
             }
         }
     }
+
+    // Successful return
     return 0;
 }
