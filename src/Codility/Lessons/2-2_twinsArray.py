@@ -3,6 +3,8 @@
 
 def solution(A):
     # write your code in Python 3.8.10
+    if not A:
+        return 0
     s = set()
     for el in A:
         if el in s:
