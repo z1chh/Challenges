@@ -13,4 +13,3 @@ def solution(A):
             s.add(el)
     for el in s:
         return el
-
