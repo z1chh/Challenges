@@ -9,6 +9,8 @@ def solution(X, A):
         s.add(i)
     while s:
         time += 1
+        if not A:
+            return -1
         el = A[0]
         if el in s:
             s.remove(el)
