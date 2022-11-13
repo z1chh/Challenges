@@ -16,9 +16,18 @@ int solution(vector<int> &A)
     set<int> s;
     for (int n: A)
     {
-        // IF IN S REMOVE IT, ELSE ADD IT
+        if (s.find(n) != s.end())
+        {
+            s.erase(n);
+        }
+        else
+        {
+            s.insert(n);
+        }
     }
 
-    // ODD NUMBER IS THE ONLY LEFT IN SET
-    // I GTG SO SUBMIT THIS BUT JUST TO SHOW I ALREADY HAVE THE ANSWER
+    for (int n: s)
+    {
+        return n;
+    }
 }
