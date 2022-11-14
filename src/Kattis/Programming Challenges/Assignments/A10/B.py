@@ -11,7 +11,7 @@ class Graph():
         self.dij = {}
 
     def addEdge(self, edge):
-        self.graph[edge[0]][edge[1]] = edge[2]
+        self.graph[edge[0] - 1][edge[1] - 1] = edge[2]
 
     def printSolution(self, dist):
         print("Vertex \tDistance from Source")
