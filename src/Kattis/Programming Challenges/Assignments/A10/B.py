@@ -12,6 +12,7 @@ class Graph():
 
     def addEdge(self, edge):
         self.graph[edge[0] - 1][edge[1] - 1] = edge[2]
+        self.graph[edge[1] - 1][edge[0] - 1] = edge[2]
 
     def printSolution(self, dist):
         print("Vertex \tDistance from Source")
@@ -22,7 +23,8 @@ class Graph():
     # minimum distance value, from the set of vertices
     # not yet included in shortest path tree
     def minDistance(self, dist, sptSet):
-
+        # Initialize min_index to -1
+        min_index = -1
         # Initialize minimum distance for next node
         min = sys.maxsize
 
@@ -71,17 +73,30 @@ class Graph():
         self.dij = d
         # self.printSolution(dist)
 
+    def __repr__(self):
+        string = ""
+        for line in self.graph:
+            string += " ".join(map(str, line)) + "\n"
+        return string
+
 
 # Big Truck
 def main():
+    # Create graph
     g = Graph(int(input()), map(int, input().split()))
     for _ in range(int(input())):
         g.addEdge(list(map(int, input().split())))
 
-    print(g.graph)
+    # Compute Dijkstra
     g.dijkstra(0)
-    print(g.start)
-    print(g.dij)
+
+    # Check if impossible to reach
+    if g.dij[g.V - 1] == sys.maxsize:
+        print("impossible")
+        exit()
+
+    # Otherwise, output shortest path and items picked up
+    print(g.dij[g.V - 1])
 
 
 if __name__ == "__main__":
