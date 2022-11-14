@@ -71,10 +71,11 @@ def main():
     # Check if impossible to reach
     if g.dij[g.V - 1] == sys.maxsize:
         print("impossible")
-        exit()
 
     # Otherwise, output shortest path and items picked up
-    print(g.dij[g.V - 1])
+    else:
+        print(g.dij[g.V - 1])
+        # TODO: check for number of items picked up
 
 
 if __name__ == "__main__":
