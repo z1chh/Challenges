@@ -157,8 +157,15 @@ def traiterProchainClic(boutons):
 
 
 def ajouterBordure(bouton):
-    for i in range(bouton.coin1.x, bouton.coin1.x + TAILLE):
+    # Horizontal borders
+    for i in range(bouton.coin1.x, bouton.coin1.x + TAILLE + 1):
         setPixel(i, bouton.coin1.y, "#000")
+        setPixel(i, bouton.coin1.y + TAILLE, "#000")
+    
+    # Vertical borders
+    for i in range(bouton.coin1.y, bouton.coin1.y + TAILLE):
+        setPixel(bouton.coin1.x, i, "#000")
+        setPixel(bouton.coin1.x + TAILLE, i, "#000")
 
 def dessiner():
     # Initialize
