@@ -120,15 +120,15 @@ def dessinerRectangleFlottant(imageOriginale, debut, couleur):
 
 
 def restaurerImage(imageOriginale, rectangle):
-    for i in range(rectangle.coin1.x, rectangle.coin2.x):
-        for j in range(max(math.ceil(HAUTEUR / 5), rectangle.coin1.y), rectangle.coin2.y):
+    for i in range(rectangle.coin1.x, rectangle.coin2.x - 1):
+        for j in range(max(math.ceil(HAUTEUR / 5), rectangle.coin1.y), rectangle.coin2.y - 1):
             setPixel(i, j, imageOriginale[i][j])
     return
 
 
 def ajouterRectangle(image, rectangle, couleur):
     for i in range(rectangle.coin1.x, rectangle.coin2.x):
-        for j in range(max(math.ceil(HAUTEUR / 5) + 1, rectangle.coin1.y), rectangle.coin2.y):
+        for j in range(max(math.ceil(HAUTEUR / 5), rectangle.coin1.y), rectangle.coin2.y):
             image[i][j] = couleur
     return
 
