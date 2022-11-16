@@ -59,28 +59,46 @@ def dessinerRectangleFlottant(imageOriginale, debut, couleur):
         x, y, button, shift, ctrl = getMouse()
         if button == 0:
             break
-        
+
         # Reset to original grid
         for i in range(180):
             for j in range(120):
                 fillRectangle(i, j, 1, 1, imageOriginale[i][j])
-        
+
         # Get new floating rectangle
         x1 = min(x, debut.x)
         x2 = max(x, debut.x)
         y1 = min(y, debut.y)
         y2 = max(y, debut.y)
         fillRectangle(x1, y1, x2 - x1, y2 - y1, couleur)
-        
+
         # Update last coords
         xFinal = x
         yFinal = y
-        
+
         # Sleep
         sleep(0.01)
-    
+
     # Update the original image
-    for i in range(min(xDebut, xFinal), max(xDebut, xFinal) + 1):
+    """ for i in range(min(xDebut, xFinal), max(xDebut, xFinal) + 1):
         for j in range(max(24, min(yDebut, yFinal)), max(yDebut, yFinal) + 1):
-            imageOriginale[i][j] = couleur
+            imageOriginale[i][j] = couleur """
+    rectangle = struct(coin1=struct(x=min(xDebut, xFinal), y=min(
+        yDebut, yFinal)), coin2=struct(x=max(xDebut, xFinal) + 1, y=max(yDebut, yFinal) + 1))
+    restaurerImage(imageOriginale, rectangle)
     return
+
+
+def restaurerImage(imageOriginale, rectangle):
+    for i in range(rectangle.coin1.x, rectangle.coin2.x):
+        for j in range(max(24, rectangle.coin1.y), rectangle.coin2.y):
+            fillRectangle(i, j, 1, 1, imageOriginale[i][j])
+    return
+
+
+def ajouterRectangle(image, rectangle, couleur):
+    for i in range(rectangle.coin1.x, rectangle.coin2.x):
+        for j in range(max(24, rectangle.coin1.y), rectangle.coin2.y):
+            image[i][j] = couleur
+    return
+
