@@ -2,17 +2,6 @@ import struct
 import math
 
 
-"""
-Remove the following functions:
- - getMouse()
- - sleep()
- - fillRectangle(x, y, w, h, c)
- - setScreenMode(x, y)
-
-These functions are simply declared so that the code compiles, but they are built-in functions from codeBoot
-"""
-
-
 def getMouse():
     return (0, 0, 0, 0, 0)
 
@@ -29,6 +18,10 @@ def setScreenMode(x, y):
     return
 
 
+def setPixel(x, y, c):
+    return
+
+
 """
 Global Variables:
  - LARGEUR
@@ -42,7 +35,12 @@ Global Variables:
 LARGEUR = 180
 HAUTEUR = 120
 COULEUR = "#fff"
-IMAGE = [["#fff" for _ in range(LARGEUR)] for _ in range(HAUTEUR)]
+IMAGE = []
+for _ in range(LARGEUR):
+    lst = list()
+    for _ in range(HAUTEUR):
+        lst.append(COULEUR)
+    IMAGE.append(lst)
 TAILLE = 12
 ESPACE = 6
 COULEURS = ["#fff", "#000", "#f00", "#ff0", "#0f0", "#00f", "#f0f", "#888"]
@@ -86,14 +84,17 @@ def dessinerRectangleFlottant(imageOriginale, debut, couleur):
     yFinal = yDebut
     while True:
         # Check if continue to draw floating rectangle
-        x, y, button, shift, ctrl = getMouse()
+        mouse = getMouse()
+        x = mouse.x
+        y = mouse.y
+        button = mouse.button
         if button == 0:
             break
 
         # Reset to original grid
-        for i in range(180):
-            for j in range(120):
-                fillRectangle(i, j, 1, 1, imageOriginale[i][j])
+        for i in range(LARGEUR):
+            for j in range(math.ceil(HAUTEUR / 5), HAUTEUR):
+                setPixel(i, j, imageOriginale[i][j])
 
         # Get new floating rectangle
         x1 = min(x, debut.x)
@@ -110,9 +111,6 @@ def dessinerRectangleFlottant(imageOriginale, debut, couleur):
         sleep(0.01)
 
     # Update the original image
-    """ for i in range(min(xDebut, xFinal), max(xDebut, xFinal) + 1):
-        for j in range(max(24, min(yDebut, yFinal)), max(yDebut, yFinal) + 1):
-            imageOriginale[i][j] = couleur """
     rectangle = struct(coin1=struct(x=min(xDebut, xFinal), y=min(
         yDebut, yFinal)), coin2=struct(x=max(xDebut, xFinal) + 1, y=max(yDebut, yFinal) + 1))
     restaurerImage(imageOriginale, rectangle)
@@ -122,7 +120,7 @@ def dessinerRectangleFlottant(imageOriginale, debut, couleur):
 def restaurerImage(imageOriginale, rectangle):
     for i in range(rectangle.coin1.x, rectangle.coin2.x):
         for j in range(max(24, rectangle.coin1.y), rectangle.coin2.y):
-            fillRectangle(i, j, 1, 1, imageOriginale[i][j])
+            setPixel(i, j, imageOriginale[i][j])
     return
 
 
@@ -136,7 +134,10 @@ def ajouterRectangle(image, rectangle, couleur):
 def traiterProchainClic(boutons):
     while True:
         # Check if user clicked
-        x, y, button, shift, ctrl = getMouse()
+        mouse = getMouse()
+        x = mouse.x
+        y = mouse.y
+        button = mouse.button
         if button == 1:
             if y < math.ceil(HAUTEUR / 5):
                 b = trouverBouton(boutons, struct(x=x, y=y))
@@ -144,13 +145,13 @@ def traiterProchainClic(boutons):
                     if b.effacer:
                         COULEUR = "#fff"
                     else:
-                        COULEUR = b.color
+                        COULEUR = b.couleur
             else:
                 dessinerRectangleFlottant(IMAGE, struct(x=x, y=y), COULEUR)
         sleep(0.01)
 
 
-def desinner():
+def dessiner():
     # Initialize
     setScreenMode(LARGEUR, HAUTEUR)
 
@@ -165,7 +166,7 @@ def desinner():
                       bouton.coin1.y,
                       bouton.coin2.x - bouton.coin1.x,
                       bouton.coin2.y - bouton.coin1.y,
-                      bouton.color)
+                      bouton.couleur)
 
     # Start program
     # Infinite loop, does not terminate (PDF does not say to terminate)
