@@ -1,7 +1,7 @@
 import struct
 import math
 
-
+# THESE FUNCTIONS ARE IMPLEMENTED IN CODEBOOT, REMOVE THEM BEFORE RUNNING (HERE JUST TO GET RID OF SQUIGGLYS)
 def getMouse():
     return (0, 0, 0, 0, 0)
 
