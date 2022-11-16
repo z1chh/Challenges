@@ -22,18 +22,10 @@ def setPixel(x, y, c):
     return
 
 
-"""
-Global Variables:
- - LARGEUR
- - HAUTEUR
- - COULEUR
- - IMAGE
- - TAILLE
- - ESPACE
- - COULEURS
-"""
+
 LARGEUR = 180
 HAUTEUR = 120
+COULEUREFFACER = "#fff"
 COULEUR = "#fff"
 IMAGE = []
 for _ in range(LARGEUR):
@@ -96,11 +88,13 @@ def dessinerRectangleFlottant(imageOriginale, debut, couleur):
         x2 = max(x, debut.x)
         y1 = min(y, debut.y)
         y2 = max(y, debut.y)
-        fillRectangle(x1, y1, x2 - x1, y2 - y1, couleur)
 
         # Reset to original grid
         restaurerImage(imageOriginale, struct(coin1=struct(
             x=x1, y=y1), coin2=struct(x=x2, y=y2)))
+        
+        # Color
+        fillRectangle(x1, y1, x2 - x1, y2 - y1, couleur)
 
         # Update last coords
         xFinal = x
@@ -136,16 +130,13 @@ def traiterProchainClic(boutons):
         mouse = getMouse()
         x = mouse.x
         y = mouse.y
-        button = mouse.button
-        if button == 1:
+        boutton = mouse.button
+        if boutton == 1:
             if y <= math.ceil(HAUTEUR / 5):
                 b = trouverBouton(boutons, struct(x=x, y=y))
                 if b is not None:
                     if b.effacer:
-                        for i in range(LARGEUR):
-                            for j in range(math.ceil(HAUTEUR / 5) + 1, HAUTEUR):
-                                IMAGE[i][j] = "#fff"
-                        fillRectangle(0, math.ceil(HAUTEUR / 5) + 1, LARGEUR, HAUTEUR - (math.ceil(HAUTEUR / 5) + 1), "#fff")
+                        dessiner()
                     else:
                         COULEUR = b.couleur
             else:
@@ -158,11 +149,11 @@ def dessiner():
     setScreenMode(LARGEUR, HAUTEUR)
 
     # Background
-    fillRectangle(0, 0, LARGEUR, HAUTEUR, "#fff")
+    fillRectangle(0, 0, LARGEUR, HAUTEUR, COULEUREFFACER)
     fillRectangle(0, 0, LARGEUR, math.ceil(HAUTEUR / 5), "#888")
 
     # Buttons
-    boutons = creerBoutons(COULEURS, TAILLE, ESPACE, "#fff")
+    boutons = creerBoutons(COULEURS, TAILLE, ESPACE, COULEUREFFACER)
     for bouton in boutons:
         fillRectangle(bouton.coin1.x,
                       bouton.coin1.y,
@@ -175,6 +166,11 @@ def dessiner():
         setPixel(i, i, "#f00")
     for i in range(0, TAILLE):
         setPixel(5 + TAILLE - i, i + 6, "#f00")
+        
+    # Reset IMAGE
+    for i in range(LARGEUR):
+        for j in range(HAUTEUR):
+            IMAGE[i][j] = COULEUREFFACER
     
 
     # Start program
