@@ -1,3 +1,13 @@
+"""
+Author     : Zi Chen Hu
+Program    : Paint
+Description: Simulates a paint program in which you can draw rectangles
+Notes      : Remove all imports and functions defined before global variables
+             They are here simply to avoid squiggly lines, they are already implemented in codeBoot
+Execution  : Copy and paste code in codeBoot (https://codeboot.org/py/#)
+"""
+
+# THESE IMPORTS ARE HERE TO AVOID SQUIGGLYS, REMOVE BEFORE USING CODE IN CODEBOOT
 import struct
 import math
 
