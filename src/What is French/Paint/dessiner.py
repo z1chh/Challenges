@@ -154,4 +154,4 @@ def desinner():
     creerBoutons(COULEURS, TAILLE, ESPACE, "#fff")
     
     # Start program
-    traiterProchainClic()
+    traiterProchainClic() # Infinite loop, does not terminate (PDF does not say to terminate)
