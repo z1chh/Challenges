@@ -38,7 +38,7 @@ LARGEUR = 180
 HAUTEUR = 120
 COULEUREFFACER = "#fff"
 COULEUR = "#fff"
-IMAGE = []
+IMAGE = [] # codeBoot does not support list comprehension :D
 for _ in range(LARGEUR):
     lst = list()
     for _ in range(HAUTEUR):
@@ -46,7 +46,7 @@ for _ in range(LARGEUR):
     IMAGE.append(lst)
 TAILLE = math.floor(HAUTEUR / 10)
 ESPACE = math.floor(TAILLE / 2)
-COULEURS = ["#fff", "#000", "#f00", "#ff0", "#0f0", "#00f", "#f0f", "#888"]
+COULEURS = ["#fff", "#000", "#f00", "#ff0", "#0f0", "#00f", "#f0f", "#888"] # White, black, red, yellow, green, blue, fuschia, grey
 
 
 def creerBoutons(couleurs, taille, espace, couleurEffacer):
