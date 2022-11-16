@@ -44,8 +44,8 @@ for _ in range(LARGEUR):
     for _ in range(HAUTEUR):
         lst.append(COULEUR)
     IMAGE.append(lst)
-TAILLE = 12
-ESPACE = 6
+TAILLE = math.floor(HAUTEUR / 10)
+ESPACE = math.floor(TAILLE / 2)
 COULEURS = ["#fff", "#000", "#f00", "#ff0", "#0f0", "#00f", "#f0f", "#888"]
 
 
@@ -161,11 +161,12 @@ def ajouterBordure(bouton):
     for i in range(bouton.coin1.x, bouton.coin1.x + TAILLE + 1):
         setPixel(i, bouton.coin1.y, "#000")
         setPixel(i, bouton.coin1.y + TAILLE, "#000")
-    
+
     # Vertical borders
     for i in range(bouton.coin1.y, bouton.coin1.y + TAILLE):
         setPixel(bouton.coin1.x, i, "#000")
         setPixel(bouton.coin1.x + TAILLE, i, "#000")
+
 
 def dessiner():
     # Initialize
@@ -188,8 +189,8 @@ def dessiner():
     for i in range(6, 6 + TAILLE):
         setPixel(i, i, "#f00")
     for i in range(0, TAILLE):
-        setPixel(5 + TAILLE - i, i + 6, "#f00")
-    
+        setPixel(6 + TAILLE - i, i + 6, "#f00")
+
     # Add border for buttons
     for bouton in boutons:
         ajouterBordure(bouton)
