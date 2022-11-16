@@ -1,4 +1,5 @@
 import struct
+import math
 
 
 """
@@ -21,6 +22,30 @@ def sleep(x):
 
 def fillRectangle(x, y, w, h, c):
     return
+
+
+"""
+Global Variables:
+ - LARGEUR
+ - HAUTEUR
+ - COULEUR
+ - IMAGE
+ - TAILLE
+ - ESPACE
+ - COULEURS
+"""
+LARGEUR = 180
+HAUTEUR = 120
+COULEUR = "#fff"
+IMAGE = [["#fff" for _ in range(LARGEUR)] for _ in range(HAUTEUR)]
+TAILLE = 12
+ESPACE = 6
+COULEURS = ["#fff", "#000", "#f00", "#ff0", "#0f0", "#00f", "#f0f", "#888"]
+
+
+"""
+Functions
+"""
 
 
 def creerBoutons(couleurs, taille, espace, couleurEffacer):
@@ -102,3 +127,31 @@ def ajouterRectangle(image, rectangle, couleur):
             image[i][j] = couleur
     return
 
+
+def traiterProchainClic(boutons):
+    while True:
+        # Check if user clicked
+        x, y, button, shift, ctrl = getMouse()
+        if button == 1:
+            if y < math.ceil(HAUTEUR / 5):
+                b = trouverBouton(boutons, struct(x=x, y=y))
+                if b is not None:
+                    if b.effacer:
+                        COULEUR = "#fff"
+                    else:
+                        COULEUR = b.color
+            else:
+                dessinerRectangleFlottant(IMAGE, struct(x=x, y=y), COULEUR)
+        sleep(0.01)
+
+
+def desinner():
+    # Background
+    fillRectangle(0, 0, LARGEUR, HAUTEUR, COULEUR)
+    fillRectangle(0, 0, LARGEUR, math.ceil(HAUTEUR / 5), "#888")
+    
+    # Buttons
+    creerBoutons(COULEURS, TAILLE, ESPACE, "#fff")
+    
+    # Start program
+    traiterProchainClic()
