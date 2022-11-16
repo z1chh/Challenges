@@ -99,7 +99,7 @@ def dessinerRectangleFlottant(imageOriginale, debut, couleur):
         fillRectangle(x1, y1, x2 - x1, y2 - y1, couleur)
 
         # Reset to original grid
-        restaurerImage(IMAGE, struct(coin1=struct(
+        restaurerImage(imageOriginale, struct(coin1=struct(
             x=x1, y=y1), coin2=struct(x=x2, y=y2)))
 
         # Update last coords
@@ -138,11 +138,14 @@ def traiterProchainClic(boutons):
         y = mouse.y
         button = mouse.button
         if button == 1:
-            if y < math.ceil(HAUTEUR / 5):
+            if y <= math.ceil(HAUTEUR / 5):
                 b = trouverBouton(boutons, struct(x=x, y=y))
                 if b is not None:
                     if b.effacer:
-                        COULEUR = "#fff"
+                        for i in range(LARGEUR):
+                            for j in range(math.ceil(HAUTEUR / 5) + 1, HAUTEUR):
+                                IMAGE[i][j] = "#fff"
+                        fillRectangle(0, math.ceil(HAUTEUR / 5) + 1, LARGEUR, HAUTEUR - (math.ceil(HAUTEUR / 5) + 1), "#fff")
                     else:
                         COULEUR = b.couleur
             else:
@@ -155,7 +158,7 @@ def dessiner():
     setScreenMode(LARGEUR, HAUTEUR)
 
     # Background
-    fillRectangle(0, 0, LARGEUR, HAUTEUR, COULEUR)
+    fillRectangle(0, 0, LARGEUR, HAUTEUR, "#fff")
     fillRectangle(0, 0, LARGEUR, math.ceil(HAUTEUR / 5), "#888")
 
     # Buttons
@@ -166,6 +169,13 @@ def dessiner():
                       bouton.coin2.x - bouton.coin1.x,
                       bouton.coin2.y - bouton.coin1.y,
                       bouton.couleur)
+    
+    # Add "X" on erase
+    for i in range(6, 6 + TAILLE):
+        setPixel(i, i, "#f00")
+    for i in range(0, TAILLE):
+        setPixel(5 + TAILLE - i, i + 6, "#f00")
+    
 
     # Start program
     # Infinite loop, does not terminate (PDF does not say to terminate)
