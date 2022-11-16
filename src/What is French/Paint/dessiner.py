@@ -7,6 +7,7 @@ Remove the following functions:
  - getMouse()
  - sleep()
  - fillRectangle(x, y, w, h, c)
+ - setScreenMode(x, y)
 
 These functions are simply declared so that the code compiles, but they are built-in functions from codeBoot
 """
@@ -21,6 +22,10 @@ def sleep(x):
 
 
 def fillRectangle(x, y, w, h, c):
+    return
+
+
+def setScreenMode(x, y):
     return
 
 
@@ -146,12 +151,22 @@ def traiterProchainClic(boutons):
 
 
 def desinner():
+    # Initialize
+    setScreenMode(LARGEUR, HAUTEUR)
+
     # Background
     fillRectangle(0, 0, LARGEUR, HAUTEUR, COULEUR)
     fillRectangle(0, 0, LARGEUR, math.ceil(HAUTEUR / 5), "#888")
-    
+
     # Buttons
-    creerBoutons(COULEURS, TAILLE, ESPACE, "#fff")
-    
+    boutons = creerBoutons(COULEURS, TAILLE, ESPACE, "#fff")
+    for bouton in boutons:
+        fillRectangle(bouton.coin1.x,
+                      bouton.coin1.y,
+                      bouton.coin2.x - bouton.coin1.x,
+                      bouton.coin2.y - bouton.coin1.y,
+                      bouton.color)
+
     # Start program
-    traiterProchainClic() # Infinite loop, does not terminate (PDF does not say to terminate)
+    # Infinite loop, does not terminate (PDF does not say to terminate)
+    traiterProchainClic(boutons)
