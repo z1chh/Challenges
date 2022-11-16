@@ -91,17 +91,16 @@ def dessinerRectangleFlottant(imageOriginale, debut, couleur):
         if button == 0:
             break
 
-        # Reset to original grid
-        for i in range(LARGEUR):
-            for j in range(math.ceil(HAUTEUR / 5), HAUTEUR):
-                setPixel(i, j, imageOriginale[i][j])
-
         # Get new floating rectangle
         x1 = min(x, debut.x)
         x2 = max(x, debut.x)
         y1 = min(y, debut.y)
         y2 = max(y, debut.y)
         fillRectangle(x1, y1, x2 - x1, y2 - y1, couleur)
+
+        # Reset to original grid
+        restaurerImage(IMAGE, struct(coin1=struct(
+            x=x1, y=y1), coin2=struct(x=x2, y=y2)))
 
         # Update last coords
         xFinal = x
@@ -119,14 +118,14 @@ def dessinerRectangleFlottant(imageOriginale, debut, couleur):
 
 def restaurerImage(imageOriginale, rectangle):
     for i in range(rectangle.coin1.x, rectangle.coin2.x):
-        for j in range(max(24, rectangle.coin1.y), rectangle.coin2.y):
+        for j in range(max(math.ceil(HAUTEUR / 5) + 1, rectangle.coin1.y), rectangle.coin2.y):
             setPixel(i, j, imageOriginale[i][j])
     return
 
 
 def ajouterRectangle(image, rectangle, couleur):
     for i in range(rectangle.coin1.x, rectangle.coin2.x):
-        for j in range(max(24, rectangle.coin1.y), rectangle.coin2.y):
+        for j in range(max(math.ceil(HAUTEUR / 5) + 1, rectangle.coin1.y), rectangle.coin2.y):
             image[i][j] = couleur
     return
 
