@@ -12,6 +12,8 @@ import struct
 import math
 
 # THESE FUNCTIONS ARE IMPLEMENTED IN CODEBOOT, REMOVE THEM BEFORE RUNNING (HERE JUST TO GET RID OF SQUIGGLYS)
+
+
 def getMouse():
     return (0, 0, 0, 0, 0)
 
@@ -154,6 +156,10 @@ def traiterProchainClic(boutons):
         sleep(0.01)
 
 
+def ajouterBordure(bouton):
+    for i in range(bouton.coin1.x, bouton.coin1.x + TAILLE):
+        setPixel(i, bouton.coin1.y, "#000")
+
 def dessiner():
     # Initialize
     setScreenMode(LARGEUR, HAUTEUR)
@@ -176,6 +182,10 @@ def dessiner():
         setPixel(i, i, "#f00")
     for i in range(0, TAILLE):
         setPixel(5 + TAILLE - i, i + 6, "#f00")
+    
+    # Add border for buttons
+    for bouton in boutons:
+        ajouterBordure(bouton)
 
     # Reset IMAGE
     for i in range(LARGEUR):
