@@ -25,3 +25,7 @@ def trouverBouton(boutons, position):
             if position.y >= bouton.coin1.y and position.y <= bouton.coin2.y:
                 return bouton
     return None
+
+
+def dessinerRectangleFlottan(imageOriginale, debut, couleur):
+    pass
