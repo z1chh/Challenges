@@ -11,7 +11,8 @@ int main()
 
     // Compute and output result
     cout << pow(pow(2, iterations) + 1, 2) << endl;
-    
+
     // Successful return
     return 0;
 }
+// WRONG ANSWER, MODIFY
