@@ -11,5 +11,10 @@ int main()
     {
         // Get input
         cin >> r >> s >> x >> y >> w;
+
+        // TODO
     }
+
+    // Successful return
+    return 0;
 }
