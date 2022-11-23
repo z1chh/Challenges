@@ -30,8 +30,13 @@ def flipBoard(board, n):
 
 
 def boardAsString(board):
-    print(
-        f"-------\n|{board[0]} {board[1]} {board[2]}|\n|{board[3]} {board[4]} {board[5]}|\n|{board[6]} {board[7]} {board[8]}|\n-------")
+    return (f"+---+---+---+\n" +
+            f"| {board[0]} | {board[1]} | {board[2]} |\n" +
+            f"+---+---+---+\n" +
+            f"| {board[3]} | {board[4]} | {board[5]} |\n" +
+            f"+---+---+---+\n" +
+            f"| {board[6]} | {board[7]} | {board[8]} |\n" +
+            f"+---+---+---+")
 
 
 # For each test case
@@ -54,16 +59,12 @@ for _ in range(int(input())):
     winScores = set()
     while queue:
         poppedBoard = queue.pop(0)
-        # print("popping:")
-        # boardAsString(poppedBoard)
         curScore = storage[poppedBoard]
         for i in range(9):
             flippedBoard = flipBoard(poppedBoard, i)
             if flippedBoard == goalBoard:
                 winScores.add(curScore + 1)
             elif flippedBoard not in played:
-                # print(f"adding to queue ({i}):")
-                # boardAsString(flippedBoard)
                 queue.append(flippedBoard)
                 played.add(flippedBoard)
                 if flippedBoard in storage:
