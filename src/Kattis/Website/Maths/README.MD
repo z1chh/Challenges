@@ -1,3 +1,5 @@
 # INCOMPLETE PROBLEMS
 
-- citadelconstruction.py
+- citadelconstruction.py (Comprehension)
+- flipfive.py (WA)
+- biggest.py (Comprehension)
