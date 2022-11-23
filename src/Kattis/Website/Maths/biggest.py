@@ -4,3 +4,5 @@ for _ in range(int(input())):
     area = math.pow(math.pi, 2) * radius
     print("pi and area:", math.pi, area)
     print(area * angle / 360.)
+
+# INCOMPLETE CUZ I DONT UNDERSTAND PROBLEM
