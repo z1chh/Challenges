@@ -48,18 +48,8 @@ def boardAsString(board):
             f"+---+---+---+")
 
 
-def flipFive(goalBoard):
-    # Storing played boards and their score
-    played = set()
-    played.add(".........")
-    storage = dict()
-    storage["........."] = 0
-
-    # Initialize queue with whiteboard
-    queue = ["........."]
-
+def flipFive(goalBoard, played, storage, queue, winScores):
     # Exhaustive search
-    winScores = set()
     while queue:
         # Pop the board from the queue and retrieve its score
         poppedBoard = queue.pop(0)
@@ -77,7 +67,7 @@ def flipFive(goalBoard):
                 #print("score of", curScore + 1)
 
             # Check if not visited already
-            elif flippedBoard not in played or storage[flippedBoard] > curScore + 1:
+            elif flippedBoard not in played:
                 played.add(flippedBoard)
                 queue.append(flippedBoard)
                 storage[flippedBoard] = curScore + 1
@@ -94,8 +84,20 @@ def main():
         for _ in range(3):
             goalBoard += input()
 
+        # Storing played boards and their score
+        played = set()
+        played.add(".........")
+        storage = dict()
+        storage["........."] = 0
+
+        # Initialize queue with whiteboard
+        queue = ["........."]
+
+        # Initialize scores
+        winScores = set()
+
         # Compute and output score
-        print(flipFive(goalBoard))
+        print(flipFive(goalBoard, played, storage, queue, winScores))
 
 
 if __name__ == '__main__':
