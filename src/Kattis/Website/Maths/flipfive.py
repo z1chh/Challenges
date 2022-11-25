@@ -69,6 +69,11 @@ def main():
         goalBoard = ""
         for _ in range(3):
             goalBoard += input()
+        
+        # Check if nothing to do
+        if goalBoard == ".........":
+            print(0)
+            continue
 
         # Storing played boards and their score
         played = set()
