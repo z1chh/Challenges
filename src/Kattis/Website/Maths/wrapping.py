@@ -4,5 +4,5 @@ for _ in range(int(input())):
     for _ in range(int(input())):
         _, _, x, y, _ = map(float, input().split())
         boards += x * y
-    ans = int(boards / sawmill_area * 1000)
+    ans = round(boards / sawmill_area * 1000)
     print(ans / 10, "%")
