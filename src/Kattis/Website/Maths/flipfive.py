@@ -37,17 +37,6 @@ def flipBoard(board, n):
     return ''.join(newBoard)
 
 
-# Stringify the board (for debugging purposes)
-def boardAsString(board):
-    return (f"+---+---+---+\n" +
-            f"| {board[0]} | {board[1]} | {board[2]} |\n" +
-            f"+---+---+---+\n" +
-            f"| {board[3]} | {board[4]} | {board[5]} |\n" +
-            f"+---+---+---+\n" +
-            f"| {board[6]} | {board[7]} | {board[8]} |\n" +
-            f"+---+---+---+")
-
-
 def flipFive(goalBoard, played, storage, queue, winScores):
     # Exhaustive search
     while queue:
@@ -62,9 +51,6 @@ def flipFive(goalBoard, played, storage, queue, winScores):
             # Check if it is a winning board
             if flippedBoard == goalBoard:
                 winScores.add(curScore + 1)
-                # print(boardAsString(poppedBoard))
-                # print(boardAsString(flippedBoard))
-                #print("score of", curScore + 1)
 
             # Check if not visited already
             elif flippedBoard not in played:
