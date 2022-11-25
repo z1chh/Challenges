@@ -48,13 +48,7 @@ def boardAsString(board):
             f"+---+---+---+")
 
 
-# For each test case
-for _ in range(int(input())):
-    # Get input
-    goalBoard = ""
-    for _ in range(3):
-        goalBoard += input()
-
+def flipFive(goalBoard):
     # Storing played boards and their score
     played = set()
     played.add(".........")
@@ -88,5 +82,21 @@ for _ in range(int(input())):
                 queue.append(flippedBoard)
                 storage[flippedBoard] = curScore + 1
 
-    # Output minimum number of moves
-    print(min(winScores))
+    # Return minimum number of moves
+    return min(winScores)
+
+
+def main():
+    # For each test case
+    for _ in range(int(input())):
+        # Get input
+        goalBoard = ""
+        for _ in range(3):
+            goalBoard += input()
+
+        # Compute and output score
+        print(flipFive(goalBoard))
+
+
+if __name__ == '__main__':
+    main()
