@@ -4,11 +4,12 @@ using namespace std;
 
 int main()
 {
-    int n;
+    // Initialize vars and get input
+    int n, k = 1, factor = 2;
     cin >> n;
-    int k = 1;
-    int factor = 2;
-    while (factor*factor <= n)
+
+    // Loop as long as power smaller than n
+    while (factor * factor <= n)
     {
         if (n % factor == 0)
         {
@@ -16,8 +17,14 @@ int main()
             k++;
         }
         else
+        {
             factor++;
+        }
     }
+
+    // Output result
     cout << k;
+
+    // Successful return
     return 0;
 }
