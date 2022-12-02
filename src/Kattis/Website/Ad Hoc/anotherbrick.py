@@ -5,6 +5,9 @@ def anotherbrick(h, w, bricks):
 
     # Check if each brick fits
     for brick in bricks:
+        # Place brick
+        curW += brick
+        
         # Check if annoyed
         if curW > w:
             return "NO"
@@ -18,14 +21,8 @@ def anotherbrick(h, w, bricks):
         if curH > h:
             return "YES"
 
-        # Place brick
-        curW += brick
-
-    # Check if wall completed
-    if curW == w and curH == h + 1:
-        return "YES"
-    else:
-        return "NO"
+    # Wall not completed
+    return "NO"
 
 
 def main():
