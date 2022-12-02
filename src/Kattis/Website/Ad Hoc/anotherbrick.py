@@ -30,7 +30,7 @@ def main():
     h, w, _ = map(int, input().split())
     bricks = map(int, input().split())
 
-    # Compute and output
+    # Compute and output answer
     print(anotherbrick(h, w, bricks))
 
 
