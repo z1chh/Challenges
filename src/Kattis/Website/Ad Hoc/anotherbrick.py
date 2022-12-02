@@ -18,7 +18,7 @@ def anotherbrick(h, w, bricks):
             curH += 1
 
         # Check if wall completed
-        if curH > h:
+        if curH == h:
             return "YES"
 
     # Wall not completed
