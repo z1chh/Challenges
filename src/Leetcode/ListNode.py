@@ -31,15 +31,17 @@ class ListNode:
         idx = 1
         elements = {}
         elements[0] = self.val
-        cur = self.next
+        cur = self
         while cur.next is not None:
             cur = cur.next
             elements[idx] = cur.val
             idx += 1
 
         # Create reverse ListNode
+        print(elements)
         idx -= 1
         reversedList = ListNode(elements[idx])
+        idx -= 1
 
         # Add elements in reverse order
         while idx >= 0:
