@@ -38,7 +38,6 @@ class ListNode:
             idx += 1
 
         # Create reverse ListNode
-        print(elements)
         idx -= 1
         reversedList = ListNode(elements[idx])
         idx -= 1
@@ -53,11 +52,22 @@ class ListNode:
 
 
 def main():
+    print("Creating ListNode [0, 1, 2, 3, 4]")
     l = ListNode(0)
     for i in range(1, 5):
         l.add(i)
     print(l)
     print(l.reverse())
+
+    print("\nCreating ListNode [0, 2, 4, 6, 8, 10]")
+    l2 = ListNode(0)
+    l2.add(2)
+    l2.add(4)
+    l2.add(6)
+    l2.add(8)
+    l2.add(10)
+    print(l2)
+    print(l2.reverse())
 
 
 if __name__ == "__main__":
