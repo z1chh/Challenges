@@ -9,13 +9,11 @@ class Solution(object):
             return 0
         elif size == 1:
             return mat[0][0]
-        elif size % 2 == 0:
-            total = 0
-            for i in range(size):
-                total += mat[i][i] + mat[i][size - 1 - i]
-            return total
         else:
             total = 0
             for i in range(size):
                 total += mat[i][i] + mat[i][size - 1 - i]
-            return total - mat[size / 2][size / 2]
+            if size % 2 == 1:
+                total -= mat[size / 2][size / 2]
+            return total
+
