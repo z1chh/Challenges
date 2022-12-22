@@ -43,6 +43,9 @@ class Solution(object):
 
         # For negative values of k
         else:
+            # Get absolute value of k
+            k = -k
+            
             # Compute new number for each value
             for idx in range(size):
                 print("FOR INDEXX", idx)
