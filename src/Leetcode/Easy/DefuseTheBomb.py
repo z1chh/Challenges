@@ -48,7 +48,6 @@ class Solution(object):
             
             # Compute new number for each value
             for idx in range(size):
-                print("FOR INDEXX", idx)
                 # Initialize vars
                 newValue = 0
                 nums = 0
@@ -61,7 +60,6 @@ class Solution(object):
                         cur += size
 
                     # Update sum
-                    print("ADDING", code[cur])
                     newValue += code[cur]
 
                     # Update numbers counted and index
