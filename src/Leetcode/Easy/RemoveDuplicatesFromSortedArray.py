@@ -24,8 +24,8 @@ class Solution(object):
                 k += 1
 
             last = v
-        
-        # Test
+
+        # Remove duplicates and place a stub 0 in the back
         for i in dupes:
             nums.pop(i)
             nums.append(0)
