@@ -6,7 +6,7 @@ class Solution(object):
         :rtype: str
         """
 
-        # Reverse numbers
+        # Reverse numbers and store in list
         n1 = [c for c in a[::-1]]
         n2 = [c for c in b[::-1]]
 
@@ -18,7 +18,6 @@ class Solution(object):
         while n1 and n2:
             d1 = n1.pop(0)
             d2 = n2.pop(0)
-            print("REMOVING ", d1, d2)
             if d1 == "0" and d2 == "0":
                 if carry:
                     n3 += "1"
