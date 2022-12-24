@@ -16,23 +16,23 @@ class Solution(object):
         # Compute sum
         carry = False
         for d1, d2 in zip(n1, n2):
-            if d1 == 0 and d2 == 0:
+            if d1 == "0" and d2 == "0":
                 if carry:
                     n3 += "1"
                     carry = False
                 else:
                     n3 += "0"
-            if d1 == 0 and d2 == 1:
+            elif d1 == "0" and d2 == "1":
                 if carry:
                     n3 += "0"
                 else:
                     n3 += "1"
-            if d1 == 1 and d2 == 0:
+            elif d1 == "1" and d2 == "0":
                 if carry:
                     n3 += "0"
                 else:
                     n3 += "1"
-            if d1 == 1 and d2 == 1:
+            elif d1 == "1" and d2 == "1":
                 if carry:
                     n3 += "1"
                 else:
