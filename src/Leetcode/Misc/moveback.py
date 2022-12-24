@@ -1,5 +1,7 @@
+# Helper function to move ith element of the list to the back
 def moveBack(l, i):
-    pass
+    for i in range(i, len(l) - 1):
+        l[i], l[i + 1] = l[i + 1], l[i]
 
 
 def main():
