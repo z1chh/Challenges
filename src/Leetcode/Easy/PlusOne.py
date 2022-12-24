@@ -15,6 +15,8 @@ class Solution(object):
         # Check if overflow
         if digits[0] == 9:
             carry = True
+        else:
+            digits[0] += 1
 
         # Increment number
         for i, d in enumerate(digits):
