@@ -5,9 +5,11 @@ class Solution(object):
         :rtype: str
         """
 
-        # Edge case
+        # Edge cases
         if len(strs) == 0:
             return ""
+        elif len(strs) == 1:
+            return strs[0]
 
         # Initialize vars
         maxLength = strs[0]
@@ -34,4 +36,4 @@ class Solution(object):
                 longest = i
 
         # Return longest common prefix
-        return longest
+        return strs[0][0:longest]
