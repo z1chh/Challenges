@@ -82,6 +82,7 @@ def main():
     #removeDuplicates([1, 1, 2])
     print(lengthOfLongestWord("Hello World Today is a magnificent day"))
     print(lengthOfLongestWord("a bb day"))
+    print("abcdef"[0:1])
 
 
 if __name__ == '__main__':
