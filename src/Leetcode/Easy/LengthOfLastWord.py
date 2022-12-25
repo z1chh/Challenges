@@ -6,8 +6,8 @@ class Solution(object):
         """
 
         # Initialize vars
-        longest = 0
-        cur = 0
+        last = 0
+        length = 0
         newWord = True
 
         # Iterate over every character
@@ -16,30 +16,25 @@ class Solution(object):
                 # Check if start of a new word
                 if c != ' ':
                     newWord = False
-                    cur = 1
+                    length = 1
             else:
                 # Check if the current word ended
                 if c == ' ':
 
-                    # Check if the current word is the longest one
-                    if longest < cur:
-                        longest = cur
+                    # Update length of last word
+                    last = length
 
                     # Reset vars
                     newWord = True
-                    cur = 0
-
-                    # Check if the current word is the longest one
-                    if longest < cur:
-                        longest = cur
+                    length = 0
 
                 # Otherwise, increment length
                 else:
-                    cur += 1
+                    length += 1
 
         # Check if finished with a word
-        if not newWord and longest < cur:
-            longest = cur
+        if not newWord:
+            last = length
 
-        # Return the length of the longest word
-        return longest
+        # Return the length of the last word
+        return last
