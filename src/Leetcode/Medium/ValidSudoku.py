@@ -35,6 +35,6 @@ class Solution(object):
 
         # Check sub-boards
         # TODO
-        
+
         # Otherwise, it is a valid board
         return True
