@@ -13,6 +13,8 @@ class Solution(object):
             return 0
         if size == 1:
             return 0 if nums[0] >= target else 1
+        if target < nums[0]:
+            return 0
 
         # Initialize vars
         for i in range(size - 1):
