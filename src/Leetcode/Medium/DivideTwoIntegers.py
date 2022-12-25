@@ -7,7 +7,7 @@ class Solution(object):
         """
 
         # Initialize vars
-        remainder = divisor
+        remainder = dividend
         quotient = 0
         neg = False
 
