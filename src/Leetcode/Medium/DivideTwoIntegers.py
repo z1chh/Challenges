@@ -10,7 +10,7 @@ class Solution(object):
         if divisor == 1:
             return dividend
         elif divisor == -1:
-            return -dividend
+            return 2147483647 if dividend == -2147483648 else -dividend
         
         # Initialize vars
         remainder = dividend
@@ -33,5 +33,3 @@ class Solution(object):
 
         # Return quotient
         return -quotient if neg else quotient
-    
-    # GOT TLE, PLS FIX
