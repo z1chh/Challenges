@@ -34,7 +34,10 @@ class Solution(object):
                         digits.add(d)
 
         # Check sub-boards
-        # TODO
+        for i in range(1, 4):
+            for j in range(1, 4):
+                # TODO
+                pass
 
-        # Otherwise, it is a valid board
+                # Otherwise, it is a valid board
         return True
