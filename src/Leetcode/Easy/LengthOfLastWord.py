@@ -37,5 +37,9 @@ class Solution(object):
                 else:
                     cur += 1
 
+        # Check if finished with a word
+        if not newWord and longest < cur:
+            longest = cur
+
         # Return the length of the longest word
         return longest
