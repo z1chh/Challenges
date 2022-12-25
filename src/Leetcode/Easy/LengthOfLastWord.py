@@ -14,12 +14,12 @@ class Solution(object):
         for c in s:
             if newWord:
                 # Check if start of a new word
-                if ('a' <= c <= 'z') or ('A' <= c <= 'Z'):
+                if c != ' ':
                     newWord = False
                     cur = 1
             else:
                 # Check if the current word ended
-                if not (('a' <= c <= 'z') or ('A' <= c <= 'Z')):
+                if c == ' ':
 
                     # Check if the current word is the longest one
                     if longest < cur:
